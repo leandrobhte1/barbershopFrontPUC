@@ -1,38 +1,1140 @@
-.App {
-  text-align: center;
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap');
+
+body{
+    margin: 0 !important;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.home{
+    width: 100%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.App{
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.userContent{
+    display: flex;
 }
 
-.App-link {
-  color: #61dafb;
+.Content{
+    display: flex;
+    flex: 1;
+    margin-top: 70px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.Menu{
+    display: flex;
+    flex-basis: 250px;
+    background-color: dodgerblue;
+}
+
+.Menu nav{
+    flex: 1;
+}
+
+.Menu ul{
+    list-style: none;
+    padding: 0;
+}
+
+.Menu li{
+    display: flex;
+}
+
+.Menu li a{
+    margin-bottom: 10px;
+    padding: 10px;
+    flex: 1;
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 1.5rem;
+}
+
+.Menu li a:hover{
+    background-color: #00000020;
+}
+
+ul li a{
+    text-decoration: none !important;
+}
+
+.f18px{
+    font-size: 18px;
+}
+
+.main-footer{
+    height: 400px;
+    background-color: #1E1E1E;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.main-footer .left{
+    display: flex;
+    padding-top: 100px;
+    flex-basis: 49% !important;
+}
+
+.main-footer .right{
+    display: flex;
+    flex-direction: row;
+    padding-top: 100px;
+}
+
+.main-footer .right .collumn{
+    display: flex;
+    flex-direction: column;
+    color: #F8F9FA;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.terms span{
+    color: #F8F9FA;
+    padding-right: 30px;
+}
+
+.copyright{
+    color: #F8F9FA;
+}
+
+.terms{
+    margin-top: 50px;
+}
+
+.terms a{
+    text-decoration: none;
+    color: #F8F9FA !important;
+}
+
+.main-footer .right .collumn #facebook{
+    padding-right: 30px;
+}
+
+.main-footer .right .collumn #twitter{
+    padding-right: 20px;
+}
+
+.main-footer .right .collumn #instagram{
+    padding-right: 20px;
+}
+
+.main-footer .right .collumn span{
+    padding-bottom: 15px;
+}
+
+.main-footer .right .collumn div{
+    padding-bottom: 15px;
+}
+
+.main-footer .left .tittleLogoFooter{
+    font-size: 28px;
+    font-weight: bold;
+    color: #F8F9FA;
+}
+
+.main-footer .left .subtittleLogoFooter{
+    font-size: 15px;
+    font-weight: bold;
+    color: #F8F9FA;
+    margin-bottom: 50px;
+}
+
+.main-footer .left .textFooter{
+    margin-top: 40px;
+}
+
+.main-footer .left .subTextLogoFooter{
+    margin-top: 30px;
+}
+
+.logoFooter{
+    width: 300px;
+    height: 250px;
+}
+
+.orangeText{
+    color: #F6973F;
+}
+
+.whiteText{
+    color: #ffffff;
+}
+
+.barberShopNameFooter{
+    color: #F8F9FA;
+}
+
+button{
+    margin-left: 5px;
+}
+
+.table-actions{
+    width: 150px;
+}
+
+.bannerImage{
+    width: 100%;
+}
+
+.main-header{
+    display: flex;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    background-color: #1E1E1E;
+    height: 70px;
+}
+
+.logoBarberShop{
+    height: 70px;
+    width: 100px;
+}
+
+.logoBarberShopHome{
+    position: absolute;
+    top: 150px;
+}
+
+.top-menu{
+    display: flex;
+    list-style: none;
+    justify-content: space-evenly;
+    height: 60px;
+    padding-top: 20px;
+    font-weight: bold;
+}
+
+.top-menu.top-menu-user{
+    justify-content: flex-end;
+    display: flex;
+    list-style: none;
+    height: 60px;
+    padding-top: 20px;
+}
+
+.top-menu.top-menu-user li{
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.top-menu span{
+    color: #ffffff;
+}
+
+.poppins{
+    font-family: 'Poppins'
+}
+
+.lato{
+    font-family: 'Lato'
+}
+
+.titleBanner{
+    position: absolute;
+    color: #ffffff;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    top: 175px;
+    font-size: 80px;
+}
+.titleBanner2{
+    position: absolute;
+    color: #ffffff;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    top: 270px;
+    font-size: 80px;
+}
+
+.subtitleBanner{
+    position: absolute;
+    color: #ffffff;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    top: 370px;
+}
+
+.searchBanner{
+    position: absolute;
+    color: #ffffff;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    top: 480px;
+}
+
+.searchBannerInput{
+    display: flex;
+    justify-content: center;
+}
+
+.home .searchIcon{
+    position: absolute;
+    top: 522px;
+    right: 36%;
+    width: 30px;
+}
+
+.home .searchBannerInput input{
+    position: absolute;
+    cursor: pointer;
+    top: 520px;
+    width: 400px;
+    border: 1px solid white;
+    background-color: inherit;
+    border-radius: 50px;
+    background: url('./images/lupa.png') no-repeat right 5px center;
+    background-size: 25px;
+    color: #ffffff;
+}
+
+.home .searchBannerInput input::placeholder{
+    opacity: 1 !important;
+}
+
+.vantagens{
+    display: flex;
+    justify-content: space-around;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+.vantagens h1{
+    flex-basis: 50%;
+    padding-left: 50px;
+}
+
+.vantagens .collumns{
+    display: flex;
+    flex-direction: row;
+    flex-basis: 50%;
+}
+
+.vantagens .collumns div{
+    display: flex;
+    flex-direction: column;
+}
+
+.vantagens .firstCollumn{
+    padding-right: 20px;
+}
+
+.vantagens .secondCollumn{
+    padding-left: 20px;
+}
+
+.mb20{
+    margin-bottom: 20px;
+}
+
+.moreInfo{
+    color: #E58411;
+}
+
+.vantagens .collumns div.moreInfoDiv{
+    display: flex;
+    flex-direction: row;
+    padding-top: 50px;
+}
+
+.setaMoreInfo{
+    width: 30px;
+    margin-left: 10px;
+}
+
+.bestBarberShops{
+    background-color: #f7f7f7;
+    padding: 70px;
+    display: flex;
+    flex-direction: column;
+    min-height: 700px;
+}
+
+ul{
+    list-style: none;
+}
+
+.bestBarberShops ul{
+    display: flex;
+    flex-direction: row;
+    width: 310px;
+    background-color: #EEEEEE;
+    border-radius: 50px;
+    height: 40px;
+    padding-left: 0;
+    padding-right: 0;
+    margin: 0 auto;
+}
+
+.bestBarberShops h1{
+    display: flex;
+    justify-content: center;
+}
+
+.filtroMelhoresBarbearias{
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    padding-left: 20px;
+    padding-right: 20px;   
+}
+
+.filtroMelhoresBarbearias li{
+    width: 100px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 35px;
+}
+
+.filtroMelhoresBarbearias li a{
+    color: #1E1E1E;
+}
+
+.filtroMelhoresBarbearias li.selected{
+    background-color: #ffffff;
+}
+
+.filtroMelhoresBarbearias li:last-of-type{
+    padding-right: 20px;
+}
+
+.swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{
+    color: #1E1E1E;
+    border-radius: 50px;
+}
+
+.nav-tabs>li>a:hover{
+    border-radius: 50px;
+}
+
+.nav>li>a{
+    padding: 0;
+}
+
+.nav-tabs>li>a{
+    color: #1E1E1E !important;
+    font-family: 'Poppins';
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+    max-height: 40px !important;
+}
+
+.agendaHome{
+    display: flex;
+    flex-direction: row;
+}
+
+.textAgenda{
+    padding-left: 100px;
+}
+
+.textAgenda .moreInfoDiv{
+    margin-top: 50px;
+}
+
+.section_page{
+    color: #E58411;
+}
+
+.text_contentHome{
+    color: #1E1E1E;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.title_home{
+    color: #1E1E1E;
+    font-weight: bold;
+    font-size: 42px;
+    padding-bottom: 50px;
+}
+
+.galeriaHome{
+    display: flex;
+    flex-direction: row;
+    padding-top: 100px;
+    padding-left: 100px;
+    height: 800px;
+}
+
+.mt50{
+    margin-top: 50px;
+}
+
+.leftGaleria{
+    flex-basis: 40%;
+    padding-top: 200px;
+}
+
+.rightGaleria{
+    position: relative;
+    flex-basis: 60%;
+}
+
+.galeria_img1{
+    position: absolute;
+}
+
+.galeria_img2{
+    position: absolute;
+    top: 65%;
+}
+
+.galeria_img3{
+    position: absolute;
+    right: 0;
+    top: 20%;
+}
+
+.moreInfoDiv a:hover{
+    text-decoration: none !important;
+}
+
+.avaliacoes{
+    display: flex;
+    flex-direction: column;
+    margin-top: 200px;
+    background-color: #F7F7F7;
+    height: 740px;
+    padding-bottom: 50px;
+}
+
+.react-stars{
+    margin: 0 auto;
+}
+
+.avaliacoesHome{
+    margin-top: 50px !important;
+    margin: 0 auto;
+}
+
+.avaliacoes .title_home{
+    margin-top: 50px !important;
+}
+
+.m0auto{
+    margin: 0 auto !important;
+}
+
+.content-wrapper{
+    margin-top: 70px;
+}
+
+.loadingArea{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    transform: translateY(50%);
+}
+
+.loginCadastro{
+    margin: 0 auto;
+}
+
+.loginCadastro .area{
+    padding: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.loginCadastro .login{
+    flex-basis: 40%;
+}
+
+.loginCadastro .lineBetween{
+    border-width: 1px;
+    height: 540px;
+    border: thin solid #1E1E1E;
+    margin-left: 50px;
+    margin-right: 50px;
+    opacity: 0.6;
+}
+
+.loginCadastro .cadastro{
+    flex-basis: 40%;
+}
+
+.loginCadastro .username input{
+    width: 100%;
+    border: 1px solid #1E1E1E;
+    background-color: inherit;
+    border-radius: 50px;
+    background: url('./images/user.png') no-repeat left 5px center;
+    background-size: 25px;
+    color: #1E1E1E;
+    padding-left: 40px;
+    font-family: "Poppins";
+}
+
+.loginCadastro .password input{
+    width: 100%;
+    border: 1px solid #1E1E1E;
+    background-color: inherit;
+    border-radius: 50px;
+    background: url('./images/password.png') no-repeat left 5px center;
+    background-size: 25px;
+    color: #1E1E1E;
+    padding-left: 40px;
+    font-family: "Poppins";
+}
+
+.loginCadastro input{
+    margin-bottom: 30px;
+}
+
+.btLogin button{
+    width: 200px;
+    border-radius: 50px;
+    background-color: #1E1E1E;
+    color: #ffffff;
+    height: 40px;
+    margin-bottom: 30px;
+}
+
+.btRegistrar button{
+    width: 200px;
+    border-radius: 50px;
+    background-color: #1E1E1E;
+    color: #ffffff;
+    height: 40px;
+}
+
+.btLogin .btnSubmit{
+    width: 200px;
+    border-radius: 50px;
+    background-color: #1E1E1E;
+    color: #ffffff;
+    height: 40px;
+    margin-bottom: 30px;
+}
+
+.btRegistrar .btnSubmit{
+    width: 200px;
+    border-radius: 50px;
+    background-color: #1E1E1E;
+    color: #ffffff;
+    height: 40px;
+}
+
+.btLogin{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btRegistrar{
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.loginCadastro h1{
+    padding-bottom: 50px;
+}
+
+.loginCadastro .perfilText{
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.loginCadastro #cliente{
+    margin-right: 20px;
+}
+
+.loginCadastro #administrador{
+    margin-right: 20px;
+}
+
+.loginCadastro .optionsPefil{
+    display: flex;
+    flex-direction: row;
+}
+
+.loginCadastro .option1{
+    margin-right: 30px;
+}
+
+.loginCadastro .orLogin{
+    display: flex;
+    flex-direction: row;
+}
+
+.loginCadastro .line{
+    width: 100px;
+    height: 1px;
+    background-color: #1e1e1e;
+}
+
+.loginCadastro .line{
+    width: 200px;
+    height: 1px;
+    background-color: #1e1e1e;
+}
+
+.loginCadastro .orText{
+    margin-top: -10px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.loginCadastro .facebook{
+    padding-bottom: 10px;
+    padding-top: 20px;
+}
+
+.loginCadastro .facebookBt{
+    width: 100%;
+    border-radius: 50px;
+    background-color: #3B5998;
+    color: #ffffff;
+    border: 1px solid #1E1E1E;
+    height: 40px;
+    background: url('./images/facebook.png') no-repeat #3B5998 left 20px center;
+}
+
+.loginCadastro .googleBt{
+    width: 100%;
+    border-radius: 50px;
+    background-color: #ffffff;
+    color: #3F7EE8;
+    border: 1px solid #3F7EE8;
+    height: 40px;
+    background: url('./images/google.png') no-repeat #ffffff left 20px center;
+}
+
+.menus .logado{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.menus .logado .text{
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+}
+
+.menus .logado .text .perfilUser{
+    justify-content: flex-end;
+    display: flex;
+}
+
+.menus .userImage{
+    width: 50px;
+}
+
+.menuUserOpen{
+    width: 300px;
+    height: 350px;
+    background-color: #1E1E1E;
+    position: absolute;
+    right: 0;
+    top: 70px;
+    padding: 20px;
+}
+
+.userLogadoOpen{
+    padding-left: 20px !important;
+}
+
+.userLogadoOpen li{
+    font-family: "Poppins";
+    padding-bottom: 30px;
+}
+
+.userLogadoOpen li a{
+    font-family: "Poppins";
+    text-decoration: none;
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+}
+
+.iconMenuUserOpen {
+    width: 20px;
+    height: 25px;
+}
+
+.relatorios{
+    padding: 50px;
+}
+
+.relatorios .itemTittle{
+    color: #BCC1CD;
+    font-weight: bold;
+    margin-top: 30px;
+}
+
+.relatorios select{
+    width: 400px;
+    height: 35px;
+    background-color: #ffffff;
+    color: #BCC1CD;
+    border-color: #BCC1CD;
+}
+
+.optionsFormatoDowload, .optionsFiltroTempo{
+    display: flex;
+    flex-direction: row;
+}
+
+.optionsFormatoDowload .option, .optionsFiltroTempo .option{
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.optionsFormatoDowload .option input, .optionsFiltroTempo .option input{
+    margin-right: 10px;
+}
+
+.optionsFormatoDowload .option1, .optionsFiltroTempo .option1{
+    padding-left: 0px !important;
+    padding-right: 15px;
+}
+
+.baixarRelatorioBT{
+    margin-top: 50px;
+}
+
+.baixarRelatorioBT button{
+    width: 200px;
+    background-color: #C4C4C4;
+    color: #1E1E1E;
+    height: 40px;
+    border: none !important;
+    border-radius: 5px;
+}
+
+.historico{
+    padding: 50px;
+    position: relative;
+}
+
+.avaliacao, .agendamento{
+    padding: 50px;
+}
+
+.opcional{
+    color: red;
+    font-weight: bold;
+    padding-left: 40px;
+}
+
+.historico .lineBetween{
+    width: 1px;
+    height: 90%;
+    background-color: #c4c4c4;
+    position: absolute;
+    left: 270px;
+    margin-top: 50px;
+}
+
+.titleSectionHistorico{
+    display: flex;
+    flex-direction: row;
+}
+
+.titleSectionHistorico .subtittle{
+    color: #C4C4C4 !important;
+}
+
+.titleSectionHistorico .subtittle.dateHour{
+    flex-basis: 47%;
+}
+
+.lineHistorico{
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.lineHistorico .left{
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    padding-top: 30px;
+}
+
+.lineHistorico .right{
+    margin-left: 30px;
+}
+
+.lineHistorico .left .hour{
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 50px;
+}
+
+.lineHistorico .left .date{
+    font-size: 24px;
+    font-weight: bold;
+    color: #BCC1CD;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 50px;
+}
+
+.cardHistorico{
+    background-color: #f2f2f2;
+    width: 350px;
+    height: 150px;
+    padding: 20px;
+    border-radius: 10px;
+    position: relative;
+    margin-left: 80px;
+}
+
+.cardHistorico .info{
+    display: flex;
+    flex-direction: column;
+    margin-top: -10px;
+}
+
+.cardHistorico .leftBar{
+    background-color: green;
+    height: 130px;
+    width: 3px;
+    position: absolute;
+    left: 10px;
+    top: 10px
+}
+
+.cardHistorico .leftBar.red{
+    background-color: red !important;
+}
+
+.cardHistorico .service{
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.cardHistorico .barbershop{
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.avaliarServico{
+    margin-top: 50px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.infoBarberShop{
+    display: flex;
+    justify-content: flex-end;
+    position: absolute;
+    right: 50px;
+}
+
+.infoBarberShop .nameBarberShop{
+    display: flex;
+    align-self: flex-end;
+    margin-right: 20px;
+}
+
+.info .nameProfessional{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 50px;
+}
+
+.infoBarberShop .logoBarberShop{
+    width: 120px;
+    height: 120px;
+}
+
+.avaliarServicoBT{
+    background-color: #C4C4C4;
+    border-radius: 5px;
+    width: 150px;
+    height: 35px;
+    color: #1E1E1E;
+    border: none;
+}
+
+.cardHistorico .lineBottom{
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    justify-content: space-between;
+    bottom: 15px;
+    width: 90%;
+}
+
+.reason{
+    color: red;
+}
+
+.optionsCard{
+    position: absolute;
+    right: 15px;
+    top: -20px;
+}
+
+.optionsCard a{
+    display: flex;
+    flex-direction: column;
+    color: #1E1E1E !important;
+    text-decoration: none !important;
+}
+
+.optionsCard a:hover{
+    text-decoration: none !important;
+}
+
+.optionsCard span{
+    height: 5px;
+    font-size: 36px;
+}
+
+.avaliacao .question .form-control{
+    margin-top: 20px;
+    width: 400px;
+}
+
+.avaliacao .question .form-control.textarea{
+    height: 200px;
+    width: 800px;
+}
+
+.avaliacao .question{
+    margin-top: 30px;
+}
+
+.top-menu.top-menu-user li a{
+    color: #ffffff !important;
+    text-decoration: none !important;
+}
+
+.dv-star-rating{
+    margin: 0 auto;
+}
+
+.swiper{
+    width: 80vw;
+    height: 100%;
+}
+
+.swiper .swiper-slide .card{
+    position: relative;
+}
+
+.swiper .swiper-slide .textCard{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    background-color: #ffffff;
+    bottom: 0;
+    border-radius: 20px;
+    margin: 10px;
+    padding: 10px;
+}
+
+.swiper .swiper-slide .textCard .nameUser{
+    color: #1e1e1e;
+    font-size: 18px;
+    margin-top: -10px;
+}
+
+.swiper .swiper-slide .textCard .service{
+    color: #c4c4c4;
+    font-size: 10px;
+}
+
+.swiper .swiper-slide .textCard .description{
+    color: #1e1e1e;
+    font-size: 12px;
+    padding-top: 15px;
+    padding-bottom: 10px;
+}
+
+.swiper .swiper-slide .textCard .user{
+    display: flex;
+    justify-content: center;
+}
+
+.swiper .swiper-slide .textCard .user .imgUser{
+    display: flex;
+    justify-content: center;
+    background-color: #ffffff;
+    margin-top: -20px;
+    border-radius: 100px;
+}
+
+.swiper-slide{
+    text-align: center;
+    font-size: 18px;
+    background: #ffffff;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.swiper-slide img{
+    display: block;
+    object-fit: cover;
+}
+
+.usuarioInfo{
+    display: flex;
+    flex-direction: row;
+}
+
+.usuarioInfo .imgUser{
+    margin-top: -15px;
+}
+
+.usuarioInfo .text{
+    display: flex;
+    flex-direction: column;
+}
+
+.usuarioInfo .role{
+    color: #E58411;
+    font-size: 12px;
+    font-weight: bold;
+    align-self: flex-end;
+    margin-top: -5px;
+}
+
+select:focus-visible{
+    outline: #c4c4c4 !important;
+}
+
+.d-none{
+    display: none !important;
+}
+
+.d-block{
+    display: block;
+}
+
+.d-flex{
+    display: flex;
 }
