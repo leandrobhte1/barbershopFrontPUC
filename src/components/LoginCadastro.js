@@ -34,7 +34,6 @@ const LoginCadastro = () => {
 
     const handleLogin = (e) => {
         e.preventDefault();
-        console.log("chegou no handleLogin");
         if(usernameLogin == null || usernameLogin == "" || usernameLogin.length < 3){
             toast.error('Nome de usuário deve ter pelo menos 3 caracteres!', {
                 position: "top-right",
@@ -73,13 +72,11 @@ const LoginCadastro = () => {
                   }
             })
             .then(resp => {
-                console.log("resp login.: ", resp);
                 setUsernameLogin("");
                 setPasswordLogin("");
 
                 let finalRole = "";
                 let rolesarray = resp.data.roles.split(",");
-                console.log("rolesarray.: ", rolesarray);
                 if(rolesarray.includes("ROLE_SUPER_ADMIN") || rolesarray.includes(' ROLE_SUPER_ADMIN')){
                     finalRole = "SUPER ADMIN";
                 }else if(rolesarray.includes("ROLE_ADMIN") || rolesarray.includes(' ROLE_ADMIN')){
@@ -90,7 +87,6 @@ const LoginCadastro = () => {
                 }else{
                     finalRole = "USER";
                 }
-                console.log("finalRole.: ", finalRole);
                 
 
                 let userLogin = {
@@ -113,7 +109,6 @@ const LoginCadastro = () => {
                 });
             })
             .catch(e=> {
-                console.log("ERRROOO.: ",e);
                 setLoading(false);
                 toast.error('Erro inesperado!', {
                     position: "top-right",
@@ -234,7 +229,6 @@ const LoginCadastro = () => {
             setLoading(true);
             axios.post(`${BASE_URL}/user/save`, userRegister)
             .then(resp => {
-                console.log("resp.: ", resp);
                 setFirstName("");
                 setLastName("");
                 setUsername("");

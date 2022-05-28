@@ -7,6 +7,7 @@ import "swiper/css/bundle";
 import { UserContextProvider } from "./context/UserContext"
 import { SearchContextProvider } from "./context/SearchContext"
 import { MenuUserContextProvider } from './context/MenuUserContext';
+import { ResultSearchContextProvider } from './context/ResultSearchContext'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -14,7 +15,9 @@ root.render(
     <UserContextProvider>
       <MenuUserContextProvider>
         <SearchContextProvider>
-          <App />
+          <ResultSearchContextProvider>
+            <App />
+          </ResultSearchContextProvider>
         </SearchContextProvider>
       </MenuUserContextProvider>
     </UserContextProvider>

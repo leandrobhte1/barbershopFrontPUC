@@ -10,8 +10,6 @@ const OptionsMenuUser = () => {
 
     let isAdmin = false;
 
-    console.log("user.: ", user);
-
     if(user.roles == "SUPER ADMIN" || user.roles == "ADMIN" || user.roles == "MANAGER"){
         isAdmin = true;
     }

@@ -4,18 +4,20 @@ import Vantagens from './Vantagens'
 import HomeAgenda from './HomeAgenda'
 import Galeria from './Galeria'
 import Avaliacoes from './Avaliacoes'
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import LogoHome from '../images/logo.png'
 import banner from '../images/banner.png'
 
 const Home = () => {
-    const { search, dispatchSearch } = useSearchContext();
+    const { search, dispatch } = useSearchContext();
+    const navigate = useNavigate()
 
     const keyHandler = (e) => {
         if(e.key === 'Enter') {
             // incluir o termo pesquisado no state para levar pra proxima tela
-            //navigate("/search");
+            
+            navigate(`/search?searchTerm=${e.target.value}`);
         }
     }
 
@@ -27,7 +29,7 @@ const Home = () => {
             <h3 className='subtitleBanner poppins'>A comôdidade do seu lado!</h3>
             <h5 className='searchBanner poppins'>Pesquise pelo nome da barbearia ou serviço:</h5>
             <div className="searchBannerInput">
-                <input id="searchHome" className='form-control' type="text" placeholder="Digite aqui a sua busca" onChange={ (e) => dispatchSearch({type: "SEARCH_CHANGED", payload: e.target.value}) } value={search} onKeyUp={keyHandler} />
+                <input id="searchHome" className='form-control' type="text" placeholder="Digite aqui a sua busca" onChange={ (e) => dispatch({type: "SEARCH_CHANGED", payload: e.target.value}) } value={search} onKeyUp={keyHandler} />
             </div>
             <Vantagens></Vantagens>
             {/* <BestBarberShops></BestBarberShops> */}

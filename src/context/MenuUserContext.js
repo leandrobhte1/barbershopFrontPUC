@@ -14,8 +14,6 @@ export const menuUserReducer = (state, action) => {
 export const MenuUserContextProvider = ({children}) => {
     const [state, dispatch] = useReducer(menuUserReducer, { menuUserOpen: false})
 
-    console.log("MenuUserContext: ", state);
-
     return (
         <MenuUserContext.Provider value={{ ...state, dispatch }}>
             {children}

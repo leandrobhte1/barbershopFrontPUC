@@ -9,8 +9,6 @@ const UsuarioInfo = () => {
     const { user, dispatchUser } = useUserContext();
     const { menuUserOpen, dispatch } = useMenuUserContext();
 
-    console.log("menuUserOpen.: ", menuUserOpen);
-
     return (
         <div className='usuarioInfo'>
             <If test={user && user.username}>

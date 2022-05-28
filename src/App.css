@@ -284,6 +284,20 @@ button{
     width: 30px;
 }
 
+#searchInput{
+    width: 30%;
+    border: 1px solid black;
+    background-color: inherit;
+    border-radius: 50px;
+    background: url('./images/lupa.png') no-repeat right 5px center;
+    background-size: 25px;
+}
+
+.barberImg{
+    width: 200px;
+    height: 150px;
+}
+
 .home .searchBannerInput input{
     position: absolute;
     cursor: pointer;
@@ -1125,6 +1139,20 @@ ul{
 
 select:focus-visible{
     outline: #c4c4c4 !important;
+}
+
+.Search{
+    padding: 50px;
+    width: 100%;
+}
+
+img.voltarPage{
+    width: 40px;
+}
+
+span.voltar{
+    color: #F6B76F;
+    padding-left: 15px;
 }
 
 .d-none{

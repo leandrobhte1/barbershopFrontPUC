@@ -16,8 +16,6 @@ export const userReducer = (state, action) => {
 export const UserContextProvider = ({children}) => {
     const [state, dispatch] = useReducer(userReducer, { user: { username: '', roles:'', logado: false, access_token: '', refresh_token: ''}})
 
-    console.log("UserContext: ", state);
-
     return (
         <UserContext.Provider value={{ ...state, dispatch }}>
             {children}
