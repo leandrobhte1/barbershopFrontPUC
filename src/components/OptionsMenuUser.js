@@ -4,9 +4,12 @@ import AvaliacoesIcon from '../images/avaliacoes.png'
 import RelatoriosIcon from '../images/relatorios.png'
 import UsuariosIcon from '../images/userimage.png'
 import { useUserContext } from '../hooks/useUserContext'
+import { useMenuUserContext } from '../hooks/useMenuUserContext'
+import { Link } from 'react-router-dom'
 
 const OptionsMenuUser = () => {
-    const { user, dispatch } = useUserContext();
+    const { user, dispatchUser } = useUserContext();
+    const { menuUserOpen, dispatch } = useMenuUserContext();
 
     let isAdmin = false;
 
@@ -16,38 +19,38 @@ const OptionsMenuUser = () => {
 
     return (
         <div className="menuUserOpen">
-            <ul className="userLogadoOpen">
+            <ul className="userLogadoOpen" onClick={ () => dispatch({type: "MENU_USER_CLICKED", payload: !menuUserOpen}) }>
                 <li>
-                    <a href='#agenda'>
+                    <Link to="agenda">
                         <span>Agenda</span>
                         <img className="iconMenuUserOpen agendaIcon" src={AgendaIcon} alt="Agenda" />
-                    </a>
+                    </Link>
                 </li>
                 <li>
-                    <a href='#historico'>
+                    <Link to="historico">
                         <span>Histórico</span>
                         <img className="iconMenuUserOpen historicoIcon" src={HistoricoIcon} alt="Histórico" />
-                    </a>
+                    </Link>
                 </li>
                 <li>
-                    <a href='#avaliacao'>
+                    <Link to="avaliacao">
                         <span>Avaliações</span>
                         <img className="iconMenuUserOpen avaliacoesIcon" src={AvaliacoesIcon} alt="Avaliações" />
-                    </a>
+                    </Link>
                 </li>
                 {isAdmin == true &&
                     <div className="menusAdmin">
                         <li>
-                            <a href='#reports'>
+                            <Link to="reports">
                                 <span>Relatórios</span>
                                 <img className="iconMenuUserOpen relatoriosIcon" src={RelatoriosIcon} alt="Relatórios" />
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a href='#cadUsuarios'>
+                            <Link to="cadUsuarios">
                                 <span>Gerenciamento de usuários</span>
                                 <img className="iconMenuUserOpen relatoriosIcon" src={UsuariosIcon} alt="Relatórios" />
-                            </a>
+                            </Link>
                         </li>
                     </div>
                 }

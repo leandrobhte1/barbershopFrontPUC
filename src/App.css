@@ -817,6 +817,7 @@ ul{
     right: 0;
     top: 70px;
     padding: 20px;
+    z-index: 999;
 }
 
 .userLogadoOpen{
