@@ -2,6 +2,7 @@ import { useUserContext } from '../hooks/useUserContext'
 import { useState } from "react";
 import ReactLoading from 'react-loading';
 import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate } from "react-router-dom";
 
 import axios from 'axios'
 const BASE_URL = 'http://localhost:8080/api'
@@ -9,6 +10,8 @@ const BASE_URL = 'http://localhost:8080/api'
 
 const LoginCadastro = () => {
     const { user, dispatch } = useUserContext();
+
+    const navigate = useNavigate()
 
     const [usernameLogin, setUsernameLogin] = useState("");
     const [passwordLogin, setPasswordLogin] = useState("");
@@ -110,6 +113,7 @@ const LoginCadastro = () => {
                     };
                     dispatch({type: "LOGIN", payload: userLogin});
                     setLoading(false);
+                    navigate(`/home`);
                     toast.success('Login realizado com sucesso!', {
                         position: "top-right",
                         autoClose: 5000,
