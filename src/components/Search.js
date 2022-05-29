@@ -20,12 +20,13 @@ const Search = () => {
             }
         })
         .then(resp => {
-            dados = resp.data.content;
+            dados = resp.data;
             resultadosEncontrados = resp.data.totalElements;
             dispatch({type: "SEARCH_RESULT", payload: dados})
             console.log("dados.: ",dados);
             
         });
+        console.log("result.: ", result);
     }
     return (
         <div className="Search">
@@ -38,9 +39,9 @@ const Search = () => {
             <div className="results">
                 <h3 className="poppins">Resultado de sua busca:</h3>
                 <input id="searchInput" className='form-control' type="text" value={search} readOnly={true} />
-                <span className='poppins'>Resultados encontrados: {resultadosEncontrados}</span>
+                <span className='poppins'>Resultados encontrados: {result.totalElements}</span>
                 <ul>
-                    {result && result.map(r => (
+                    {result.content && result.content.map(r => (
                         <li key={r.id}>
                             <div className="barberLine">
                                 <img className='barberImg' src={r.urlImagem} alt="barber" />
@@ -50,7 +51,8 @@ const Search = () => {
                                         count={5}
                                         size={16}
                                         activeColor="#ffd700"
-                                        value={5}
+                                        isHalf= {true}
+                                        value={4.5}
                                         classNames="react-stars-search"
                                         edit={false}
                                     />
