@@ -11,10 +11,10 @@ const UsuarioInfo = () => {
 
     return (
         <div className='usuarioInfo'>
-            <If test={user && user.username}>
+            <If test={user && user.firstname}>
                 <div className="userContent" onClick={ () => dispatch({type: "MENU_USER_CLICKED", payload: !menuUserOpen}) }>
                     <div className="text">
-                        <span>Olá, <strong>{user.username}</strong>!</span>    
+                        <span>Olá, <strong>{user.firstname}</strong>!</span>    
                         {user && <span className="role">{user.roles}</span>}
                     </div>
                     <img className='imgUser' src={User} alt="imgUser" />
@@ -24,9 +24,9 @@ const UsuarioInfo = () => {
                         <OptionsMenuUser></OptionsMenuUser>
                     </div>
                 }
-                <Else>
+                {/* <Else>
                     <span>Seja bem-vindo!</span>    
-                </Else>
+                </Else> */}
             </If>
         </div>
     )

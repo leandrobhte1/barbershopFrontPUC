@@ -87,26 +87,37 @@ const LoginCadastro = () => {
                 }else{
                     finalRole = "USER";
                 }
-                
-
-                let userLogin = {
-                    "username": usernameLogin,
-                    "roles": finalRole,
-                    "logado": true,
-                    "access_token": resp.data.access_token,
-                    "refresh_token": resp.data.refresh_token
-                };
-                dispatch({type: "LOGIN", payload: userLogin});
-                setLoading(false);
-                toast.success('Login realizado com sucesso!', {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
+                let firstNameUserLogado = '';
+                let token = 'Bearer ' + resp.data.access_token;
+                console.log("token.: ", token);
+                axios.get(`http://localhost:8080/api/user/${usernameLogin}`, {
+                    headers: {
+                        'Access-Control-Allow-Origin': '*',
+                        'Authorization': token
+                      }
+                }).then(resp => {
+                    firstNameUserLogado = resp.data.firstname;
+                    let userLogin = {
+                        "username": usernameLogin,
+                        "firstname": firstNameUserLogado,
+                        "roles": finalRole,
+                        "logado": true,
+                        "access_token": resp.data.access_token,
+                        "refresh_token": resp.data.refresh_token
+                    };
+                    dispatch({type: "LOGIN", payload: userLogin});
+                    setLoading(false);
+                    toast.success('Login realizado com sucesso!', {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    });
                 });
+                setLoading(false);
             })
             .catch(e=> {
                 setLoading(false);

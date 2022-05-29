@@ -36,8 +36,6 @@ const Search = () => {
         });
     }
 
-    console.log("result.: ", result);
-
     return (
         <div className="Search">
             <div className="voltar">
