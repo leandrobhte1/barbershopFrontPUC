@@ -1,22 +1,35 @@
 import { useUserContext } from '../hooks/useUserContext'
 import { useSearchContext } from '../hooks/useSearchContext'
+import { useResultSearchContext } from '../hooks/useResultSearchContext'
 import Vantagens from './Vantagens'
 import HomeAgenda from './HomeAgenda'
 import Galeria from './Galeria'
 import Avaliacoes from './Avaliacoes'
 import { useNavigate } from "react-router-dom";
+import axios from 'axios'
 
 import LogoHome from '../images/logo.png'
 import banner from '../images/banner.png'
 
 const Home = () => {
     const { search, dispatch } = useSearchContext();
+    const { result, dispatchResult } = useResultSearchContext();
     const navigate = useNavigate()
 
     const keyHandler = (e) => {
         if(e.key === 'Enter') {
-            // incluir o termo pesquisado no state para levar pra proxima tela
-            
+            axios.get(`http://localhost:8080/api/empresas/search?searchTerm=${search}`, {
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                }
+            })
+            .then(resp => {
+                let dados = resp.data;
+                dispatchResult({type: "SEARCH_RESULT", payload: dados})
+                console.log("dados.: ",dados);
+                
+            });
+            console.log("result.: ", result);
             navigate(`/search?searchTerm=${e.target.value}`);
         }
     }

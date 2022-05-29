@@ -4,30 +4,40 @@ import ReactStars from "react-rating-stars-component";
 import SetaEsquerda from '../images/setaEsquerda.png'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import { scryRenderedComponentsWithType } from 'react-dom/test-utils';
 const BASE_URL = 'http://localhost:8080/api'
 
 const Search = () => {
 
-    const { result, dispatch } = useResultSearchContext();
+    const { result, dispatchResult } = useResultSearchContext();
     const { search } = useSearchContext();
-    let dados = [];
-    let resultadosEncontrados = 0;
 
-    if(result.length == 0){
-        axios.get(`http://localhost:8080/api/empresas/search?searchTerm=${search}`, {
+    let pages = [];
+    if(result.totalPages < 15){
+        for(let i=0; i < result.totalPages;i++){
+            pages.push(<li className='poppins' key={i+1} onClick={ () => searchPage(i)}>{i+1}</li>)
+        }
+    }else{
+        for(let i=0; i < 14 ;i++){
+            pages.push(<li className='poppins' key={i+1} onClick={ () => searchPage(i)}>{i+1}</li>)
+        }
+    }
+    
+
+    const searchPage = (i) => {
+        axios.get(`http://localhost:8080/api/empresas/search?searchTerm=${search}&page=${i}`, {
             headers: {
                 'Access-Control-Allow-Origin': '*',
             }
         })
         .then(resp => {
-            dados = resp.data;
-            resultadosEncontrados = resp.data.totalElements;
-            dispatch({type: "SEARCH_RESULT", payload: dados})
-            console.log("dados.: ",dados);
-            
+            let dados = resp.data;
+            dispatchResult({type: "SEARCH_RESULT", payload: dados});
         });
-        console.log("result.: ", result);
     }
+
+    console.log("result.: ", result);
+
     return (
         <div className="Search">
             <div className="voltar">
@@ -52,7 +62,7 @@ const Search = () => {
                                         size={16}
                                         activeColor="#ffd700"
                                         isHalf= {true}
-                                        value={4.5}
+                                        value={4.2}
                                         classNames="react-stars-search"
                                         edit={false}
                                     />
@@ -62,6 +72,9 @@ const Search = () => {
                             </div>
                         </li>
                     ))} 
+                </ul>
+                <ul className="pagesSearch">
+                    {pages}
                 </ul>
             </div>
         </div>

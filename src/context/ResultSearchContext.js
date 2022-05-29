@@ -12,10 +12,10 @@ export const resultReducer = (state, action) => {
 };
 
 export const ResultSearchContextProvider = ({children}) => {
-    const [state, dispatch] = useReducer(resultReducer, { result: []})
+    const [state, dispatchResult] = useReducer(resultReducer, { result: []})
 
     return (
-        <ResultSearchContext.Provider value={{ ...state, dispatch }}>
+        <ResultSearchContext.Provider value={{ ...state, dispatchResult }}>
             {children}
         </ResultSearchContext.Provider>
     );

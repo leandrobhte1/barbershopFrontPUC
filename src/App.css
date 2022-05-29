@@ -334,6 +334,17 @@ button{
     height: 35px;
 }
 
+.pagesSearch{
+    display: flex;
+    justify-content: center;
+}
+
+.pagesSearch li{
+    margin-left: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
 .react-stars-search{
     margin-left: 0 !important;
 }
