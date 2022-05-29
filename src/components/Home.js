@@ -26,10 +26,8 @@ const Home = () => {
             .then(resp => {
                 let dados = resp.data;
                 dispatchResult({type: "SEARCH_RESULT", payload: dados})
-                console.log("dados.: ",dados);
                 
             });
-            console.log("result.: ", result);
             navigate(`/search?searchTerm=${e.target.value}`);
         }
     }

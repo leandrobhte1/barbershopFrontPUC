@@ -17,7 +17,7 @@ const UsuarioInfo = () => {
                         <span>Olá, <strong>{user.firstname}</strong>!</span>    
                         {user && <span className="role">{user.roles}</span>}
                     </div>
-                    <img className='imgUser' src={User} alt="imgUser" />
+                    <img className='imgUser' src={user.urlImagemPerfil} alt="imgUser" />
                 </div>
                 {menuUserOpen &&
                     <div className="optionsMenu">

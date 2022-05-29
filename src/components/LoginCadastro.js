@@ -88,6 +88,7 @@ const LoginCadastro = () => {
                     finalRole = "USER";
                 }
                 let firstNameUserLogado = '';
+                let urlImagemPerfil = '';
                 let token = 'Bearer ' + resp.data.access_token;
                 console.log("token.: ", token);
                 axios.get(`http://localhost:8080/api/user/${usernameLogin}`, {
@@ -97,10 +98,12 @@ const LoginCadastro = () => {
                       }
                 }).then(resp => {
                     firstNameUserLogado = resp.data.firstname;
+                    urlImagemPerfil = resp.data.urlImagemPerfil;
                     let userLogin = {
                         "username": usernameLogin,
                         "firstname": firstNameUserLogado,
                         "roles": finalRole,
+                        "urlImagemPerfil": urlImagemPerfil,
                         "logado": true,
                         "access_token": resp.data.access_token,
                         "refresh_token": resp.data.refresh_token

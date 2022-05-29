@@ -1172,7 +1172,10 @@ ul{
 }
 
 .usuarioInfo .imgUser{
-    margin-top: -15px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50px;
+    margin-left: 15px;
 }
 
 .usuarioInfo .text{
