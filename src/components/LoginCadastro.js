@@ -260,6 +260,12 @@ const LoginCadastro = () => {
         }
     }
 
+    const keyHandlerLogin = (e) => {
+        if(e.key === 'Enter') {
+            handleLogin(e);
+        }
+    }
+
     return (
         <div className="loginCadastro">
             {loading && (
@@ -277,7 +283,7 @@ const LoginCadastro = () => {
                                 <input type="text" name="usernameLogin" value={usernameLogin} placeholder="Digite aqui o seu e-mail" onChange={(e) => setUsernameLogin(e.target.value)} />
                             </div>
                             <div className="password">
-                                <input type="password" name="passwordLogin" value={passwordLogin} placeholder="Digite aqui a sua senha" onChange={(e) => setPasswordLogin(e.target.value)} />
+                                <input type="password" name="passwordLogin" value={passwordLogin} placeholder="Digite aqui a sua senha" onChange={(e) => setPasswordLogin(e.target.value)} onKeyUp={keyHandlerLogin} />
                             </div>
                             <div className="btLogin">
                                 <input className='btnSubmit' type="submit" value="Login" />
