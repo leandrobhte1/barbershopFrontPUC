@@ -1,5 +1,6 @@
 import { useSearchContext } from '../hooks/useSearchContext'
 import { useResultSearchContext } from '../hooks/useResultSearchContext'
+import ReactStars from "react-rating-stars-component";
 import SetaEsquerda from '../images/setaEsquerda.png'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
@@ -10,6 +11,7 @@ const Search = () => {
     const { result, dispatch } = useResultSearchContext();
     const { search } = useSearchContext();
     let dados = [];
+    let resultadosEncontrados = 0;
 
     if(result.length == 0){
         axios.get(`http://localhost:8080/api/empresas/search?searchTerm=${search}`, {
@@ -19,12 +21,11 @@ const Search = () => {
         })
         .then(resp => {
             dados = resp.data.content;
+            resultadosEncontrados = resp.data.totalElements;
             dispatch({type: "SEARCH_RESULT", payload: dados})
+            console.log("dados.: ",dados);
+            
         });
-    
-        if(result){
-            console.log("result.: ", result);
-        }
     }
     return (
         <div className="Search">
@@ -37,13 +38,24 @@ const Search = () => {
             <div className="results">
                 <h3 className="poppins">Resultado de sua busca:</h3>
                 <input id="searchInput" className='form-control' type="text" value={search} readOnly={true} />
+                <span className='poppins'>Resultados encontrados: {resultadosEncontrados}</span>
                 <ul>
                     {result && result.map(r => (
                         <li key={r.id}>
-                            <div className="barber">
-                                <img className='barberImg' src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="barber" />
+                            <div className="barberLine">
+                                <img className='barberImg' src={r.urlImagem} alt="barber" />
                                 <div className="text">
-                                    {r.name}
+                                    <span className='poppins barberTittle'>{r.name}</span>
+                                    <ReactStars
+                                        count={5}
+                                        size={16}
+                                        activeColor="#ffd700"
+                                        value={5}
+                                        classNames="react-stars-search"
+                                        edit={false}
+                                    />
+                                    <span className='poppins barberDescription'>{r.descricao}</span>
+                                    <button className='poppins'>CONHEÇA</button>
                                 </div>
                             </div>
                         </li>
