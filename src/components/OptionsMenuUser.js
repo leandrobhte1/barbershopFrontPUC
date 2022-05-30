@@ -58,7 +58,7 @@ const OptionsMenuUser = () => {
                     <div className="menusAdmin">
                         <li>
                             <Link to="cadUsuarios">
-                                <span>Gerenciamento de usuários</span>
+                                <span>Gerenciamento de empresa</span>
                                 <img className="iconMenuUserOpen relatoriosIcon" src={UsuariosIcon} alt="Relatórios" />
                             </Link>
                         </li>

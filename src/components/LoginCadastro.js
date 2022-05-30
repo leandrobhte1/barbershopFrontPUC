@@ -99,14 +99,15 @@ const LoginCadastro = () => {
                         'Access-Control-Allow-Origin': '*',
                         'Authorization': token
                       }
-                }).then(resp => {
-                    firstNameUserLogado = resp.data.firstname;
-                    lastNameUserLogado = resp.data.lastname;
-                    urlImagemPerfil = resp.data.urlImagemPerfil;
+                }).then(resposta => {
+                    firstNameUserLogado = resposta.data.firstname;
+                    lastNameUserLogado = resposta.data.lastname;
+                    urlImagemPerfil = resposta.data.urlImagemPerfil;
                     let userLogin = {
                         "username": usernameLogin,
                         "firstname": firstNameUserLogado,
                         "lastname": lastNameUserLogado,
+                        "cpf": resposta.data.cpf,
                         "roles": finalRole,
                         "urlImagemPerfil": urlImagemPerfil,
                         "logado": true,
@@ -285,6 +286,7 @@ const LoginCadastro = () => {
                             "username": resposta.data.username,
                             "firstname": resposta.data.firstname,
                             "lastname": resposta.data.lastname,
+                            "cpf": resposta.data.cpf,
                             "roles": finalRole,
                             "urlImagemPerfil": resposta.data.urlImagemPerfil,
                             "logado": true,

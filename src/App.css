@@ -603,12 +603,17 @@ ul{
     margin-top: 70px;
 }
 
+.account{
+    width: 100%;
+}
+
 .loadingArea{
     display: flex;
     flex-direction: column;
     align-items: center;
     height: 100%;
-    transform: translateY(50%);
+    justify-content: center;
+    flex-grow: 1;
 }
 
 .loginCadastro{
@@ -1194,6 +1199,10 @@ ul{
 .usuarioInfo{
     display: flex;
     flex-direction: row;
+}
+
+.usuarioInfo .userContent{
+    cursor: pointer;
 }
 
 .usuarioInfo .imgUser{
