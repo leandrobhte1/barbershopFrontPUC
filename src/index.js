@@ -8,6 +8,7 @@ import { UserContextProvider } from "./context/UserContext"
 import { SearchContextProvider } from "./context/SearchContext"
 import { MenuUserContextProvider } from './context/MenuUserContext';
 import { ResultSearchContextProvider } from './context/ResultSearchContext'
+import { EditPasswordContextProvider } from './context/EditPasswordContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -16,7 +17,9 @@ root.render(
       <MenuUserContextProvider>
         <SearchContextProvider>
           <ResultSearchContextProvider>
-            <App />
+            <EditPasswordContextProvider>
+              <App />
+            </EditPasswordContextProvider>
           </ResultSearchContextProvider>
         </SearchContextProvider>
       </MenuUserContextProvider>

@@ -80,12 +80,12 @@ const LoginCadastro = () => {
 
                 let finalRole = "";
                 let rolesarray = resp.data.roles.split(",");
-                if(rolesarray.includes("ROLE_SUPER_ADMIN") || rolesarray.includes(' ROLE_SUPER_ADMIN')){
+                if(rolesarray.includes("ROLE_SUPER_ADMIN") || rolesarray.includes(' ROLE_SUPER_ADMIN')  || rolesarray.includes('[ROLE_SUPER_ADMIN')   || rolesarray.includes('ROLE_SUPER_ADMIN]')){
                     finalRole = "SUPER ADMIN";
-                }else if(rolesarray.includes("ROLE_ADMIN") || rolesarray.includes(' ROLE_ADMIN')){
+                }else if(rolesarray.includes("ROLE_ADMIN") || rolesarray.includes(' ROLE_ADMIN') || rolesarray.includes('[ROLE_ADMIN') || rolesarray.includes('ROLE_ADMIN]')){
                     finalRole = "ADMIN";
                 }
-                else if(rolesarray.includes("ROLE_MANAGER") || rolesarray.includes(' ROLE_MANAGER')){
+                else if(rolesarray.includes("ROLE_MANAGER") || rolesarray.includes(' ROLE_MANAGER') || rolesarray.includes('[ROLE_MANAGER')  || rolesarray.includes('ROLE_MANAGER]')){
                     finalRole = "MANAGER";
                 }else{
                     finalRole = "USER";
@@ -247,23 +247,69 @@ const LoginCadastro = () => {
                 };
             }
             setLoading(true);
-            axios.post(`${BASE_URL}/user/save`, userRegister)
-            .then(resp => {
-                setFirstName("");
-                setLastName("");
-                setUsername("");
-                setPassword("");
-                setRole(null);
-                setLoading(false);
-                toast.success('Usuário salvo com sucesso!', {
-                    position: "top-right",
-                    autoClose: 3000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                });
+            axios.post(`${BASE_URL}/user/save`, userRegister, {
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                }
+            })
+            .then(res => {
+                const formData = new FormData();
+                formData.append('username',username)
+                formData.append('password',password)
+                axios.post(`http://localhost:8080/api/login`, formData, {
+                    headers: {
+                        'Access-Control-Allow-Origin': '*',
+                        'Content-Type': 'multipart/form-data',
+                    }
+                }).then(resp => {
+                    let token = 'Bearer ' + resp.data.access_token;
+                    axios.get(`http://localhost:8080/api/user/${username}`, {
+                        headers: {
+                            'Access-Control-Allow-Origin': '*',
+                            'Authorization': token
+                        }
+                    }).then(resposta => {
+                        let finalRole = "";
+                        let rolesarray = resp.data.roles.split(",");
+                        if(rolesarray.includes("ROLE_SUPER_ADMIN") || rolesarray.includes(' ROLE_SUPER_ADMIN')  || rolesarray.includes('[ROLE_SUPER_ADMIN')   || rolesarray.includes('ROLE_SUPER_ADMIN]')){
+                            finalRole = "SUPER ADMIN";
+                        }else if(rolesarray.includes("ROLE_ADMIN") || rolesarray.includes(' ROLE_ADMIN') || rolesarray.includes('[ROLE_ADMIN') || rolesarray.includes('ROLE_ADMIN]')){
+                            finalRole = "ADMIN";
+                        }
+                        else if(rolesarray.includes("ROLE_MANAGER") || rolesarray.includes(' ROLE_MANAGER') || rolesarray.includes('[ROLE_MANAGER')  || rolesarray.includes('ROLE_MANAGER]')){
+                            finalRole = "MANAGER";
+                        }else{
+                            finalRole = "USER";
+                        }
+                        let userLogin = {
+                            "username": resposta.data.username,
+                            "firstname": resposta.data.firstname,
+                            "lastname": resposta.data.lastname,
+                            "roles": finalRole,
+                            "urlImagemPerfil": resposta.data.urlImagemPerfil,
+                            "logado": true,
+                            "access_token": resp.data.access_token,
+                            "refresh_token": resp.data.refresh_token
+                        };
+                        dispatch({type: "LOGIN", payload: userLogin});
+                        setFirstName("");
+                        setLastName("");
+                        setUsername("");
+                        setPassword("");
+                        setRole(null);
+                        setLoading(false);
+                        navigate(`/home`);
+                        toast.success('Usuário salvo com sucesso!', {
+                            position: "top-right",
+                            autoClose: 3000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                        });
+                    })
+                })
             })
             .catch(e=> {
                 setLoading(false);
@@ -286,6 +332,35 @@ const LoginCadastro = () => {
         }
     }
 
+    const handleForgotPassowrd = (e) => {
+        e.preventDefault();
+        if(usernameLogin == ''){
+            toast.error('Preencha o nome do seu usuário!', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        }else{
+            axios.put(`${BASE_URL}/user/forgotPassword/${usernameLogin}`)
+            .then(resp => {
+                console.log("resp.: ", resp);
+                toast.success('Foi enviado uma nova senha ao seu e-mail!', {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+            });
+        }
+    }
+
     return (
         <div className="loginCadastro">
             {loading && (
@@ -304,6 +379,9 @@ const LoginCadastro = () => {
                             </div>
                             <div className="password">
                                 <input type="password" name="passwordLogin" value={passwordLogin} placeholder="Digite aqui a sua senha" onChange={(e) => setPasswordLogin(e.target.value)} onKeyUp={keyHandlerLogin} />
+                            </div>
+                            <div className="forgotPassword" onClick={handleForgotPassowrd}>
+                                <span className='poppins'>Esqueci minha senha</span>
                             </div>
                             <div className="btLogin">
                                 <input className='btnSubmit' type="submit" value="Login" />
