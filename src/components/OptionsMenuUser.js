@@ -3,6 +3,7 @@ import HistoricoIcon from '../images/historico.png'
 import AvaliacoesIcon from '../images/avaliacoes.png'
 import RelatoriosIcon from '../images/relatorios.png'
 import UsuariosIcon from '../images/userimage.png'
+import EmpresaIcon from '../images/building.png'
 import { useUserContext } from '../hooks/useUserContext'
 import { useMenuUserContext } from '../hooks/useMenuUserContext'
 import { Link } from 'react-router-dom'
@@ -59,7 +60,7 @@ const OptionsMenuUser = () => {
                         <li>
                             <Link to="cadUsuarios">
                                 <span>Gerenciamento de empresa</span>
-                                <img className="iconMenuUserOpen relatoriosIcon" src={UsuariosIcon} alt="Relatórios" />
+                                <img className="iconMenuUserOpen relatoriosIcon" src={EmpresaIcon} alt="Relatórios" />
                             </Link>
                         </li>
                     </div>

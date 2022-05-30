@@ -1294,6 +1294,14 @@ span.voltar{
     margin-bottom: 30px;
 }
 
+.swiper-button-next:after, .swiper-rtl .swiper-button-prev:after{
+    color: #000000 !important;
+}
+
+.swiper-button-prev:after, .swiper-rtl .swiper-button-next:after{
+    color: #000000 !important;
+}
+
 .d-none{
     display: none !important;
 }
