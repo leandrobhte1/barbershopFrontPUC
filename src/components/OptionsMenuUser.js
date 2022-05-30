@@ -32,12 +32,6 @@ const OptionsMenuUser = () => {
                         <img className="iconMenuUserOpen historicoIcon" src={HistoricoIcon} alt="Histórico" />
                     </Link>
                 </li>
-                <li>
-                    <Link to="avaliacao">
-                        <span>Avaliações</span>
-                        <img className="iconMenuUserOpen avaliacoesIcon" src={AvaliacoesIcon} alt="Avaliações" />
-                    </Link>
-                </li>
                 {isAdmin == true &&
                     <div className="menusAdmin">
                         <li>

@@ -6,7 +6,7 @@ const handleSubmit = (e) => {
     e.preventDefault();
     toast.info('Funcionalidade ainda não implementada! Será entregue na etapa 3!', {
         position: "top-right",
-        autoClose: 5000,
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,

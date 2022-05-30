@@ -16,7 +16,7 @@ const Content = () => {
             <Route path="/login-cadastro" element={<LoginCadastro />}></Route>
             <Route path="/search" element={<Search />}></Route>
             <Route path="/reports" element={<Reports />}></Route>
-            <Route path="/history" element={<History />}></Route>
+            <Route path="/historico" element={<History />}></Route>
             <Route path="/avaliacao" element={<Avaliacao />}></Route>
             {/* <Route path="/param/:id" element={<Param />}></Route>
             <Route path="/about" element={<About />}></Route> */}

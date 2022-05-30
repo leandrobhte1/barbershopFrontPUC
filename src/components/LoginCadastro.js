@@ -26,7 +26,7 @@ const LoginCadastro = () => {
     const handleLoginRedesSociais = (e) => {
         toast.error('Erro: Funcionalidade ainda não foi implementada!', {
             position: "top-right",
-            autoClose: 5000,
+            autoClose: 3000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
@@ -40,7 +40,7 @@ const LoginCadastro = () => {
         if(usernameLogin == null || usernameLogin == "" || usernameLogin.length < 3){
             toast.error('Nome de usuário deve ter pelo menos 3 caracteres!', {
                 position: "top-right",
-                autoClose: 5000,
+                autoClose: 3000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
@@ -50,7 +50,7 @@ const LoginCadastro = () => {
         }else if(passwordLogin == null || passwordLogin == "" || passwordLogin.length < 8){
             toast.error('Senha deve ter pelo menos 8 caracteres!', {
                 position: "top-right",
-                autoClose: 5000,
+                autoClose: 3000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
@@ -116,7 +116,7 @@ const LoginCadastro = () => {
                     navigate(`/home`);
                     toast.success('Login realizado com sucesso!', {
                         position: "top-right",
-                        autoClose: 5000,
+                        autoClose: 3000,
                         hideProgressBar: false,
                         closeOnClick: true,
                         pauseOnHover: true,
@@ -130,7 +130,7 @@ const LoginCadastro = () => {
                 setLoading(false);
                 toast.error('Erro inesperado!', {
                     position: "top-right",
-                    autoClose: 5000,
+                    autoClose: 3000,
                     hideProgressBar: false,
                     closeOnClick: true,
                     pauseOnHover: true,
@@ -147,7 +147,7 @@ const LoginCadastro = () => {
         if(firstName == null || firstName == "" || firstName.length < 2){
             toast.error('Nome deve ter pelo menos 2 caracteres!', {
                 position: "top-right",
-                autoClose: 5000,
+                autoClose: 3000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
@@ -157,7 +157,7 @@ const LoginCadastro = () => {
         }else if(lastName == null || lastName == "" || lastName.length < 2){
             toast.error('Último nome deve ter pelo menos 2 caracteres!', {
                 position: "top-right",
-                autoClose: 5000,
+                autoClose: 3000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
@@ -167,7 +167,7 @@ const LoginCadastro = () => {
         }else if(username == null || username == "" || username.length < 3){
             toast.error('Nome de usuário deve ter pelo menos 3 caracteres!', {
                 position: "top-right",
-                autoClose: 5000,
+                autoClose: 3000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
@@ -177,7 +177,7 @@ const LoginCadastro = () => {
         }else if(password == null || password == "" || password.length < 8){
             toast.error('Senha deve ter pelo menos 8 caracteres!', {
                 position: "top-right",
-                autoClose: 5000,
+                autoClose: 3000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
@@ -187,7 +187,7 @@ const LoginCadastro = () => {
         }else if(role == null || role == ""){
             toast.error('Escolha um perfil para seu usuário!', {
                 position: "top-right",
-                autoClose: 5000,
+                autoClose: 3000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
@@ -255,7 +255,7 @@ const LoginCadastro = () => {
                 setLoading(false);
                 toast.success('Usuário salvo com sucesso!', {
                     position: "top-right",
-                    autoClose: 5000,
+                    autoClose: 3000,
                     hideProgressBar: false,
                     closeOnClick: true,
                     pauseOnHover: true,
@@ -267,7 +267,7 @@ const LoginCadastro = () => {
                 setLoading(false);
                 toast.error('Erro inesperado!', {
                     position: "top-right",
-                    autoClose: 5000,
+                    autoClose: 3000,
                     hideProgressBar: false,
                     closeOnClick: true,
                     pauseOnHover: true,

@@ -1,6 +1,6 @@
 import Carrousel from './CarrouselAvaliacao'
 
-const Avaliacoes = () => {
+const AvaliacoesHome = () => {
     return (
         <div className="avaliacoes">
         <h4 className="section_page poppins avaliacoesHome">AVALIAÇÕES</h4>
@@ -10,4 +10,4 @@ const Avaliacoes = () => {
     )
 }
 
-export default Avaliacoes
+export default AvaliacoesHome

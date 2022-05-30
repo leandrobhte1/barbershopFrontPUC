@@ -12,7 +12,7 @@ const Avaliacao = () => {
         e.preventDefault();
         toast.info('Funcionalidade ainda não implementada! Será entregue na etapa 3!', {
             position: "top-right",
-            autoClose: 5000,
+            autoClose: 3000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,
@@ -33,24 +33,26 @@ const Avaliacao = () => {
                     <span className="tittleQuestion poppins">Dê uma nota de 1 a 5 estrelas:</span>
                     <div className="stars">
                     <ReactStars
-                                count={5}
-                                onChange={ratingChanged}
-                                size={24}
-                                activeColor="#ffd700"
-                                value={1}
-                                classNames="react-stars-avaliation"
-                                edit={true}
-                            />
+                        count={5}
+                        onChange={ratingChanged}
+                        size={24}
+                        activeColor="#ffd700"
+                        value={1}
+                        classNames="react-stars-avaliation"
+                        edit={true}
+                    />
                     </div>
                 </div>
                 <div className="question">
                     <span className="tittleAvaliacao poppins">Dê um título para sua avaliação</span>
-                    <input type="text" placeholder="Dê um título para sua avaliação" />
+                    <input type="text" className="avaliacaoTitulo" placeholder="Dê um título para sua avaliação" />
                 </div>
                 <div className="question">
-                    <span className="tittleAvaliacao poppins">Dê uma descrição para sua avaliação</span>
-                    <span className="opcional">* Opcional</span>
-                    <textarea name="avaliacao" id="avaliacao" cols="30" rows="10" placeholder="Dê uma descrição para sua avaliação"></textarea>
+                    <div className="text">
+                        <span className="tittleAvaliacao poppins">Dê uma descrição para sua avaliação</span>
+                        <span className="opcional">* Opcional</span>
+                    </div>
+                    <textarea className="avaliacaoTextArea" name="avaliacao" id="avaliacao" cols="30" rows="10" placeholder="Dê uma descrição para sua avaliação"></textarea>
                 </div>
                 <div className="avaliarServico">
                     <button type='submit' className='avaliarServicoBT lato'>AVALIAR SERVIÇO</button>
