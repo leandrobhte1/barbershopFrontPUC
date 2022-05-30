@@ -9,6 +9,7 @@ import { SearchContextProvider } from "./context/SearchContext"
 import { MenuUserContextProvider } from './context/MenuUserContext';
 import { ResultSearchContextProvider } from './context/ResultSearchContext'
 import { EditPasswordContextProvider } from './context/EditPasswordContext';
+import { TabHomeSelectedContextProvider } from './context/tabHomeSelectedContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -18,7 +19,9 @@ root.render(
         <SearchContextProvider>
           <ResultSearchContextProvider>
             <EditPasswordContextProvider>
-              <App />
+              <TabHomeSelectedContextProvider>
+                <App />
+              </TabHomeSelectedContextProvider>
             </EditPasswordContextProvider>
           </ResultSearchContextProvider>
         </SearchContextProvider>

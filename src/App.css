@@ -424,6 +424,11 @@ button{
     min-height: 700px;
 }
 
+.bestBarberShops .tittle{
+    display: flex;
+    justify-content: center;
+}
+
 ul{
     list-style: none;
 }
@@ -431,13 +436,34 @@ ul{
 .bestBarberShops ul{
     display: flex;
     flex-direction: row;
-    width: 310px;
+    width: 500px;
     background-color: #EEEEEE;
     border-radius: 50px;
     height: 40px;
     padding-left: 0;
     padding-right: 0;
     margin: 0 auto;
+}
+
+.bestBarberShops li{
+    display: flex;
+    margin-right: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    justify-content: space-around;
+    flex-grow: 1;
+    align-items: center;
+    cursor: pointer;
+}
+
+.bestBarberShops .contentTab{
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+.bestBarberShops .swiper{
+    height: 600px;
 }
 
 .bestBarberShops h1{
@@ -460,6 +486,11 @@ ul{
     justify-content: center;
     align-items: center;
     height: 35px;
+}
+
+.tabListFilterItem.selected{
+    background-color: #ffffff;
+    border-radius: 15px;
 }
 
 .filtroMelhoresBarbearias li a{
@@ -505,6 +536,7 @@ ul{
 .agendaHome{
     display: flex;
     flex-direction: row;
+    padding-top: 100px;
 }
 
 .textAgenda{
