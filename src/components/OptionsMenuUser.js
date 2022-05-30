@@ -12,14 +12,26 @@ const OptionsMenuUser = () => {
     const { menuUserOpen, dispatch } = useMenuUserContext();
 
     let isAdmin = false;
+    let isManager = false;
 
     if(user.roles == "SUPER ADMIN" || user.roles == "ADMIN" || user.roles == "MANAGER"){
-        isAdmin = true;
+        isManager = true;
+        isAdmin = false;
+        if(user.roles == "SUPER ADMIN" || user.roles == "ADMIN"){
+            isAdmin = true;
+            isManager = true;
+        }
     }
 
     return (
         <div className="menuUserOpen">
             <ul className="userLogadoOpen" onClick={ () => dispatch({type: "MENU_USER_CLICKED", payload: !menuUserOpen}) }>
+                <li>
+                    <Link to="account">
+                        <span>Minha conta</span>
+                        <img className="iconMenuUserOpen relatoriosIcon" src={UsuariosIcon} alt="Relatórios" />
+                    </Link>
+                </li>
                 <li>
                     <Link to="agenda">
                         <span>Agenda</span>
@@ -40,6 +52,10 @@ const OptionsMenuUser = () => {
                                 <img className="iconMenuUserOpen relatoriosIcon" src={RelatoriosIcon} alt="Relatórios" />
                             </Link>
                         </li>
+                    </div>
+                }
+                {isManager == true &&
+                    <div className="menusAdmin">
                         <li>
                             <Link to="cadUsuarios">
                                 <span>Gerenciamento de usuários</span>

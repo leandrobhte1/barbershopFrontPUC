@@ -6,6 +6,8 @@ import Search from './Search'
 import Reports from './Reports'
 import History from './History'
 import Avaliacao from './Avaliacao'
+import Agenda from './Agenda'
+import Account from './Account'
 
 const Content = () => {
   return (
@@ -18,6 +20,8 @@ const Content = () => {
             <Route path="/reports" element={<Reports />}></Route>
             <Route path="/historico" element={<History />}></Route>
             <Route path="/avaliacao" element={<Avaliacao />}></Route>
+            <Route path="/agenda" element={<Agenda />}></Route>
+            <Route path="/account" element={<Account />}></Route>
             {/* <Route path="/param/:id" element={<Param />}></Route>
             <Route path="/about" element={<About />}></Route> */}
             <Route path="*" element={<Home />}></Route>

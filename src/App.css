@@ -1234,6 +1234,49 @@ span.voltar{
     padding-left: 15px;
 }
 
+.MinhaConta{
+    padding: 50px;
+    display: flex;
+    flex-direction: row;
+}
+
+.MinhaConta .imgUser{
+    border-radius: 50%;
+    width: 250px;
+    height: 250px;
+    margin-right: 50px;
+}
+
+.MinhaConta .infoUser .labelInfo{
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+}
+
+.MinhaConta .infoUser .labelInfo span{
+    font-size: 18px;
+}
+
+.MinhaConta .infoUser .labelInfo input{
+    margin-top: 20px;
+    width: 300px;
+}
+
+.btEsqueciSenha{
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 40px;
+}
+
+.btEsqueciSenha .btnSubmit{
+    width: 200px;
+    border-radius: 0px;
+    background-color: #1E1E1E;
+    color: #ffffff;
+    height: 40px;
+    margin-bottom: 30px;
+}
+
 .d-none{
     display: none !important;
 }

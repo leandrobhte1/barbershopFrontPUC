@@ -91,9 +91,9 @@ const LoginCadastro = () => {
                     finalRole = "USER";
                 }
                 let firstNameUserLogado = '';
+                let lastNameUserLogado = '';
                 let urlImagemPerfil = '';
                 let token = 'Bearer ' + resp.data.access_token;
-                console.log("token.: ", token);
                 axios.get(`http://localhost:8080/api/user/${usernameLogin}`, {
                     headers: {
                         'Access-Control-Allow-Origin': '*',
@@ -101,10 +101,12 @@ const LoginCadastro = () => {
                       }
                 }).then(resp => {
                     firstNameUserLogado = resp.data.firstname;
+                    lastNameUserLogado = resp.data.lastname;
                     urlImagemPerfil = resp.data.urlImagemPerfil;
                     let userLogin = {
                         "username": usernameLogin,
                         "firstname": firstNameUserLogado,
+                        "lastname": lastNameUserLogado,
                         "roles": finalRole,
                         "urlImagemPerfil": urlImagemPerfil,
                         "logado": true,
