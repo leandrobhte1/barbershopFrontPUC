@@ -936,7 +936,7 @@ ul{
 }
 
 .titleSectionHistorico .subtittle.dateHour{
-    flex-basis: 47%;
+    flex-basis: 325px;
 }
 
 .lineHistorico{
@@ -1042,6 +1042,10 @@ ul{
 .infoBarberShop .logoBarberShop{
     width: 250px;
     height: 250px;
+}
+
+.historico .obs{
+    color: red;
 }
 
 .avaliarServicoBT{
