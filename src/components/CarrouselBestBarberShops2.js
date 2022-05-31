@@ -3,9 +3,9 @@ import "swiper/css"
 import "swiper/css/pagination";
 import { Pagination, Navigation } from "swiper";
 import ReactStars from "react-rating-stars-component";
-import BarbeariaRibeiro from '../images/barbeariaRibeiro.png'
+import BarbeariaRibeiro from '../images/avaliacao1.png'
 
-const CarrouselBestBarberShops = () => {
+const CarrouselBestBarberShops2 = () => {
 
     const ratingChanged = (newRating) => {
         console.log(newRating);
@@ -18,7 +18,7 @@ const CarrouselBestBarberShops = () => {
                     <div className="cardBestBarbers">
                         <img className="imgCard barberImgSlide" src={BarbeariaRibeiro} alt="Barber" />
                         <div className="textCard">
-                            <span className="barberName poppins">Barbearia Ribeiro</span>
+                            <span className="barberName poppins">Barbearia Silva</span>
                             <ReactStars
                                 count={5}
                                 onChange={ratingChanged}
@@ -42,7 +42,7 @@ const CarrouselBestBarberShops = () => {
                     <div className="cardBestBarbers">
                         <img className="imgCard barberImgSlide" src={BarbeariaRibeiro} alt="Barber" />
                         <div className="textCard">
-                            <span className="barberName poppins">Barbearia Ribeiro</span>
+                            <span className="barberName poppins">Barbearia Silva</span>
                             <ReactStars
                                 count={5}
                                 onChange={ratingChanged}
@@ -66,7 +66,7 @@ const CarrouselBestBarberShops = () => {
                     <div className="cardBestBarbers">
                         <img className="imgCard barberImgSlide" src={BarbeariaRibeiro} alt="Barber" />
                         <div className="textCard">
-                            <span className="barberName poppins">Barbearia Ribeiro</span>
+                            <span className="barberName poppins">Barbearia Silva</span>
                             <ReactStars
                                 count={5}
                                 onChange={ratingChanged}
@@ -90,7 +90,7 @@ const CarrouselBestBarberShops = () => {
                     <div className="cardBestBarbers">
                         <img className="imgCard barberImgSlide" src={BarbeariaRibeiro} alt="Barber" />
                         <div className="textCard">
-                            <span className="barberName poppins">Barbearia Ribeiro</span>
+                            <span className="barberName poppins">Barbearia Silva</span>
                             <ReactStars
                                 count={5}
                                 onChange={ratingChanged}
@@ -114,7 +114,7 @@ const CarrouselBestBarberShops = () => {
                     <div className="cardBestBarbers">
                         <img className="imgCard barberImgSlide" src={BarbeariaRibeiro} alt="Barber" />
                         <div className="textCard">
-                            <span className="barberName poppins">Barbearia Ribeiro</span>
+                            <span className="barberName poppins">Barbearia Silva</span>
                             <ReactStars
                                 count={5}
                                 onChange={ratingChanged}
@@ -138,7 +138,7 @@ const CarrouselBestBarberShops = () => {
                     <div className="cardBestBarbers">
                         <img className="imgCard barberImgSlide" src={BarbeariaRibeiro} alt="Barber" />
                         <div className="textCard">
-                            <span className="barberName poppins">Barbearia Ribeiro</span>
+                            <span className="barberName poppins">Barbearia Silva</span>
                             <ReactStars
                                 count={5}
                                 onChange={ratingChanged}
@@ -162,7 +162,7 @@ const CarrouselBestBarberShops = () => {
                     <div className="cardBestBarbers">
                         <img className="imgCard barberImgSlide" src={BarbeariaRibeiro} alt="Barber" />
                         <div className="textCard">
-                            <span className="barberName poppins">Barbearia Ribeiro</span>
+                            <span className="barberName poppins">Barbearia Silva</span>
                             <ReactStars
                                 count={5}
                                 onChange={ratingChanged}
@@ -186,7 +186,7 @@ const CarrouselBestBarberShops = () => {
                     <div className="cardBestBarbers">
                         <img className="imgCard barberImgSlide" src={BarbeariaRibeiro} alt="Barber" />
                         <div className="textCard">
-                            <span className="barberName poppins">Barbearia Ribeiro</span>
+                            <span className="barberName poppins">Barbearia Silva</span>
                             <ReactStars
                                 count={5}
                                 onChange={ratingChanged}
@@ -210,7 +210,7 @@ const CarrouselBestBarberShops = () => {
                     <div className="cardBestBarbers">
                         <img className="imgCard barberImgSlide" src={BarbeariaRibeiro} alt="Barber" />
                         <div className="textCard">
-                            <span className="barberName poppins">Barbearia Ribeiro</span>
+                            <span className="barberName poppins">Barbearia Silva</span>
                             <ReactStars
                                 count={5}
                                 onChange={ratingChanged}
@@ -234,7 +234,7 @@ const CarrouselBestBarberShops = () => {
                     <div className="cardBestBarbers">
                         <img className="imgCard barberImgSlide" src={BarbeariaRibeiro} alt="Barber" />
                         <div className="textCard">
-                            <span className="barberName poppins">Barbearia Ribeiro</span>
+                            <span className="barberName poppins">Barbearia Silva</span>
                             <ReactStars
                                 count={5}
                                 onChange={ratingChanged}
@@ -258,7 +258,7 @@ const CarrouselBestBarberShops = () => {
                     <div className="cardBestBarbers">
                         <img className="imgCard barberImgSlide" src={BarbeariaRibeiro} alt="Barber" />
                         <div className="textCard">
-                            <span className="barberName poppins">Barbearia Ribeiro</span>
+                            <span className="barberName poppins">Barbearia Silva</span>
                             <ReactStars
                                 count={5}
                                 onChange={ratingChanged}
@@ -283,4 +283,4 @@ const CarrouselBestBarberShops = () => {
     )
 }
 
-export default CarrouselBestBarberShops
+export default CarrouselBestBarberShops2

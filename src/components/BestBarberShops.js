@@ -1,5 +1,7 @@
 import { useTabHomeSelectedContext } from '../hooks/useTabHomeSelectedContext'
 import CarrouselBestBarberShops from './CarrouselBestBarberShops';
+import CarrouselBestBarberShops2 from './CarrouselBestBarberShops2';
+import CarrouselBestBarberShops3 from './CarrouselBestBarberShops3';
 
 const BestBarberShops = () => {
 
@@ -19,10 +21,10 @@ const BestBarberShops = () => {
                 <CarrouselBestBarberShops></CarrouselBestBarberShops>
             </div>
             <div className={`contentTab contentTab2 ${tab == 2 ? 'd-flex' : 'd-none'}`}>
-                <CarrouselBestBarberShops></CarrouselBestBarberShops>
+                <CarrouselBestBarberShops2></CarrouselBestBarberShops2>
             </div>
             <div className={`contentTab contentTab1 ${tab == 3 ? 'd-flex' : 'd-none'}`}>
-                <CarrouselBestBarberShops></CarrouselBestBarberShops>
+                <CarrouselBestBarberShops3></CarrouselBestBarberShops3>
             </div>
         </div>
     )

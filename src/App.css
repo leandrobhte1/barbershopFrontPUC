@@ -311,6 +311,7 @@ button{
 
 .barberDescription{
     font-size: 12px;
+    text-align: justify;
 }
 
 .results h3{
@@ -421,7 +422,11 @@ button{
     padding: 70px;
     display: flex;
     flex-direction: column;
-    min-height: 700px;
+}
+
+.cardBestBarbers{
+    height: 100%;
+    width: 100%;
 }
 
 .bestBarberShops .tittle{
@@ -537,6 +542,16 @@ ul{
     display: flex;
     flex-direction: row;
     padding-top: 100px;
+}
+
+.btnAgendar{
+    width: 200px;
+    border-radius: 50px;
+    background-color: #1E1E1E;
+    color: #ffffff;
+    height: 40px;
+    margin-bottom: 10px;
+    margin-top: 20px;
 }
 
 .textAgenda{
@@ -1332,6 +1347,11 @@ span.voltar{
 
 .swiper-button-prev:after, .swiper-rtl .swiper-button-next:after{
     color: #000000 !important;
+}
+
+.imgCard.barberImgSlide{
+    width: 100% !important;
+    max-height: 380px;
 }
 
 .d-none{
