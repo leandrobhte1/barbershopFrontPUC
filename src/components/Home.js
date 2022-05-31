@@ -5,6 +5,7 @@ import Vantagens from './Vantagens'
 import HomeAgenda from './HomeAgenda'
 import Galeria from './Galeria'
 import AvaliacoesHome from './AvaliacoesHome'
+import BestBarberShops from './BestBarberShops'
 import { useNavigate } from "react-router-dom";
 import axios from 'axios'
 
@@ -43,7 +44,7 @@ const Home = () => {
                 <input id="searchHome" className='form-control' type="text" placeholder="Digite aqui a sua busca" onChange={ (e) => dispatch({type: "SEARCH_CHANGED", payload: e.target.value}) } value={search} onKeyUp={keyHandler} />
             </div>
             <Vantagens></Vantagens>
-            {/* <BestBarberShops></BestBarberShops> */}
+            <BestBarberShops></BestBarberShops>
             <HomeAgenda></HomeAgenda>
             <Galeria></Galeria>
             <AvaliacoesHome></AvaliacoesHome>
