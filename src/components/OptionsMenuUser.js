@@ -58,7 +58,7 @@ const OptionsMenuUser = () => {
                 {isManager == true &&
                     <div className="menusAdmin">
                         <li>
-                            <Link to="cadUsuarios">
+                            <Link to="empresa">
                                 <span>Gerenciamento de empresa</span>
                                 <img className="iconMenuUserOpen relatoriosIcon" src={EmpresaIcon} alt="Relatórios" />
                             </Link>

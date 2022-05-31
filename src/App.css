@@ -1354,6 +1354,70 @@ span.voltar{
     max-height: 380px;
 }
 
+.empresa{
+    padding: 100px;
+    width: 100%;
+}
+
+.telaEmpresa{
+    display: flex;
+    flex-direction: row;
+}
+
+.empresaSide{
+    height: 850px;
+    width: 400px;
+    background-color: dimgrey;
+}
+
+.telaEmpresa .empresaSide .img{
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+}
+
+.telaEmpresa .empresaSide .imgEmpresa{
+    width: 300px;
+    height: 300px;
+}
+
+.telaEmpresa .empresaSide .textInfo{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.telaEmpresa .empresaSide .textInfo p{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0px;
+}
+
+.telaEmpresa .empresaSide .buttonsAction{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.telaEmpresa .empresaSide .btnAction:first-of-type{
+    width: 300px;
+    background-color: #1E1E1E;
+    color: #ffffff;
+    height: 40px;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+.telaEmpresa .empresaSide .btnAction{
+    width: 300px;
+    background-color: #1E1E1E;
+    color: #ffffff;
+    height: 40px;
+    margin: 0 auto;
+    margin-bottom: 30px;
+}
+
 .d-none{
     display: none !important;
 }

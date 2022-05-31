@@ -8,6 +8,7 @@ import History from './History'
 import Avaliacao from './Avaliacao'
 import Agenda from './Agenda'
 import Account from './Account'
+import Empresa from './Empresa'
 
 const Content = () => {
   return (
@@ -22,6 +23,7 @@ const Content = () => {
             <Route path="/avaliacao" element={<Avaliacao />}></Route>
             <Route path="/agenda" element={<Agenda />}></Route>
             <Route path="/account" element={<Account />}></Route>
+            <Route path="/empresa" element={<Empresa />}></Route>
             {/* <Route path="/param/:id" element={<Param />}></Route>
             <Route path="/about" element={<About />}></Route> */}
             <Route path="*" element={<Home />}></Route>
