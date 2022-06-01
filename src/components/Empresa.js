@@ -383,7 +383,7 @@ const Empresa = () => {
                             <img src={user.empresas[0].urlImagem} alt="Barbershop" className="imgEmpresa" />
                         </div>
                         <div className="textInfo">
-                            <p className="poppins">{user.empresas[0].name}</p>
+                            <p className="nameBarbershop poppins">{user.empresas[0].name}</p>
                             <ReactStars
                                 count={5}
                                 onChange={ratingChanged}
@@ -400,7 +400,7 @@ const Empresa = () => {
                             <button className='btnAction' onClick={handleRelatorios }>VISUALIZAR RELATÓRIOS</button>
                             <button className='btnAction' onClick={handleSearchFunc }>VISUALIZAR FUNCIONÁRIOS</button>
                             <button className='btnAction' onClick={handleSearchServicos }>VISUALIZAR SERVIÇOS</button>
-                            <button className='btnAction' onClick={handleNovoServico }>INCLUIR NOVO SERVIÇO</button>
+                            <button className='btnAction' onClick={handleNovoServico }>INCLUIR SERVIÇO</button>
                             <button className='btnAction' onClick={handleExcluirServico }>EXCLUIR SERVIÇO</button>
                             <button className='btnAction' onClick={handleNovoFuncionario }>INCLUIR FUNCIONÁRIO</button>
                             <button className='btnAction' onClick={handleExcluirFuncionario }>EXCLUIR FUNCIONÁRIO</button>
@@ -420,6 +420,33 @@ const Empresa = () => {
                         {options.funcionarios == true && (
                             <div className="screen">
                                 <h1 className="poppins">Funcionarios</h1>
+                                <span className="quantidadeFunc poppins">Funcionários encontrados: {user.empresas[0].funcionarios.length}</span>
+                                <ul className='listFunc'>
+                                    {user.empresas[0].funcionarios && user.empresas[0].funcionarios.map(f => (
+                                        <li key={f.id}>
+                                            <div className="cardFunc">
+                                                <div className="left">
+                                                    <img className='userImagePerfil' src={f.urlImagemPerfil} alt="Funcionario" />
+                                                </div>
+                                                <div className="right">
+                                                    <div className="nameF">
+                                                        <span className='poppins funcName'>{f.firstname} </span>
+                                                        <span className='poppins funcName'>{f.lastname}</span>
+                                                    </div>
+                                                    <div className="cpf">
+                                                        <span className="poppins">CPF: {f.cpf}</span>
+                                                    </div>
+                                                    <div className="email">
+                                                        <span className="poppins">E-mail/usuário: {f.username}</span>
+                                                    </div>
+                                                    {/* <div className="perfil">
+                                                        <span className="poppins">Perfil: {f.roles}</span>
+                                                    </div> */}
+                                                </div>
+                                            </div>
+                                        </li>
+                                    ))}
+                                </ul>
                             </div>
                         )}
                         {options.servicos == true && (

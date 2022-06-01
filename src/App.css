@@ -1490,6 +1490,39 @@ span.voltar{
     height: 40px;
 }
 
+.telaEmpresa .empresaSide .textInfo .nameBarbershop{
+    font-size: 24px;
+}
+
+.telaEmpresa .listFunc{
+    padding-left: 0 !important;
+    padding-top: 20px;
+}
+
+.cardFunc{
+    display: flex;
+    flex-direction: row;
+    border: 1px solid dimgrey;
+    background-color: dimgrey;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.cardFunc .left{
+    display: flex;
+    flex-direction: row;
+}
+
+.cardFunc .right{
+    padding-left: 40px;
+}
+
+.telaEmpresa .userImagePerfil{
+    width: 150px;
+    height: 150px;
+    border-radius: 15px;
+}
+
 .d-none{
     display: none !important;
 }
