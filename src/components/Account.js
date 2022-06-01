@@ -62,8 +62,8 @@ const Account = () => {
                     "roles": user.roles,
                     "urlImagemPerfil": resposta.data.urlImagemPerfil,
                     "logado": true,
-                    "access_token": resposta.data.access_token,
-                    "refresh_token": resposta.data.refresh_token
+                    "access_token": user.access_token,
+                    "refresh_token": user.refresh_token
                 };
                 console.log("userAlterado.: ", userAlterado);
                 dispatch({type: "LOGIN", payload: userAlterado});
