@@ -15,7 +15,7 @@ export const optionsMenuEmpresaReducer = (state, action) => {
 };
 
 export const OptionsMenuEmpresaContextProvider = ({children}) => {
-    const [state, dispatch] = useReducer(optionsMenuEmpresaReducer, { options: { agenda: false, relatorios: false, novoUsuario: false, novoFuncionario: false, excluirFuncionario: false}})
+    const [state, dispatch] = useReducer(optionsMenuEmpresaReducer, { options: { agenda: false, relatorios: false, funcionarios: false, servicos: false, novoServico: false, novoUsuario: false, novoFuncionario: false, excluirFuncionario: false, excluirServico: false}})
 
     return (
         <OptionsMenuEmpresaContext.Provider value={{ ...state, dispatch }}>

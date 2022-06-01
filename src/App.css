@@ -1365,9 +1365,16 @@ span.voltar{
 }
 
 .empresaSide{
-    height: 850px;
+    height: 100%;
     width: 400px;
     background-color: dimgrey;
+}
+
+.empresaRight{
+    width: 100%;
+    padding: 50px;
+    padding-top: 0px;
+    padding-left: 100px;
 }
 
 .telaEmpresa .empresaSide .img{
@@ -1416,6 +1423,71 @@ span.voltar{
     height: 40px;
     margin: 0 auto;
     margin-bottom: 30px;
+}
+
+.tittleRightSide{
+    padding-bottom: 50px;
+}
+
+.empresaFormCadastroRegistro label{
+    width: 400px;
+}
+
+.empresaFormCadastroRegistro .perfil{
+    margin-top: 50px;
+}
+
+.empresaFormCadastroRegistro .perfil .option:first-of-type{
+    margin-top: 10px;
+}
+
+.empresaFormCadastroRegistro .perfil .option{
+    margin-bottom: 10px;
+}
+
+.empresaFormCadastroRegistro .perfil .option label{
+    margin-left: 15px;
+    font-weight: 600;
+}
+
+.empresaFormCadastroRegistro .username input{
+    width: 100%;
+    border: 1px solid #1E1E1E;
+    background-color: inherit;
+    border-radius: 50px;
+    background: url('./images/user.png') no-repeat left 5px center;
+    background-size: 25px;
+    color: #1E1E1E;
+    padding-left: 40px;
+    font-family: "Poppins";
+    margin-bottom: 30px;
+}
+
+.empresaFormCadastroRegistro .password input{
+    width: 100%;
+    border: 1px solid #1E1E1E;
+    background-color: inherit;
+    border-radius: 50px;
+    background: url('./images/password.png') no-repeat left 5px center;
+    background-size: 25px;
+    color: #1E1E1E;
+    padding-left: 40px;
+    font-family: "Poppins";
+}
+
+.empresaFormCadastroRegistro .btRegistrarUser{
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: flex-start;
+    padding-top: 20px;
+}
+
+.empresaFormCadastroRegistro .btRegistrarUser .btnSubmit{
+    width: 200px;
+    border-radius: 50px;
+    background-color: #1E1E1E;
+    color: #ffffff;
+    height: 40px;
 }
 
 .d-none{
