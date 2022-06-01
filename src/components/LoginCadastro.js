@@ -104,6 +104,7 @@ const LoginCadastro = () => {
                     lastNameUserLogado = resposta.data.lastname;
                     urlImagemPerfil = resposta.data.urlImagemPerfil;
                     let userLogin = {
+                        "id": resposta.data.id,
                         "username": usernameLogin,
                         "firstname": firstNameUserLogado,
                         "lastname": lastNameUserLogado,

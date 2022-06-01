@@ -1429,8 +1429,17 @@ span.voltar{
     padding-bottom: 50px;
 }
 
+.descriptionEmpresa{
+    width: 500px;
+    height: 150px;
+}
+
+.divImagemEmpresa{
+    margin-top: 30px;
+}
+
 .empresaFormCadastroRegistro label{
-    width: 400px;
+    width: 500px;
 }
 
 .empresaFormCadastroRegistro .perfil{
@@ -1506,6 +1515,7 @@ span.voltar{
     background-color: dimgrey;
     padding: 20px;
     border-radius: 20px;
+    margin-bottom: 20px;
 }
 
 .cardFunc .left{

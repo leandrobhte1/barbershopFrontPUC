@@ -9,8 +9,8 @@ const BASE_URL = 'http://localhost:8080/api'
 
 const Empresa = () => {
 
-    const { user } = useUserContext();
-    const { options, dispatch } = useOptionsMenuEmpresaContext();
+    const { user, dispatch } = useUserContext();
+    const { options, dispatchOp } = useOptionsMenuEmpresaContext();
     console.log("User.: ", user);
 
     const [userFirstName, setUserFirstName] = useState("");
@@ -21,10 +21,106 @@ const Empresa = () => {
     const [userRole, setUserRole] = useState(null);
     const [loading, setLoading] = useState(false);
 
+    const [nameEmpresa, setNameEmpresa] = useState("");
+    const [descricaoEmpresa, setDescricaoEmpresa] = useState("");
+    const [cnpjEmpresa, setCnpjEmpresa] = useState("");
+    const [cepEmpresa, setCepEmpresa] = useState("");
+    const [ruaEmpresa, setRuaEmpresa] = useState("");
+    const [urlImagemEmpresa, setUrlImagemEmpresa] = useState("");
+    const [numeroEmpresa, setNumeroEmpresa] = useState("");
+    const [bairroEmpresa, setBairroEmpresa] = useState("");
+    const [cidadeEmpresa, setCidadeEmpresa] = useState("");
+    const [telefoneEmpresa, setTelefoneEmpresa] = useState("");
+    const [emailEmpresa, setEmailEmpresa] = useState("");
+
     const [usernameFunc, setUsernameFunc] = useState("");
 
     const handleCreateEmpresa = (e) => {
         e.preventDefault();
+        let newOptions =  { newEmpresa: true, agenda: false, relatorios: false, funcionarios: false, servicos: false, novoServico: false, novoUsuario: false, novoFuncionario: false, excluirFuncionario: false, excluirServico: false};
+        dispatchOp({type: "OPTIONS_MENU_EMPRESA_CHANGED", payload: newOptions});
+    }
+
+    const handleRegisterEmpresa = (e) => {
+        e.preventDefault();
+        let empresaAdd = {
+            "name": nameEmpresa,
+            "dono": user.username,
+            "descricao": descricaoEmpresa,
+            "cnpj": cnpjEmpresa,
+            "cep": cepEmpresa,
+            "rua": ruaEmpresa,
+            "urlImagem": urlImagemEmpresa,
+            "numero": numeroEmpresa,
+            "bairro": bairroEmpresa,
+            "cidade": cidadeEmpresa,
+            "telefone": telefoneEmpresa,
+            "email": emailEmpresa
+        };
+        let token = 'Bearer ' + user.access_token;
+        setLoading(true);
+        axios.post(`http://localhost:8080/api/empresa/${user.id}/save`, empresaAdd, {
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Authorization': token
+            }
+        })
+        .then(resp => {
+            let token = 'Bearer ' + user.access_token;
+            axios.get(`http://localhost:8080/api/user/${user.username}`, {
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Authorization': token
+                  }
+            }).then(resposta => {
+                let userLogin = {
+                    "id": resposta.data.id,
+                    "username": resposta.data.username,
+                    "firstname": resposta.data.firstname,
+                    "lastname": resposta.data.lastname,
+                    "cpf": resposta.data.cpf,
+                    "empresas": resposta.data.empresas,
+                    "roles": user.roles,
+                    "urlImagemPerfil": resposta.data.urlImagemPerfil,
+                    "logado": true,
+                    "access_token": user.access_token,
+                    "refresh_token": user.refresh_token
+                };
+                dispatch({type: "LOGIN", payload: userLogin});
+                setNameEmpresa("");
+                setDescricaoEmpresa("");
+                setCnpjEmpresa("");
+                setCepEmpresa("");
+                setRuaEmpresa("");
+                setUrlImagemEmpresa("");
+                setNumeroEmpresa("");
+                setBairroEmpresa("");
+                setCidadeEmpresa("");
+                setTelefoneEmpresa("");
+                setEmailEmpresa("");
+                setLoading(false);
+                toast.success('Empresa inserida com sucesso!', {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+            })
+        }).catch(e=> {
+            setLoading(false);
+            toast.error('Erro inesperado!', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        })
     }
 
     const ratingChanged = (newRating) => {
@@ -34,9 +130,9 @@ const Empresa = () => {
     const handleAgenda = (e) => {
         e.preventDefault();
         console.log("handle agenda");
-        let newOptions =  { agenda: true, relatorios: false, funcionarios: false, servicos: false, novoServico: false, novoUsuario: false, novoFuncionario: false, excluirFuncionario: false, excluirServico: false};
+        let newOptions =  { newEmpresa: false, agenda: true, relatorios: false, funcionarios: false, servicos: false, novoServico: false, novoUsuario: false, novoFuncionario: false, excluirFuncionario: false, excluirServico: false};
 
-        dispatch({type: "OPTIONS_MENU_EMPRESA_CHANGED", payload: newOptions});
+        dispatchOp({type: "OPTIONS_MENU_EMPRESA_CHANGED", payload: newOptions});
         toast.info('Funcionalidade será implementada na etapa 3!', {
             position: "top-right",
             autoClose: 3000,
@@ -51,9 +147,9 @@ const Empresa = () => {
     const handleRelatorios = (e) => {
         e.preventDefault();
         console.log("handleRelatorios");
-        let newOptions =  { agenda: false, relatorios: true, funcionarios: false, servicos: false, novoServico: false, novoUsuario: false, novoFuncionario: false, excluirFuncionario: false, excluirServico: false};
+        let newOptions =  { newEmpresa: false, agenda: false, relatorios: true, funcionarios: false, servicos: false, novoServico: false, novoUsuario: false, novoFuncionario: false, excluirFuncionario: false, excluirServico: false};
 
-        dispatch({type: "OPTIONS_MENU_EMPRESA_CHANGED", payload: newOptions});
+        dispatchOp({type: "OPTIONS_MENU_EMPRESA_CHANGED", payload: newOptions});
         toast.info('Funcionalidade será implementada na etapa 3!', {
             position: "top-right",
             autoClose: 3000,
@@ -67,16 +163,16 @@ const Empresa = () => {
 
     const handleSearchFunc = (e) => {
         e.preventDefault();
-        let newOptions =  { agenda: false, relatorios: false, funcionarios: true, servicos: false, novoServico: false, novoUsuario: false, novoFuncionario: false, excluirFuncionario: false, excluirServico: false};
+        let newOptions =  { newEmpresa: false, agenda: false, relatorios: false, funcionarios: true, servicos: false, novoServico: false, novoUsuario: false, novoFuncionario: false, excluirFuncionario: false, excluirServico: false};
 
-        dispatch({type: "OPTIONS_MENU_EMPRESA_CHANGED", payload: newOptions});
+        dispatchOp({type: "OPTIONS_MENU_EMPRESA_CHANGED", payload: newOptions});
     }
 
     const handleSearchServicos = (e) => {
         e.preventDefault();
-        let newOptions =  { agenda: false, relatorios: false, funcionarios: false, servicos: true, novoServico: false, novoUsuario: false, novoFuncionario: false, excluirFuncionario: false, excluirServico: false};
+        let newOptions =  { newEmpresa: false, agenda: false, relatorios: false, funcionarios: false, servicos: true, novoServico: false, novoUsuario: false, novoFuncionario: false, excluirFuncionario: false, excluirServico: false};
 
-        dispatch({type: "OPTIONS_MENU_EMPRESA_CHANGED", payload: newOptions});
+        dispatchOp({type: "OPTIONS_MENU_EMPRESA_CHANGED", payload: newOptions});
         toast.info('Funcionalidade será implementada na etapa 3!', {
             position: "top-right",
             autoClose: 3000,
@@ -90,9 +186,9 @@ const Empresa = () => {
 
     const handleNovoServico = (e) => {
         e.preventDefault();
-        let newOptions =  { agenda: false, relatorios: false, funcionarios: false, servicos: false, novoServico: true, novoUsuario: false, novoFuncionario: false, excluirFuncionario: false, excluirServico: false};
+        let newOptions =  { newEmpresa: false, agenda: false, relatorios: false, funcionarios: false, servicos: false, novoServico: true, novoUsuario: false, novoFuncionario: false, excluirFuncionario: false, excluirServico: false};
 
-        dispatch({type: "OPTIONS_MENU_EMPRESA_CHANGED", payload: newOptions});
+        dispatchOp({type: "OPTIONS_MENU_EMPRESA_CHANGED", payload: newOptions});
         toast.info('Funcionalidade será implementada na etapa 3!', {
             position: "top-right",
             autoClose: 3000,
@@ -106,8 +202,8 @@ const Empresa = () => {
 
     const handleExcluirServico = (e) => {
         e.preventDefault();
-        let newOptions = { agenda: false, relatorios: false, funcionarios: false, servicos: false, novoServico: false, novoUsuario: false, novoFuncionario: false, excluirFuncionario: false, excluirServico: true};
-        dispatch({type: "OPTIONS_MENU_EMPRESA_CHANGED", payload: newOptions});
+        let newOptions = { newEmpresa: false, agenda: false, relatorios: false, funcionarios: false, servicos: false, novoServico: false, novoUsuario: false, novoFuncionario: false, excluirFuncionario: false, excluirServico: true};
+        dispatchOp({type: "OPTIONS_MENU_EMPRESA_CHANGED", payload: newOptions});
         toast.info('Funcionalidade será implementada na etapa 3!', {
             position: "top-right",
             autoClose: 3000,
@@ -122,16 +218,16 @@ const Empresa = () => {
     const handleNovoFuncionario = (e) => {
         e.preventDefault();
         console.log("handleNovoFuncionario");
-        let newOptions =  { agenda: false, relatorios: false, funcionarios: false, servicos: false, novoServico: false, novoUsuario: false, novoFuncionario: true, excluirFuncionario: false, excluirServico: false};
+        let newOptions =  { newEmpresa: false, agenda: false, relatorios: false, funcionarios: false, servicos: false, novoServico: false, novoUsuario: false, novoFuncionario: true, excluirFuncionario: false, excluirServico: false};
 
-        dispatch({type: "OPTIONS_MENU_EMPRESA_CHANGED", payload: newOptions});
+        dispatchOp({type: "OPTIONS_MENU_EMPRESA_CHANGED", payload: newOptions});
     }
 
     const handleExcluirFuncionario = (e) => {
         e.preventDefault();
         console.log("handleExcluirFuncionario");
-        let newOptions =  { agenda: false, relatorios: false, funcionarios: false, servicos: false, novoServico: false, novoUsuario: false, novoFuncionario: false, excluirFuncionario: true, excluirServico: false};
-        dispatch({type: "OPTIONS_MENU_EMPRESA_CHANGED", payload: newOptions});
+        let newOptions =  { newEmpresa: false, agenda: false, relatorios: false, funcionarios: false, servicos: false, novoServico: false, novoUsuario: false, novoFuncionario: false, excluirFuncionario: true, excluirServico: false};
+        dispatchOp({type: "OPTIONS_MENU_EMPRESA_CHANGED", payload: newOptions});
     }
 
     const handleDeleteFunc = (e) => {
@@ -333,21 +429,57 @@ const Empresa = () => {
 
                 let newFunc = {
                     "cnpj": user.empresas[0].cnpj,
-                    "funcionarioUsername": user.username
+                    "funcionarioUsername": userUsername
                 }
+                let token = 'Bearer ' + user.access_token;
                 axios.post(`${BASE_URL}/empresa/addFuncionario`, newFunc, {
                     headers: {
                         'Access-Control-Allow-Origin': '*',
+                        'Authorization': token,
+                        
                     }
                 }).then(resposta => {
-                    setUserFirstName("");
-                    setUserLastName("");
-                    setUserCPF("");
-                    setUserUsername("");
-                    setUserPassword("");
-                    setUserRole(null);
+
+                    axios.get(`http://localhost:8080/api/user/${user.username}`, {
+                        headers: {
+                            'Access-Control-Allow-Origin': '*',
+                            'Authorization': token
+                        }
+                    }).then(r => {
+                        let userLogin = {
+                            "username": r.data.username,
+                            "firstname": r.data.firstname,
+                            "lastname": r.data.lastname,
+                            "cpf": r.data.cpf,
+                            "empresas": r.data.empresas,
+                            "roles": user.roles,
+                            "urlImagemPerfil": r.data.urlImagemPerfil,
+                            "logado": true,
+                            "access_token": r.data.access_token,
+                            "refresh_token": r.data.refresh_token
+                        };
+                        dispatch({type: "LOGIN", payload: userLogin});
+
+                        setUserFirstName("");
+                        setUserLastName("");
+                        setUserCPF("");
+                        setUserUsername("");
+                        setUserPassword("");
+                        setUserRole(null);
+                        setLoading(false);
+                        toast.success('Funcionário salvo com sucesso!', {
+                            position: "top-right",
+                            autoClose: 3000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                        });
+                    })
+                }).catch(e=> {
                     setLoading(false);
-                    toast.success('Funcionário salvo com sucesso!', {
+                    toast.error('Erro inesperado!', {
                         position: "top-right",
                         autoClose: 3000,
                         hideProgressBar: false,
@@ -355,7 +487,7 @@ const Empresa = () => {
                         pauseOnHover: true,
                         draggable: true,
                         progress: undefined,
-                    });
+                        });
                 })
             })
         }
@@ -372,9 +504,85 @@ const Empresa = () => {
                     <ReactLoading type={'spin'} color={'#1E1E1E'} height={'50%'} width={'50px'}></ReactLoading>
                 </div>
             )}
-            {(!loading && user.empresas.length == 0) && (<div className="semEmpresa">
+            {(!loading && user.empresas.length == 0 && options.newEmpresa == true) && (
+                <div className="criarEmpresa">
+                    <h1 className="tittleRightSide poppins">Criar empresa</h1>
+                    <form className='empresaFormCadastroRegistro' onSubmit={handleRegisterEmpresa}>
+                        <div className="username firstName">
+                            <label className='poppins'>
+                                <h6 className="poppins">Nome da empresa:</h6>
+                                <input type="text" name="nameEmpresa" value={nameEmpresa} placeholder="Digite aqui o nome da empresa" onChange={(e) => setNameEmpresa(e.target.value)} />
+                            </label>
+                        </div>
+                        <div className="username lastName">
+                            <label className='poppins'>
+                                <h6 className="poppins">Descrição:</h6>
+                                <textarea className='descriptionEmpresa' type="text" name="lastName" value={descricaoEmpresa} placeholder="Digite aqui uma descrição para sua empresa" onChange={(e) => setDescricaoEmpresa(e.target.value)} />
+                            </label>
+                        </div>
+                        <div className="username lastName divImagemEmpresa">
+                            <label className='poppins'>
+                                <h6 className="poppins">CNPJ:</h6>
+                                <input type="text" name="cnpj" value={cnpjEmpresa} placeholder="Digite aqui o CNPJ da empresa" onChange={(e) => setCnpjEmpresa(e.target.value)} />
+                            </label>
+                        </div>
+                        <div className="username">
+                            <label className='poppins'>
+                                <h6 className="poppins">Endereço de um upload de imagem da sua barbearia:</h6>
+                                <input type="text" name="imagem" value={urlImagemEmpresa} placeholder="Endereço de um upload de imagem da sua barbearia" onChange={(e) => setUrlImagemEmpresa(e.target.value)} />
+                            </label>
+                        </div>
+                        <div className="username">
+                            <label className='poppins'>
+                                <h6 className="poppins">CEP:</h6>
+                                <input type="text" name="cep" value={cepEmpresa} placeholder="Digite aqui o CEP da empresa" onChange={(e) => setCepEmpresa(e.target.value)} />
+                            </label>
+                        </div>
+                        <div className="password">
+                            <label className='poppins'>
+                                <h6 className="poppins">Rua:</h6>
+                                <input type="text" name="rua" value={ruaEmpresa} placeholder="Digite aqui a rua da empresa" onChange={(e) => setRuaEmpresa(e.target.value)} />
+                            </label>
+                        </div>
+                        <div className="username divImagemEmpresa">
+                            <label className='poppins'>
+                                <h6 className="poppins">Número:</h6>
+                                <input type="text" name="numeroEmpresa" value={numeroEmpresa} placeholder="Digite o número do endereço" onChange={(e) => setNumeroEmpresa(e.target.value)} />
+                            </label>
+                        </div>
+                        <div className="username">
+                            <label className='poppins'>
+                                <h6 className="poppins">Bairro:</h6>
+                                <input type="text" name="bairroEmpresa" value={bairroEmpresa} placeholder="Digite o bairro da empresa" onChange={(e) => setBairroEmpresa(e.target.value)} />
+                            </label>
+                        </div>
+                        <div className="username">
+                            <label className='poppins'>
+                                <h6 className="poppins">Cidade:</h6>
+                                <input type="text" name="cidadeEmpresa" value={cidadeEmpresa} placeholder="Digite aqui a cidade da empresa" onChange={(e) => setCidadeEmpresa(e.target.value)} />
+                            </label>
+                        </div>
+                        <div className="username">
+                            <label className='poppins'>
+                                <h6 className="poppins">Telefone:</h6>
+                                <input type="text" name="telefoneEmpresa" value={telefoneEmpresa} placeholder="Digite aqui o telefone da empresa" onChange={(e) => setTelefoneEmpresa(e.target.value)} />
+                            </label>
+                        </div>
+                        <div className="username">
+                            <label className='poppins'>
+                                <h6 className="poppins">E-mail:</h6>
+                                <input type="text" name="emailEmpresa" value={emailEmpresa} placeholder="Digite aqui um e-mail de contato da empresa" onChange={(e) => setEmailEmpresa(e.target.value)} />
+                            </label>
+                        </div>
+                        <div className="btRegistrarUser">
+                            <input className='btnSubmit' type="submit" value="Registrar" />
+                        </div>
+                    </form>
+                </div>
+            )}
+            {(!loading && user.empresas.length == 0 && options.newEmpresa == false) && (<div className="semEmpresa">
                 <h2 className="poppins">Você ainda não criou a sua empresa! Desejar criar agora?</h2>
-                <input className='btnAgendar' type="button" value="CRIAR EMPRESA" onClick={ () => handleCreateEmpresa} />
+                <input className='btnAgendar' type="button" value="CRIAR EMPRESA" onClick={handleCreateEmpresa} />
             </div>)}
             {(!loading && user.empresas.length == 1) && (
                 <div className="telaEmpresa">
