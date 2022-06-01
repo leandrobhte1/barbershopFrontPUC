@@ -1438,6 +1438,25 @@ span.voltar{
     margin-top: 30px;
 }
 
+.MinhaConta .changeFotoDiv{
+    display: flex;
+    flex-direction: column;
+}
+
+.MinhaConta .changeFotoDiv .labelInfo input{
+    width: 500px;
+}
+
+.MinhaConta .changeFoto{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.MinhaConta .changeFoto span{
+    cursor: pointer;
+}
+
 .empresaFormCadastroRegistro label{
     width: 500px;
 }

@@ -8,8 +8,8 @@ const BASE_URL = 'http://localhost:8080/api'
 
 const Account = () => {
 
-    const { user, dispatchUser } = useUserContext();
-    const { editPassword, dispatchEdit } = useEditPasswordContext();
+    const { user, dispatch } = useUserContext();
+    const { editAccount, dispatchEdit } = useEditPasswordContext();
 
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -18,12 +18,90 @@ const Account = () => {
     const [role, setRole] = useState(null);
     const [loading, setLoading] = useState(false);
 
+    const [urlImagem, setUrlImagem] = useState("");
+    const [senhaUser, setSenhaUser] = useState("");
+
+    const handleChangeFoto = (e) => {
+        e.preventDefault();
+        dispatchEdit({type: "EDIT_ACCOUNT", payload: { editPassword: false, editFoto: !editAccount.editFoto}});
+    }
+
+    const handleAlterarFoto = (e) => {
+        let token = 'Bearer ' + user.access_token;
+        setLoading(true);
+        axios.get(`http://localhost:8080/api/user/${user.username}`, {
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Authorization': token
+                }
+        }).then(resp => {
+            let newUser = {
+                "firstname": resp.data.firstname,
+                "lastname": resp.data.lastname,
+                "urlImagemPerfil": urlImagem,
+                "empresas": resp.data.empresas,
+                "cpf": resp.data.cpf,
+                "username": resp.data.username,
+                "password": senhaUser,
+                "roles": resp.data.roles,
+            }
+            axios.put(`http://localhost:8080/api/user/${user.username}`, newUser ,{
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Authorization': token
+                    }
+            }).then(resposta => {
+                console.log("resposta.: ", resposta);
+                let userAlterado = {
+                    "id": resposta.data.id,
+                    "username": resposta.data.username,
+                    "firstname": resposta.data.firstname,
+                    "lastname": resposta.data.lastname,
+                    "cpf": resposta.data.cpf,
+                    "empresas": resposta.data.empresas,
+                    "roles": user.roles,
+                    "urlImagemPerfil": resposta.data.urlImagemPerfil,
+                    "logado": true,
+                    "access_token": resposta.data.access_token,
+                    "refresh_token": resposta.data.refresh_token
+                };
+                console.log("userAlterado.: ", userAlterado);
+                dispatch({type: "LOGIN", payload: userAlterado});
+                dispatchEdit({type: "EDIT_ACCOUNT", payload: { editPassword: false, editFoto: false}});
+                setSenhaUser("");
+                setUrlImagem("");
+                setLoading(false);
+                toast.success('Imagem alterada com sucesso!', {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+            })
+
+        }).catch(e=> {
+            setLoading(false);
+            toast.error('Erro inesperado!', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        })
+    }
+
     const handleAlterarSenha = (e) => {
         e.preventDefault();
-        console.log("editPassword.: ", editPassword);
-        if(!editPassword){
+        console.log("editAccount.: ", editAccount);
+        if(!editAccount.editPassword){
             console.log("entrou no if");
-            dispatchEdit({type: "EDIT_PASSWORD", payload: !editPassword})
+            dispatchEdit({type: "EDIT_ACCOUNT", payload: { editPassword: !editAccount.editPassword, editFoto: false}});
         }else{
             let newUser = [];
             console.log("user.: ", user);
@@ -146,6 +224,8 @@ const Account = () => {
         }
     }
 
+    console.log("editAccount.: ", editAccount);
+
     return (
         <div className="account">
             {loading && (
@@ -158,8 +238,27 @@ const Account = () => {
                 <div className="MinhaConta">
                     <div className="imgUser">
                         <img className='imgUser' src={user.urlImagemPerfil} alt="imgUser" />
+                        <div className="changeFoto">
+                            <span className='poppins' onClick={handleChangeFoto}>Alterar minha foto</span>
+                        </div>
                     </div>
                     <div className="infoUser">
+                    {editAccount.editFoto == true &&
+                        <form className='changeFotoDiv' onSubmit={handleAlterarFoto}>
+                            <label className="labelInfo">
+                                <span className='poppins'>Cole uma URL da imagem que será sua nova imagem de perfil:</span>
+                                <input type="text" name="urlImagem" value={urlImagem} placeholder="Cole aqui a url da imagem que será sua nova imagem de perfil" onChange={(e) => setUrlImagem(e.target.value)} />
+                            </label>
+                            <label className="labelInfo">
+                                <span className='poppins'>Digite a sua senha:</span>
+                                <input type="password" name="password" value={senhaUser} placeholder="Digite aqui a sua senha" onChange={(e) => setSenhaUser(e.target.value)} />
+                            </label>
+                            <div className="btEsqueciSenha">
+                                <input className='btnSubmit' type="submit" value="Salvar" />
+                            </div>
+                        </form>
+                    }
+                    {editAccount.editFoto == false &&
                         <form className='formCadastroRegistro' onSubmit={handleAlterarSenha}>
                             <label className="labelInfo">
                                 <span className='poppins'>Primeiro nome:</span>
@@ -173,23 +272,24 @@ const Account = () => {
                                 <span className='poppins'>Nome de usuário:</span>
                                 <input type="text" name="lastname" value={user.username} placeholder="Digite aqui o nome de seu usuário" readOnly={true} />
                             </label>
-                            {editPassword == true &&
+                            {editAccount.editPassword == true &&
                                 <label className="labelInfo">
                                     <span className='poppins'>Senha:</span>
-                                    <input type="password" name="password" value={password} placeholder="Digite aqui a sua nova senha" onChange={(e) => setPassword(e.target.value)} readOnly={!editPassword} />
+                                    <input type="password" name="password" value={password} placeholder="Digite aqui a sua nova senha" onChange={(e) => setPassword(e.target.value)} readOnly={!editAccount.editPassword} />
                                 </label>
                             }
-                            {editPassword == false &&
+                            {editAccount.editPassword == false &&
                                 <div className="btEsqueciSenha">
                                     <input className='btnSubmit' type="submit" value="Alterar minha senha" />
                                 </div>
                             }
-                            {editPassword == true &&
+                            {editAccount.editPassword == true &&
                                 <div className="btEsqueciSenha">
                                     <input className='btnSubmit' type="submit" value="Salvar" />
                                 </div>
                             }
                         </form>
+                    }
                     </div>
                 </div> 
             )}
