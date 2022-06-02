@@ -33,9 +33,7 @@ const CarrouselBestBarberShops = () => {
                             <div className="bt">
                                 <input className='btnAgendar' type="button" value="AGENDAR" />
                             </div>
-                            
                         </div>
-                        
                     </div>
                 </SwiperSlide>
                 <SwiperSlide>
@@ -57,9 +55,7 @@ const CarrouselBestBarberShops = () => {
                             <div className="bt">
                                 <input className='btnAgendar' type="button" value="AGENDAR" />
                             </div>
-                            
                         </div>
-                        
                     </div>
                 </SwiperSlide>
                 <SwiperSlide>
@@ -73,7 +69,7 @@ const CarrouselBestBarberShops = () => {
                                 isHalf= {true}
                                 size={24}
                                 activeColor="#ffd700"
-                                value={4.5}
+                                value={5}
                                 classNames="react-stars-avaliation"
                                 edit={false}
                             />
@@ -81,9 +77,7 @@ const CarrouselBestBarberShops = () => {
                             <div className="bt">
                                 <input className='btnAgendar' type="button" value="AGENDAR" />
                             </div>
-                            
                         </div>
-                        
                     </div>
                 </SwiperSlide>
                 <SwiperSlide>
@@ -97,7 +91,7 @@ const CarrouselBestBarberShops = () => {
                                 isHalf= {true}
                                 size={24}
                                 activeColor="#ffd700"
-                                value={4}
+                                value={5}
                                 classNames="react-stars-avaliation"
                                 edit={false}
                             />
@@ -105,9 +99,7 @@ const CarrouselBestBarberShops = () => {
                             <div className="bt">
                                 <input className='btnAgendar' type="button" value="AGENDAR" />
                             </div>
-                            
                         </div>
-                        
                     </div>
                 </SwiperSlide>
                 <SwiperSlide>
@@ -121,7 +113,7 @@ const CarrouselBestBarberShops = () => {
                                 isHalf= {true}
                                 size={24}
                                 activeColor="#ffd700"
-                                value={4}
+                                value={5}
                                 classNames="react-stars-avaliation"
                                 edit={false}
                             />
@@ -129,9 +121,7 @@ const CarrouselBestBarberShops = () => {
                             <div className="bt">
                                 <input className='btnAgendar' type="button" value="AGENDAR" />
                             </div>
-                            
                         </div>
-                        
                     </div>
                 </SwiperSlide>
                 <SwiperSlide>
@@ -145,7 +135,7 @@ const CarrouselBestBarberShops = () => {
                                 isHalf= {true}
                                 size={24}
                                 activeColor="#ffd700"
-                                value={4}
+                                value={5}
                                 classNames="react-stars-avaliation"
                                 edit={false}
                             />
@@ -153,9 +143,7 @@ const CarrouselBestBarberShops = () => {
                             <div className="bt">
                                 <input className='btnAgendar' type="button" value="AGENDAR" />
                             </div>
-                            
                         </div>
-                        
                     </div>
                 </SwiperSlide>
                 <SwiperSlide>
@@ -169,7 +157,7 @@ const CarrouselBestBarberShops = () => {
                                 isHalf= {true}
                                 size={24}
                                 activeColor="#ffd700"
-                                value={4}
+                                value={5}
                                 classNames="react-stars-avaliation"
                                 edit={false}
                             />
@@ -177,9 +165,7 @@ const CarrouselBestBarberShops = () => {
                             <div className="bt">
                                 <input className='btnAgendar' type="button" value="AGENDAR" />
                             </div>
-                            
                         </div>
-                        
                     </div>
                 </SwiperSlide>
                 <SwiperSlide>
@@ -193,7 +179,7 @@ const CarrouselBestBarberShops = () => {
                                 isHalf= {true}
                                 size={24}
                                 activeColor="#ffd700"
-                                value={3.5}
+                                value={5}
                                 classNames="react-stars-avaliation"
                                 edit={false}
                             />
@@ -201,81 +187,7 @@ const CarrouselBestBarberShops = () => {
                             <div className="bt">
                                 <input className='btnAgendar' type="button" value="AGENDAR" />
                             </div>
-                            
                         </div>
-                        
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className="cardBestBarbers">
-                        <img className="imgCard barberImgSlide" src={BarbeariaRibeiro} alt="Barber" />
-                        <div className="textCard">
-                            <span className="barberName poppins">Barbearia Ribeiro</span>
-                            <ReactStars
-                                count={5}
-                                onChange={ratingChanged}
-                                isHalf= {true}
-                                size={24}
-                                activeColor="#ffd700"
-                                value={3.5}
-                                classNames="react-stars-avaliation"
-                                edit={false}
-                            />
-                            <span className="barberDescription poppins">"Lorem, ipsum dolor sit amet consectetur adipisicing elit. Similique debitis quibusdam iste commodi odio!"</span>
-                            <div className="bt">
-                                <input className='btnAgendar' type="button" value="AGENDAR" />
-                            </div>
-                            
-                        </div>
-                        
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className="cardBestBarbers">
-                        <img className="imgCard barberImgSlide" src={BarbeariaRibeiro} alt="Barber" />
-                        <div className="textCard">
-                            <span className="barberName poppins">Barbearia Ribeiro</span>
-                            <ReactStars
-                                count={5}
-                                onChange={ratingChanged}
-                                isHalf= {true}
-                                size={24}
-                                activeColor="#ffd700"
-                                value={3.5}
-                                classNames="react-stars-avaliation"
-                                edit={false}
-                            />
-                            <span className="barberDescription poppins">"Lorem, ipsum dolor sit amet consectetur adipisicing elit. Similique debitis quibusdam iste commodi odio!"</span>
-                            <div className="bt">
-                                <input className='btnAgendar' type="button" value="AGENDAR" />
-                            </div>
-                            
-                        </div>
-                        
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className="cardBestBarbers">
-                        <img className="imgCard barberImgSlide" src={BarbeariaRibeiro} alt="Barber" />
-                        <div className="textCard">
-                            <span className="barberName poppins">Barbearia Ribeiro</span>
-                            <ReactStars
-                                count={5}
-                                onChange={ratingChanged}
-                                isHalf= {true}
-                                size={24}
-                                activeColor="#ffd700"
-                                value={3.5}
-                                classNames="react-stars-avaliation"
-                                edit={false}
-                            />
-                            <span className="barberDescription poppins">"Lorem, ipsum dolor sit amet consectetur adipisicing elit. Similique debitis quibusdam iste commodi odio!"</span>
-                            <div className="bt">
-                                <input className='btnAgendar' type="button" value="AGENDAR" />
-                            </div>
-                            
-                        </div>
-                        
                     </div>
                 </SwiperSlide>
             </Swiper>

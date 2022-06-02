@@ -39,10 +39,10 @@ const Reports = () => {
                     <div className="tipoRelatorioSection">
                         <h3 className="itemTittle poppins">Tipo de relatório</h3>
                         <select className='selectTipoRelatorio poppins' name="tipoRelatorio" value={tipoRelatorio} onChange={ (e) => setTipoRelatorio(e.target.value)}>
-                            <option className='poppins' value="valor1" defaultValue>Escolha um tipo de relatório</option>
-                            <option className='poppins' value="valor1">Valor 1</option>
-                            <option className='poppins' value="valor2">Valor 2</option>
-                            <option className='poppins' value="valor3">Valor 3</option>
+                            <option className='poppins' value="valor0" defaultValue>Escolha um tipo de relatório</option>
+                            <option className='poppins' value="valor1">Serviços mais procurados</option>
+                            <option className='poppins' value="valor2">Funcionários mais ocupados</option>
+                            <option className='poppins' value="valor3">Serviços mais lucrativos</option>
                         </select>
                     </div>
                     <div className="formatoDownloadSection">

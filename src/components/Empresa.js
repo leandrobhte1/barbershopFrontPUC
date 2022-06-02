@@ -455,8 +455,8 @@ const Empresa = () => {
                             "roles": user.roles,
                             "urlImagemPerfil": r.data.urlImagemPerfil,
                             "logado": true,
-                            "access_token": r.data.access_token,
-                            "refresh_token": r.data.refresh_token
+                            "access_token": user.access_token,
+                            "refresh_token": user.refresh_token
                         };
                         dispatch({type: "LOGIN", payload: userLogin});
 
@@ -508,67 +508,67 @@ const Empresa = () => {
                 <div className="criarEmpresa">
                     <h1 className="tittleRightSide poppins">Criar empresa</h1>
                     <form className='empresaFormCadastroRegistro' onSubmit={handleRegisterEmpresa}>
-                        <div className="username firstName">
+                        <div className="username empresa firstName">
                             <label className='poppins'>
                                 <h6 className="poppins">Nome da empresa:</h6>
                                 <input type="text" name="nameEmpresa" value={nameEmpresa} placeholder="Digite aqui o nome da empresa" onChange={(e) => setNameEmpresa(e.target.value)} />
                             </label>
                         </div>
-                        <div className="username lastName">
+                        <div className="username empresa lastName">
                             <label className='poppins'>
                                 <h6 className="poppins">Descrição:</h6>
                                 <textarea className='descriptionEmpresa' type="text" name="lastName" value={descricaoEmpresa} placeholder="Digite aqui uma descrição para sua empresa" onChange={(e) => setDescricaoEmpresa(e.target.value)} />
                             </label>
                         </div>
-                        <div className="username lastName divImagemEmpresa">
+                        <div className="username empresa lastName divImagemEmpresa">
                             <label className='poppins'>
                                 <h6 className="poppins">CNPJ:</h6>
                                 <input type="text" name="cnpj" value={cnpjEmpresa} placeholder="Digite aqui o CNPJ da empresa" onChange={(e) => setCnpjEmpresa(e.target.value)} />
                             </label>
                         </div>
-                        <div className="username">
+                        <div className="username empresa">
                             <label className='poppins'>
                                 <h6 className="poppins">Endereço de um upload de imagem da sua barbearia:</h6>
                                 <input type="text" name="imagem" value={urlImagemEmpresa} placeholder="Endereço de um upload de imagem da sua barbearia" onChange={(e) => setUrlImagemEmpresa(e.target.value)} />
                             </label>
                         </div>
-                        <div className="username">
+                        <div className="username empresa">
                             <label className='poppins'>
                                 <h6 className="poppins">CEP:</h6>
                                 <input type="text" name="cep" value={cepEmpresa} placeholder="Digite aqui o CEP da empresa" onChange={(e) => setCepEmpresa(e.target.value)} />
                             </label>
                         </div>
-                        <div className="password">
+                        <div className="username empresa">
                             <label className='poppins'>
                                 <h6 className="poppins">Rua:</h6>
                                 <input type="text" name="rua" value={ruaEmpresa} placeholder="Digite aqui a rua da empresa" onChange={(e) => setRuaEmpresa(e.target.value)} />
                             </label>
                         </div>
-                        <div className="username divImagemEmpresa">
+                        <div className="username empresa divImagemEmpresa">
                             <label className='poppins'>
                                 <h6 className="poppins">Número:</h6>
                                 <input type="text" name="numeroEmpresa" value={numeroEmpresa} placeholder="Digite o número do endereço" onChange={(e) => setNumeroEmpresa(e.target.value)} />
                             </label>
                         </div>
-                        <div className="username">
+                        <div className="username empresa">
                             <label className='poppins'>
                                 <h6 className="poppins">Bairro:</h6>
                                 <input type="text" name="bairroEmpresa" value={bairroEmpresa} placeholder="Digite o bairro da empresa" onChange={(e) => setBairroEmpresa(e.target.value)} />
                             </label>
                         </div>
-                        <div className="username">
+                        <div className="username empresa">
                             <label className='poppins'>
                                 <h6 className="poppins">Cidade:</h6>
                                 <input type="text" name="cidadeEmpresa" value={cidadeEmpresa} placeholder="Digite aqui a cidade da empresa" onChange={(e) => setCidadeEmpresa(e.target.value)} />
                             </label>
                         </div>
-                        <div className="username">
+                        <div className="username empresa">
                             <label className='poppins'>
                                 <h6 className="poppins">Telefone:</h6>
                                 <input type="text" name="telefoneEmpresa" value={telefoneEmpresa} placeholder="Digite aqui o telefone da empresa" onChange={(e) => setTelefoneEmpresa(e.target.value)} />
                             </label>
                         </div>
-                        <div className="username">
+                        <div className="username empresa">
                             <label className='poppins'>
                                 <h6 className="poppins">E-mail:</h6>
                                 <input type="text" name="emailEmpresa" value={emailEmpresa} placeholder="Digite aqui um e-mail de contato da empresa" onChange={(e) => setEmailEmpresa(e.target.value)} />

@@ -1,16 +1,20 @@
 import { useSearchContext } from '../hooks/useSearchContext'
 import { useResultSearchContext } from '../hooks/useResultSearchContext'
+import { useBarberHomeContext } from '../hooks/useBarberHomeContext'
 import ReactStars from "react-rating-stars-component";
 import SetaEsquerda from '../images/setaEsquerda.png'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { scryRenderedComponentsWithType } from 'react-dom/test-utils';
+import { useNavigate } from "react-router-dom";
 const BASE_URL = 'http://localhost:8080/api'
 
 const Search = () => {
 
     const { result, dispatchResult } = useResultSearchContext();
+    const { barberHome, dispatchBarberHome } = useBarberHomeContext();
     const { search } = useSearchContext();
+    const navigate = useNavigate()
 
     let pages = [];
     if(result.totalPages < 15){
@@ -23,6 +27,11 @@ const Search = () => {
         }
     }
     
+    const handleBarberHome = (r) => {
+        console.log("r.: ",r);
+        dispatchBarberHome({type: "BARBER_HOME_CHANGED", payload: r});
+        navigate(`/barberHome/${r.id}`);
+    }
 
     const searchPage = (i) => {
         axios.get(`http://localhost:8080/api/empresas/search?searchTerm=${search}&page=${i}`, {
@@ -65,7 +74,7 @@ const Search = () => {
                                         edit={false}
                                     />
                                     <span className='poppins barberDescription'>{r.descricao}</span>
-                                    <button className='poppins'>CONHEÇA</button>
+                                    <button className='poppins' onClick={ () => handleBarberHome(r)}>CONHEÇA</button>
                                 </div>
                             </div>
                         </li>

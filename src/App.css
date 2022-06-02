@@ -1491,6 +1491,10 @@ span.voltar{
     margin-bottom: 30px;
 }
 
+.empresaFormCadastroRegistro .username.empresa input{
+    background: url('./images/escritorio.png') no-repeat left 5px center !important;
+}
+
 .empresaFormCadastroRegistro .password input{
     width: 100%;
     border: 1px solid #1E1E1E;
@@ -1550,6 +1554,121 @@ span.voltar{
     width: 150px;
     height: 150px;
     border-radius: 15px;
+}
+
+.barberHome .infoBarber{
+    display: flex;
+    flex-direction: row;
+    margin-top: 50px;
+    margin-bottom: 100px;
+}
+
+.barberHome .infoBarber .imgBarber img{
+    width: 300px;
+    height: 300px;
+    border-radius: 15px;
+    box-shadow: 2px 1px 15px 1px #000000;
+}
+
+.barberHome .infoBarber .text{
+    padding-left: 50px;
+}
+
+.barberHome .infoBarber .text .descriptionBarber{
+    margin-top: 30px;
+}
+
+.btnPretoPadrao{
+    width: 200px;
+    border-radius: 50px;
+    background-color: #1E1E1E;
+    color: #ffffff;
+    height: 40px;
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+
+.btnCinzaPadrao{
+    width: 200px;
+    border-radius: 50px;
+    background-color: #4F4F4F;
+    color: #ffffff;
+    height: 40px;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    border-color: #4F4F4F;
+}
+
+.barberHome .avaliacoes{
+    background-color: #ffffff !important;
+}
+
+.swiper.ServicosSwiper{
+    padding-bottom: 40px;
+    padding-left: 10px;
+    padding-right: 4px;
+    padding-top: 40px;
+}
+
+.barberHome{
+    padding: 100px;
+}
+
+.cardServicos{
+    box-shadow: 2px 1px 15px 1px #000000;
+}
+
+.headerCardServicos{
+    background-color: #4F4F4F;
+    color: #ffffff;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.bodyCardServicos{
+    display: flex;
+    flex-direction: column;
+}
+
+.bodyCardServicos img{
+    margin: 0 auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.bodyCardServicos .btAgendar{
+    margin-bottom: 20px;
+}
+
+.bodyCardServicos .price{
+    font-size: 28px;
+}
+
+.bodyCardServicos .price2{
+    font-size: 28px;
+    color: #4F4F4F;
+    font-weight: 500;
+}
+
+.barberHome .profissionais{
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+
+.tittleCenter{
+    display: flex;
+    justify-content: center;
+}
+
+.bodyCardServicos .imageProfissional{
+    width: 300px;
+    height: 300px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 10px 1px #000000;
+}
+
+.cardServicos.cardFuncionarios{
+    width: 100% !important;
 }
 
 .d-none{

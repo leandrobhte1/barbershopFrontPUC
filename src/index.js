@@ -11,6 +11,7 @@ import { ResultSearchContextProvider } from './context/ResultSearchContext'
 import { EditPasswordContextProvider } from './context/EditPasswordContext';
 import { TabHomeSelectedContextProvider } from './context/tabHomeSelectedContext';
 import { OptionsMenuEmpresaContextProvider } from './context/OptionsMenuEmpresaContext';
+import { BarberHomeContextProvider } from './context/BarberHomeContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -22,7 +23,9 @@ root.render(
             <EditPasswordContextProvider>
               <TabHomeSelectedContextProvider>
                 <OptionsMenuEmpresaContextProvider>
-                  <App />
+                  <BarberHomeContextProvider>
+                    <App />
+                  </BarberHomeContextProvider>
                 </OptionsMenuEmpresaContextProvider>
               </TabHomeSelectedContextProvider>
             </EditPasswordContextProvider>

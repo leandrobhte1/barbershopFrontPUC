@@ -18,7 +18,7 @@ const History = () => {
     return (
         <div className="historico">
             <h1 className="tittleHistorico poppins">Histórico de atendimentos:</h1>
-            <span className="obs poppins">Dados ainda mockados nessa tela pois funcionalidades de agendamento, histórico e relatórios serão entregues na etapa 3! Na etapa 2 foram entregues as funcionalidades de crud de usuários, crud de empresa, adicionar funcionário na empresa e busca de empresas através da home no campo de pesquisa</span>
+            <span className="obs poppins">Dados ainda mockados nessa tela pois funcionalidades de agendamento, histórico e relatórios serão entregues na etapa 3! Na etapa 2 foram entregues as funcionalidades: crud de usuários (inserção, delete, edit (foto de perfil e senha)), inserção e busca de empresas, adicionar, excluir e visualizar funcionários.</span>
             <div className="titleSectionHistorico">
                 <h3 className="subtittle dateHour">Data e Hora</h3>
                 <div className="lineBetween"></div>

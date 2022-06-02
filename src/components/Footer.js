@@ -17,16 +17,16 @@ const Footer = () => {
         </div>
         <div className="right">
             <div className="collumn collumn1">
-                <span className="titleCollumnFooter orangeText poppins">Services</span>
-                <span className="optionCollumnFooter poppins">E-mail marketing</span>
-                <span className="optionCollumnFooter poppins">Campaigns</span>
-                <span className="optionCollumnFooter poppins">Branding</span>
+                <span className="titleCollumnFooter orangeText poppins">Serviços</span>
+                <span className="optionCollumnFooter poppins">Corte de cabelo</span>
+                <span className="optionCollumnFooter poppins">Barba</span>
+                <span className="optionCollumnFooter poppins">Relaxamento</span>
             </div>
             <div className="collumn collumn2">
-                <span className="titleCollumnFooter orangeText poppins">Furniture</span>
-                <span className="optionCollumnFooter poppins">Mirror</span>
-                <span className="optionCollumnFooter poppins">Chair</span>
-                <span className="optionCollumnFooter poppins">All</span>
+                <span className="titleCollumnFooter orangeText poppins">Perfis</span>
+                <span className="optionCollumnFooter poppins">Cliente</span>
+                <span className="optionCollumnFooter poppins">Funcionários</span>
+                <span className="optionCollumnFooter poppins">Administrador</span>
             </div>
             <div className="collumn collumn3">
                 <span className="titleCollumnFooter orangeText poppins">Siga-nos</span>
