@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 import axios from 'axios'
 const BASE_URL = 'http://192.168.18.40:8080/api'
 
-
 const LoginCadastro = () => {
     const { user, dispatch } = useUserContext();
 
