@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { scryRenderedComponentsWithType } from 'react-dom/test-utils';
 import { useNavigate } from "react-router-dom";
-const BASE_URL = 'http://192.168.18.40:8080/api'
+const BASE_URL = 'https://barbershop-back-puc.herokuapp.com/api'
 
 const Search = () => {
 
@@ -34,7 +34,7 @@ const Search = () => {
     }
 
     const searchPage = (i) => {
-        axios.get(`http://192.168.18.40:8080/api/empresas/search?searchTerm=${search}&page=${i}`, {
+        axios.get(`https://barbershop-back-puc.herokuapp.com/api/empresas/search?searchTerm=${search}&page=${i}`, {
             headers: {
                 'Access-Control-Allow-Origin': '*',
             }

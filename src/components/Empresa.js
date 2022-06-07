@@ -5,7 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import ReactLoading from 'react-loading';
 import { useState } from "react";
 import axios from 'axios'
-const BASE_URL = 'http://192.168.18.40:8080/api'
+const BASE_URL = 'https://barbershop-back-puc.herokuapp.com/api'
 
 const Empresa = () => {
 
@@ -59,7 +59,7 @@ const Empresa = () => {
         };
         let token = 'Bearer ' + user.access_token;
         setLoading(true);
-        axios.post(`http://192.168.18.40:8080/api/empresa/${user.id}/save`, empresaAdd, {
+        axios.post(`https://barbershop-back-puc.herokuapp.com/api/empresa/${user.id}/save`, empresaAdd, {
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Authorization': token
@@ -67,7 +67,7 @@ const Empresa = () => {
         })
         .then(resp => {
             let token = 'Bearer ' + user.access_token;
-            axios.get(`http://192.168.18.40:8080/api/user/${user.username}`, {
+            axios.get(`https://barbershop-back-puc.herokuapp.com/api/user/${user.username}`, {
                 headers: {
                     'Access-Control-Allow-Origin': '*',
                     'Authorization': token
@@ -359,7 +359,7 @@ const Empresa = () => {
                     "password": userPassword,
                     "roles": [
                         {
-                            "id": 1,
+                            "id": 4,
                             "name": "ROLE_USER"
                         }
                     ]
@@ -373,11 +373,11 @@ const Empresa = () => {
                     "password": userPassword,
                     "roles": [
                         {
-                            "id": 1,
+                            "id": 4,
                             "name": "ROLE_USER"
                         },
                         {
-                            "id": 2,
+                            "id": 5,
                             "name": "ROLE_MANAGER"
                         }
                     ]
@@ -391,15 +391,15 @@ const Empresa = () => {
                     "password": userPassword,
                     "roles": [
                         {
-                            "id": 1,
+                            "id": 4,
                             "name": "ROLE_USER"
                         },
                         {
-                            "id": 2,
+                            "id": 5,
                             "name": "ROLE_MANAGER"
                         },
                         {
-                            "id": 3,
+                            "id": 6,
                             "name": "ROLE_ADMIN"
                         }
                     ]
@@ -413,7 +413,7 @@ const Empresa = () => {
                     "password": userPassword,
                     "roles": [
                         {
-                            "id": 1,
+                            "id": 4,
                             "name": "ROLE_USER"
                         }
                     ]
@@ -440,7 +440,7 @@ const Empresa = () => {
                     }
                 }).then(resposta => {
 
-                    axios.get(`http://192.168.18.40:8080/api/user/${user.username}`, {
+                    axios.get(`https://barbershop-back-puc.herokuapp.com/api/user/${user.username}`, {
                         headers: {
                             'Access-Control-Allow-Origin': '*',
                             'Authorization': token
