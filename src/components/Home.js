@@ -19,7 +19,7 @@ const Home = () => {
 
     const keyHandler = (e) => {
         if(e.key === 'Enter') {
-            axios.get(`http://localhost:8080/api/empresas/search?searchTerm=${search}`, {
+            axios.get(`http://192.168.18.40:8080/api/empresas/search?searchTerm=${search}`, {
                 headers: {
                     'Access-Control-Allow-Origin': '*',
                 }

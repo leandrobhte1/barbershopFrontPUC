@@ -5,7 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import ReactLoading from 'react-loading';
 import { useState } from "react";
 import axios from 'axios'
-const BASE_URL = 'http://localhost:8080/api'
+const BASE_URL = 'http://192.168.18.40:8080/api'
 
 const Empresa = () => {
 
@@ -59,7 +59,7 @@ const Empresa = () => {
         };
         let token = 'Bearer ' + user.access_token;
         setLoading(true);
-        axios.post(`http://localhost:8080/api/empresa/${user.id}/save`, empresaAdd, {
+        axios.post(`http://192.168.18.40:8080/api/empresa/${user.id}/save`, empresaAdd, {
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Authorization': token
@@ -67,7 +67,7 @@ const Empresa = () => {
         })
         .then(resp => {
             let token = 'Bearer ' + user.access_token;
-            axios.get(`http://localhost:8080/api/user/${user.username}`, {
+            axios.get(`http://192.168.18.40:8080/api/user/${user.username}`, {
                 headers: {
                     'Access-Control-Allow-Origin': '*',
                     'Authorization': token
@@ -440,7 +440,7 @@ const Empresa = () => {
                     }
                 }).then(resposta => {
 
-                    axios.get(`http://localhost:8080/api/user/${user.username}`, {
+                    axios.get(`http://192.168.18.40:8080/api/user/${user.username}`, {
                         headers: {
                             'Access-Control-Allow-Origin': '*',
                             'Authorization': token
@@ -528,7 +528,7 @@ const Empresa = () => {
                         </div>
                         <div className="username empresa">
                             <label className='poppins'>
-                                <h6 className="poppins">Endereço de um upload de imagem da sua barbearia:</h6>
+                                <h6 className="poppins">URL de um upload de imagem da sua barbearia:</h6>
                                 <input type="text" name="imagem" value={urlImagemEmpresa} placeholder="Endereço de um upload de imagem da sua barbearia" onChange={(e) => setUrlImagemEmpresa(e.target.value)} />
                             </label>
                         </div>

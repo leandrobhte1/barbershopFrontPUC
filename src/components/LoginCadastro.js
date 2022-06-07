@@ -5,7 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from "react-router-dom";
 
 import axios from 'axios'
-const BASE_URL = 'http://localhost:8080/api'
+const BASE_URL = 'http://192.168.18.40:8080/api'
 
 
 const LoginCadastro = () => {
@@ -68,7 +68,7 @@ const LoginCadastro = () => {
 
             setLoading(true);
 
-            axios.post(`http://localhost:8080/api/login`, formData, {
+            axios.post(`http://192.168.18.40:8080/api/login`, formData, {
                 headers: {
                     'Access-Control-Allow-Origin': '*',
                     'Content-Type': 'multipart/form-data',
@@ -94,7 +94,7 @@ const LoginCadastro = () => {
                 let lastNameUserLogado = '';
                 let urlImagemPerfil = '';
                 let token = 'Bearer ' + resp.data.access_token;
-                axios.get(`http://localhost:8080/api/user/${usernameLogin}`, {
+                axios.get(`http://192.168.18.40:8080/api/user/${usernameLogin}`, {
                     headers: {
                         'Access-Control-Allow-Origin': '*',
                         'Authorization': token
@@ -259,14 +259,14 @@ const LoginCadastro = () => {
                 const formData = new FormData();
                 formData.append('username',username)
                 formData.append('password',password)
-                axios.post(`http://localhost:8080/api/login`, formData, {
+                axios.post(`http://192.168.18.40:8080/api/login`, formData, {
                     headers: {
                         'Access-Control-Allow-Origin': '*',
                         'Content-Type': 'multipart/form-data',
                     }
                 }).then(resp => {
                     let token = 'Bearer ' + resp.data.access_token;
-                    axios.get(`http://localhost:8080/api/user/${username}`, {
+                    axios.get(`http://192.168.18.40:8080/api/user/${username}`, {
                         headers: {
                             'Access-Control-Allow-Origin': '*',
                             'Authorization': token
@@ -285,6 +285,7 @@ const LoginCadastro = () => {
                             finalRole = "USER";
                         }
                         let userLogin = {
+                            "id": resposta.data.id,
                             "username": resposta.data.username,
                             "firstname": resposta.data.firstname,
                             "lastname": resposta.data.lastname,
@@ -314,6 +315,18 @@ const LoginCadastro = () => {
                             progress: undefined,
                         });
                     })
+                })
+                .catch(e=> {
+                    setLoading(false);
+                    toast.error('Erro inesperado!', {
+                        position: "top-right",
+                        autoClose: 3000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        });
                 })
             })
             .catch(e=> {
@@ -371,7 +384,7 @@ const LoginCadastro = () => {
             {loading && (
                 <div className="loadingArea">
                     <h4>CARREGANDO..</h4>
-                    <ReactLoading type={'spin'} color={'#1E1E1E'} height={'50%'} width={'50%'}></ReactLoading>
+                    <ReactLoading type={'spin'} color={'#1E1E1E'} height={'50%'} width={'50px'}></ReactLoading>
                 </div>
             )}
             {!loading && (

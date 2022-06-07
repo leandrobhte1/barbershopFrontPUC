@@ -1359,6 +1359,11 @@ span.voltar{
     width: 100%;
 }
 
+.username.empresa{
+    padding: 0;
+    
+}
+
 .telaEmpresa{
     display: flex;
     flex-direction: row;
