@@ -35,7 +35,7 @@ const CarrouselServicos = () => {
                                 <span className="price poppins"> R$ </span>
                                 <span className="price2">29,90</span>
                             </div>
-                            <span>Garanta o seu corte de cabelo e faça a sua barba por um preço promocional</span>
+                            <span className="descServico">Garanta o seu corte de cabelo e faça a sua barba por um preço promocional</span>
                             <div className="btAgendar">
                                 <button className="btnCinzaPadrao"  onClick={handleAgendar}>Agendar</button>
                             </div>
@@ -53,7 +53,7 @@ const CarrouselServicos = () => {
                                 <span className="price poppins"> R$ </span>
                                 <span className="price2">29,90</span>
                             </div>
-                            <span>Garanta por um preço especial cortes exclusivos para ficar estiloso</span>
+                            <span className="descServico">Garanta por um preço especial cortes exclusivos para ficar estiloso</span>
                             <div className="btAgendar">
                                 <button className="btnCinzaPadrao"  onClick={handleAgendar}>Agendar</button>
                             </div>
@@ -71,7 +71,7 @@ const CarrouselServicos = () => {
                                 <span className="price poppins"> R$ </span>
                                 <span className="price2">45,90</span>
                             </div>
-                            <span>Tenha seu corte e barba e ainda aproveite uma long neck para relaxar</span>
+                            <span className="descServico">Tenha seu corte e barba e ainda aproveite uma long neck para relaxar</span>
                             <div className="btAgendar">
                                 <button className="btnCinzaPadrao"  onClick={handleAgendar}>Agendar</button>
                             </div>
@@ -89,7 +89,7 @@ const CarrouselServicos = () => {
                                 <span className="price poppins"> R$ </span>
                                 <span className="price2">55,90</span>
                             </div>
-                            <span>Tenha seu corte e aproveite uma massagem para relaxar</span>
+                            <span className="descServico">Tenha seu corte e aproveite uma massagem para relaxar</span>
                             <div className="btAgendar">
                                 <button className="btnCinzaPadrao"  onClick={handleAgendar}>Agendar</button>
                             </div>
@@ -107,7 +107,7 @@ const CarrouselServicos = () => {
                                 <span className="price poppins"> R$ </span>
                                 <span className="price2">29,90</span>
                             </div>
-                            <span>Garanta o seu corte de cabelo e faça a sua barba por um preço promocional</span>
+                            <span className="descServico">Garanta o seu corte de cabelo e faça a sua barba por um preço promocional</span>
                             <div className="btAgendar">
                                 <button className="btnCinzaPadrao"  onClick={handleAgendar}>Agendar</button>
                             </div>
@@ -125,7 +125,7 @@ const CarrouselServicos = () => {
                                 <span className="price poppins"> R$ </span>
                                 <span className="price2">29,90</span>
                             </div>
-                            <span>Garanta o seu corte de cabelo e faça a sua barba por um preço promocional</span>
+                            <span className="descServico">Garanta o seu corte de cabelo e faça a sua barba por um preço promocional</span>
                             <div className="btAgendar">
                                 <button className="btnCinzaPadrao"  onClick={handleAgendar}>Agendar</button>
                             </div>
@@ -143,7 +143,7 @@ const CarrouselServicos = () => {
                                 <span className="price poppins"> R$ </span>
                                 <span className="price2">29,90</span>
                             </div>
-                            <span>Garanta o seu corte de cabelo e faça a sua barba por um preço promocional</span>
+                            <span className="descServico">Garanta o seu corte de cabelo e faça a sua barba por um preço promocional</span>
                             <div className="btAgendar">
                                 <button className="btnCinzaPadrao"  onClick={handleAgendar}>Agendar</button>
                             </div>
@@ -161,7 +161,7 @@ const CarrouselServicos = () => {
                                 <span className="price poppins"> R$ </span>
                                 <span className="price2">29,90</span>
                             </div>
-                            <span>Garanta o seu corte de cabelo e faça a sua barba por um preço promocional</span>
+                            <span className="descServico">Garanta o seu corte de cabelo e faça a sua barba por um preço promocional</span>
                             <div className="btAgendar">
                                 <button className="btnCinzaPadrao"  onClick={handleAgendar}>Agendar</button>
                             </div>
@@ -179,7 +179,7 @@ const CarrouselServicos = () => {
                                 <span className="price poppins"> R$ </span>
                                 <span className="price2">29,90</span>
                             </div>
-                            <span>Garanta o seu corte de cabelo e faça a sua barba por um preço promocional</span>
+                            <span className="descServico">Garanta o seu corte de cabelo e faça a sua barba por um preço promocional</span>
                             <div className="btAgendar">
                                 <button className="btnCinzaPadrao"  onClick={handleAgendar}>Agendar</button>
                             </div>
