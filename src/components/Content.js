@@ -16,7 +16,6 @@ const Content = () => {
     <main className="Content">
         <Routes>
             <Route path="/" exact element={<Home />}></Route>
-            <Route path="/home" element={<Home />}></Route>
             <Route path="/login-cadastro" element={<LoginCadastro />}></Route>
             <Route path="/search" element={<Search />}></Route>
             <Route path="/reports" element={<Reports />}></Route>

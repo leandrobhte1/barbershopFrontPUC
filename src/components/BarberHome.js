@@ -18,7 +18,7 @@ const BarberHome = () => {
     return (
         <div className="barberHome">
             <div className="voltar">
-                <Link to={'/home'}>
+                <Link to={'/'}>
                     <img className='voltarPage' src={SetaEsquerda} alt="Voltar" />
                     <span className="voltar poppins">Voltar</span>
                 </Link>

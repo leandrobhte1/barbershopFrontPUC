@@ -117,7 +117,7 @@ const LoginCadastro = () => {
                     };
                     dispatch({type: "LOGIN", payload: userLogin});
                     setLoading(false);
-                    navigate(`/home`);
+                    navigate(`/`);
                     toast.success('Login realizado com sucesso!', {
                         position: "top-right",
                         autoClose: 3000,
@@ -303,7 +303,7 @@ const LoginCadastro = () => {
                         setPassword("");
                         setRole(null);
                         setLoading(false);
-                        navigate(`/home`);
+                        navigate(`/`);
                         toast.success('Usuário salvo com sucesso!', {
                             position: "top-right",
                             autoClose: 3000,

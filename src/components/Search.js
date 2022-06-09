@@ -86,7 +86,7 @@ const Search = () => {
     return (
         <div className="Search">
             <div className="voltar">
-                <Link to={'/home'}>
+                <Link to={'/'}>
                     <img className='voltarPage' src={SetaEsquerda} alt="Voltar" />
                     <span className="voltar poppins">Voltar</span>
                 </Link>
