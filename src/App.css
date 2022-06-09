@@ -322,6 +322,9 @@ button{
 .barberDescription{
     font-size: 12px;
     text-align: justify;
+    text-overflow: ellipsis;
+    height: 50px;
+    overflow: hidden;
 }
 
 .results h3{
