@@ -1391,7 +1391,7 @@ span.voltar{
 
 .imgCard.barberImgSlide{
     width: 100% !important;
-    max-height: 380px;
+    height: 380px;
 }
 
 .empresa{
