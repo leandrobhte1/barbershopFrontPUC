@@ -2,8 +2,22 @@ import SetaDireita from '../images/setaDireita.png'
 import Galeria1 from '../images/galeria1.png'
 import Galeria2 from '../images/galeria2.png'
 import Galeria3 from '../images/galeria3.png'
+import { ToastContainer, toast } from 'react-toastify';
 
 const Galeria = () => {
+
+    const handleMoreInfo = (e) => {
+        toast.info('Tela não existe! Não era requisito ter todas as telas do sistema completo!', {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+    }
+
     return (
         <div className="galeriaHome">
             <div className="leftGaleria">
@@ -11,10 +25,8 @@ const Galeria = () => {
                 <h1 className="title_home poppins">Veja nossa galeria</h1>
                 <span className='text_contentHome poppins'>Veja algumas fotos enviadas por nossos clientes!</span>
                 <div className="moreInfoDiv mt50">
-                    <a href="">
-                        <span className='moreInfo poppins'>Ver galeria</span>
-                        <img className='setaMoreInfo' src={SetaDireita} alt="Ver galeria" />
-                    </a>
+                    <span className='moreInfo poppins' onClick={handleMoreInfo}>Ver galeria</span>
+                    <img className='setaMoreInfo' src={SetaDireita} alt="Ver galeria" />
                 </div>
             </div>
             <div className="rightGaleria">

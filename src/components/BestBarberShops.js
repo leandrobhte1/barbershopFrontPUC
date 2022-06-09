@@ -21,10 +21,10 @@ const BestBarberShops = () => {
                 <CarrouselBestBarberShops></CarrouselBestBarberShops>
             </div>
             <div className={`contentTab contentTab2 ${tab == 2 ? 'd-flex' : 'd-none'}`}>
-                <CarrouselBestBarberShops2></CarrouselBestBarberShops2>
+                <CarrouselBestBarberShops></CarrouselBestBarberShops>
             </div>
             <div className={`contentTab contentTab1 ${tab == 3 ? 'd-flex' : 'd-none'}`}>
-                <CarrouselBestBarberShops3></CarrouselBestBarberShops3>
+                <CarrouselBestBarberShops></CarrouselBestBarberShops>
             </div>
         </div>
     )

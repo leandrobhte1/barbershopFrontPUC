@@ -287,11 +287,21 @@ button{
 #searchInput{
     width: 30%;
     border: 1px solid black;
-    background-color: inherit;
+    background-color: transparent;
     border-radius: 50px;
-    background: url('./images/lupa.png') no-repeat right 5px center;
-    background-size: 25px;
-    margin-bottom: 20px;
+}
+
+.Search .results .pesquisa{
+    display: flex;
+    flex-direction: row;
+}
+
+.Search .results .pesquisa img{
+    margin-left: -35px;
+    width: 30px;
+    height: 30px;
+    margin-top: 5px;
+    cursor: pointer;
 }
 
 .barberImg{
@@ -350,21 +360,35 @@ button{
     margin-left: 0 !important;
 }
 
-.home .searchBannerInput input{
+.home .searchBannerInput{
     position: absolute;
     cursor: pointer;
     top: 520px;
+    width: 100%;
+    background-color: inherit;
+}
+
+.home .searchBannerInput input{
     width: 400px;
     border: 1px solid white;
-    background-color: inherit;
     border-radius: 50px;
-    background: url('./images/lupa.png') no-repeat right 5px center;
-    background-size: 25px;
-    color: #ffffff;
+    background-color: transparent;
+    color: white;
+}
+
+.Search .results #searchInput{
+    color: #000000;
 }
 
 .home .searchBannerInput input::placeholder{
     opacity: 1 !important;
+}
+
+.home .searchBannerInput img{
+    margin-left: -35px;
+    width: 30px;
+    margin-top: 5px;
+    height: 30px;
 }
 
 .vantagens{
@@ -618,6 +642,10 @@ ul{
 
 .moreInfoDiv a:hover{
     text-decoration: none !important;
+}
+
+.moreInfoDiv .moreInfo{
+    cursor: pointer;
 }
 
 .avaliacoes{
@@ -1195,6 +1223,18 @@ ul{
     border-radius: 20px;
     margin: 10px;
     padding: 10px;
+}
+
+.carrouselBestBarbersShops .swiper .swiper-slide .textCard{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    bottom: 0;
+    margin: 10px;
+    padding: 10px;
+    width: 100%;
+    border-radius: 0px;
+    background-color: transparent;
 }
 
 .swiper .swiper-slide .textCard .nameUser{

@@ -5,9 +5,22 @@ import { Pagination, Navigation } from "swiper";
 import Tesoura from '../images/tesoura1.png'
 import HairMachine from '../images/hairMachine.png'
 import TesouraAndBeer from '../images/tesouraAndBeer.png'
+import { ToastContainer, toast } from 'react-toastify';
 
 const CarrouselProfissionais = (props) => {
-    console.log("props.: ", props);
+    
+    const handleAgendar = (e) => {
+        toast.info('Funcionalidade será implementada na etapa 3!', {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+    }
+
     return (
         <>
             <Swiper slidesPerView={4} spaceBetween={30} pagination={{clickable: true}} navigation={true} modules={[Pagination, Navigation]} className="ServicosSwiper">
@@ -21,7 +34,7 @@ const CarrouselProfissionais = (props) => {
                                 <img className="imageProfissional" src={f.urlImagemPerfil} alt="Corte + Barba" />
                                 <span className="poppins">{f.firstname} {f.lastname}</span>
                                 <div className="btAgendar">
-                                    <button className="btnCinzaPadrao poppins">Agendar</button>
+                                    <button className="btnCinzaPadrao poppins" onClick={handleAgendar}>Agendar</button>
                                 </div>
                             </div>
                         </div>

@@ -5,10 +5,15 @@ import { useBarberHomeContext } from '../hooks/useBarberHomeContext'
 import CarrouselServicos from './CarrouselServicos';
 import CarrouselProfissionais from './CarrouselProfissionais';
 import AvaliacoesHome from './AvaliacoesHome';
+import { useEffect } from 'react'
 
 const BarberHome = () => {
 
     const { barberHome, dispatchBarberHome } = useBarberHomeContext();
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+      }, []);
 
     return (
         <div className="barberHome">
