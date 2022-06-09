@@ -403,7 +403,9 @@ const LoginCadastro = () => {
                             <div className="btLogin">
                                 <input className='btnSubmit' type="submit" value="Login" />
                             </div>
-                            <div className="orLogin">
+                            
+                        </form>
+                        <div className="orLogin">
                                 <div className="line"></div>
                                 <span className='poppins orText'>or</span>
                                 <div className="line"></div>
@@ -416,8 +418,7 @@ const LoginCadastro = () => {
                                     <button className="googleBt poppins" onClick={handleLoginRedesSociais}>Google</button>
                                 </div>
                             </div>
-                        </form>
-                    </div>
+                        </div>
                     <div className="lineBetween"></div>
                     <div className="cadastro">
                         <form className='formCadastroRegistro' onSubmit={handleRegister}>
@@ -455,15 +456,15 @@ const LoginCadastro = () => {
                                 <span className='poppins orText'>or</span>
                                 <div className="line"></div>
                             </div>
-                            <div className="redesSociais">
-                                <div className="facebook">
-                                    <button className="facebookBt poppins" onClick={handleLoginRedesSociais}>Facebook</button>
-                                </div>
-                                <div className="google">
-                                    <button className="googleBt poppins" onClick={handleLoginRedesSociais}>Google</button>
-                                </div>
-                            </div>
                         </form>
+                        <div className="redesSociais">
+                            <div className="facebook">
+                                <button className="facebookBt poppins" onClick={handleLoginRedesSociais}>Facebook</button>
+                            </div>
+                            <div className="google">
+                                <button className="googleBt poppins" onClick={handleLoginRedesSociais}>Google</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             )}
