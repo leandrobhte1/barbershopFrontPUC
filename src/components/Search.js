@@ -1,6 +1,7 @@
 import { useSearchContext } from '../hooks/useSearchContext'
 import { useResultSearchContext } from '../hooks/useResultSearchContext'
 import { useBarberHomeContext } from '../hooks/useBarberHomeContext'
+import { useAgendamentoContext } from '../hooks/useAgendamentoContext'
 import ReactStars from "react-rating-stars-component";
 import SetaEsquerda from '../images/setaEsquerda.png'
 import { Link } from 'react-router-dom'
@@ -9,13 +10,14 @@ import { useNavigate } from "react-router-dom";
 import Lupa from '../images/lupa.png';
 import { useState } from "react";
 import ReactLoading from 'react-loading';
-const BASE_URL = 'https://barbershop-back-puc.herokuapp.com/api'
+const BASE_URL = 'http://localhost:8080/api'
 
 const Search = () => {
 
     const { result, dispatchResult } = useResultSearchContext();
     const { barberHome, dispatchBarberHome } = useBarberHomeContext();
     const { search, dispatch } = useSearchContext();
+    const { agendamentoDetails, dispatchAgendamento } = useAgendamentoContext();
     const navigate = useNavigate();
 
     const [loading, setLoading] = useState(false);
@@ -34,11 +36,15 @@ const Search = () => {
     const handleBarberHome = (r) => {
         console.log("r.: ",r);
         dispatchBarberHome({type: "BARBER_HOME_CHANGED", payload: r});
+        // console.log("agendamentoDetails.anotacao.: ", agendamentoDetails);
+        // let agend = [{ idEmpresa: r.id, idCliente:"", idFuncionario:"",idServico:"", date:"", horario: "", status:"", nota:"",anotacao:""}];
+        // dispatchAgendamento({type: "AGENDAMENTO_CHANGED", payload: agend})
+        // console.log("disparado agendamento");
         navigate(`/barberHome/${r.id}`);
     }
 
     const searchPage = (i) => {
-        axios.get(`https://barbershop-back-puc.herokuapp.com/api/empresas/search?searchTerm=${search}&page=${i}`, {
+        axios.get(`http://localhost:8080/api/empresas/search?searchTerm=${search}&page=${i}`, {
             headers: {
                 'Access-Control-Allow-Origin': '*',
             }
@@ -52,7 +58,7 @@ const Search = () => {
     const keyHandler = (e) => {
         if(e.key === 'Enter') {
             setLoading(true);
-            axios.get(`https://barbershop-back-puc.herokuapp.com/api/empresas/search?searchTerm=${search}`, {
+            axios.get(`http://localhost:8080/api/empresas/search?searchTerm=${search}`, {
                 headers: {
                     'Access-Control-Allow-Origin': '*',
                 }
@@ -69,7 +75,7 @@ const Search = () => {
 
     const handleSearch = (e) => {
         setLoading(true);
-        axios.get(`https://barbershop-back-puc.herokuapp.com/api/empresas/search?searchTerm=${search}`, {
+        axios.get(`http://localhost:8080/api/empresas/search?searchTerm=${search}`, {
             headers: {
                 'Access-Control-Allow-Origin': '*',
             }

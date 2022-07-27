@@ -6,10 +6,11 @@ import Search from './Search'
 import Reports from './Reports'
 import History from './History'
 import Avaliacao from './Avaliacao'
-import Agenda from './Agenda'
+import Agendamento from './Agendamento'
 import Account from './Account'
 import Empresa from './Empresa'
 import BarberHome from './BarberHome'
+import EscolhaProfissional from './EscolhaProfissional'
 
 const Content = () => {
   return (
@@ -21,9 +22,10 @@ const Content = () => {
             <Route path="/reports" element={<Reports />}></Route>
             <Route path="/historico" element={<History />}></Route>
             <Route path="/avaliacao" element={<Avaliacao />}></Route>
-            <Route path="/agenda" element={<Agenda />}></Route>
+            <Route path="/agendamento" element={<Agendamento />}></Route>
             <Route path="/account" element={<Account />}></Route>
             <Route path="/empresa" element={<Empresa />}></Route>
+            <Route path="/agendamento/profissional" element={<EscolhaProfissional />}></Route>
             <Route path="/barberHome/:id" element={<BarberHome />}></Route>
             {/* <Route path="/param/:id" element={<Param />}></Route>
             <Route path="/about" element={<About />}></Route> */}

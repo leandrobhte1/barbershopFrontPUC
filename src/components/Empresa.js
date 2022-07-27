@@ -1,17 +1,54 @@
 import { useUserContext } from '../hooks/useUserContext'
 import { useOptionsMenuEmpresaContext } from '../hooks/useOptionsMenuEmpresaContext'
+import { useBarberHomeContext } from '../hooks/useBarberHomeContext'
 import ReactStars from "react-rating-stars-component";
 import { ToastContainer, toast } from 'react-toastify';
 import ReactLoading from 'react-loading';
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
+import dayjs from 'dayjs';
 import axios from 'axios'
-const BASE_URL = 'https://barbershop-back-puc.herokuapp.com/api'
+const BASE_URL = 'http://localhost:8080/api'
 
 const Empresa = () => {
 
+    const [value, onChange] = useState(new Date());
+    const [availableDaysList, setAvailableDaysList] = useState([]);
+    const [horariosLivres, setHorariosLivres] = useState([]);
+
+    const [dateClicked, setDateClicked] = useState("");
+
+    useEffect(() => {
+        let today = new Date();
+        let dd = String(today.getDate()).padStart(2, '0');
+        let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        let yyyy = today.getFullYear();
+
+        let todayDate = dd + '-' + mm + '-' + yyyy;
+        todayDate = "14-08-2022";
+        let token = 'Bearer ' + user.access_token;
+        axios.get(`http://localhost:8080/api/agenda/month?date=${todayDate}`, {
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Authorization': token
+            }
+        }).then(resposta => {
+            for(let i = 0; i < resposta.data.length; i++){
+                let arrayy = availableDaysList;
+                arrayy.indexOf(resposta.data[i].date) === -1 ? arrayy.push(resposta.data[i].date) : console.log();
+                setAvailableDaysList(arrayy);
+            }
+        })
+
+    }, [availableDaysList]);
+
+    // let busyDaysList = ["13-Jul-2022","14-Jul-2022","18-Jul-2022","21-Jul-2022","23-Jul-2022","25-Jul-2022"];
+    // let availableDaysList = ["12-Jul-2022","15-Jul-2022","16-Jul-2022","19-Jul-2022","20-Jul-2022","22-Jul-2022"];
+
     const { user, dispatch } = useUserContext();
     const { options, dispatchOp } = useOptionsMenuEmpresaContext();
-    console.log("User.: ", user);
+    const { barberHome, dispatchBarberHome } = useBarberHomeContext();
 
     const [userFirstName, setUserFirstName] = useState("");
     const [userLastName, setUserLastName] = useState("");
@@ -32,6 +69,13 @@ const Empresa = () => {
     const [cidadeEmpresa, setCidadeEmpresa] = useState("");
     const [telefoneEmpresa, setTelefoneEmpresa] = useState("");
     const [emailEmpresa, setEmailEmpresa] = useState("");
+
+    const [serviceList, setServiceList] = useState({});
+
+    const [serviceName, setServiceName] = useState("");
+    const [serviceDescription, setServiceDescription] = useState("");
+    const [serviceEmpresaId, setServiceEmpresaId] = useState("");
+    const [serviceValor, setServiceValor] = useState("");
 
     const [usernameFunc, setUsernameFunc] = useState("");
 
@@ -59,7 +103,7 @@ const Empresa = () => {
         };
         let token = 'Bearer ' + user.access_token;
         setLoading(true);
-        axios.post(`https://barbershop-back-puc.herokuapp.com/api/empresa/${user.id}/save`, empresaAdd, {
+        axios.post(`http://localhost:8080/api/empresa/${user.id}/save`, empresaAdd, {
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Authorization': token
@@ -67,7 +111,7 @@ const Empresa = () => {
         })
         .then(resp => {
             let token = 'Bearer ' + user.access_token;
-            axios.get(`https://barbershop-back-puc.herokuapp.com/api/user/${user.username}`, {
+            axios.get(`http://localhost:8080/api/user/${user.username}`, {
                 headers: {
                     'Access-Control-Allow-Origin': '*',
                     'Authorization': token
@@ -129,24 +173,13 @@ const Empresa = () => {
 
     const handleAgenda = (e) => {
         e.preventDefault();
-        console.log("handle agenda");
         let newOptions =  { newEmpresa: false, agenda: true, relatorios: false, funcionarios: false, servicos: false, novoServico: false, novoUsuario: false, novoFuncionario: false, excluirFuncionario: false, excluirServico: false};
 
         dispatchOp({type: "OPTIONS_MENU_EMPRESA_CHANGED", payload: newOptions});
-        toast.info('Funcionalidade será implementada na etapa 3!', {
-            position: "top-right",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-        });
     }
 
     const handleRelatorios = (e) => {
         e.preventDefault();
-        console.log("handleRelatorios");
         let newOptions =  { newEmpresa: false, agenda: false, relatorios: true, funcionarios: false, servicos: false, novoServico: false, novoUsuario: false, novoFuncionario: false, excluirFuncionario: false, excluirServico: false};
 
         dispatchOp({type: "OPTIONS_MENU_EMPRESA_CHANGED", payload: newOptions});
@@ -173,15 +206,6 @@ const Empresa = () => {
         let newOptions =  { newEmpresa: false, agenda: false, relatorios: false, funcionarios: false, servicos: true, novoServico: false, novoUsuario: false, novoFuncionario: false, excluirFuncionario: false, excluirServico: false};
 
         dispatchOp({type: "OPTIONS_MENU_EMPRESA_CHANGED", payload: newOptions});
-        toast.info('Funcionalidade será implementada na etapa 3!', {
-            position: "top-right",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-        });
     }
 
     const handleNovoServico = (e) => {
@@ -189,35 +213,17 @@ const Empresa = () => {
         let newOptions =  { newEmpresa: false, agenda: false, relatorios: false, funcionarios: false, servicos: false, novoServico: true, novoUsuario: false, novoFuncionario: false, excluirFuncionario: false, excluirServico: false};
 
         dispatchOp({type: "OPTIONS_MENU_EMPRESA_CHANGED", payload: newOptions});
-        toast.info('Funcionalidade será implementada na etapa 3!', {
-            position: "top-right",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-        });
     }
 
     const handleExcluirServico = (e) => {
         e.preventDefault();
+        setServiceList(user.empresas[0].servicos);
         let newOptions = { newEmpresa: false, agenda: false, relatorios: false, funcionarios: false, servicos: false, novoServico: false, novoUsuario: false, novoFuncionario: false, excluirFuncionario: false, excluirServico: true};
         dispatchOp({type: "OPTIONS_MENU_EMPRESA_CHANGED", payload: newOptions});
-        toast.info('Funcionalidade será implementada na etapa 3!', {
-            position: "top-right",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-        });
     }
 
     const handleNovoFuncionario = (e) => {
         e.preventDefault();
-        console.log("handleNovoFuncionario");
         let newOptions =  { newEmpresa: false, agenda: false, relatorios: false, funcionarios: false, servicos: false, novoServico: false, novoUsuario: false, novoFuncionario: true, excluirFuncionario: false, excluirServico: false};
 
         dispatchOp({type: "OPTIONS_MENU_EMPRESA_CHANGED", payload: newOptions});
@@ -225,9 +231,51 @@ const Empresa = () => {
 
     const handleExcluirFuncionario = (e) => {
         e.preventDefault();
-        console.log("handleExcluirFuncionario");
         let newOptions =  { newEmpresa: false, agenda: false, relatorios: false, funcionarios: false, servicos: false, novoServico: false, novoUsuario: false, novoFuncionario: false, excluirFuncionario: true, excluirServico: false};
         dispatchOp({type: "OPTIONS_MENU_EMPRESA_CHANGED", payload: newOptions});
+    }
+
+    const handleExcluirService = (e) => {
+        e.preventDefault();
+        setLoading(true);
+            let token = 'Bearer ' + user.access_token;
+            let dataaa = {
+                "idEmpresa": user.empresas[0].id,
+                "idServico": e.target.classList[1]
+            }
+            axios.delete(`${BASE_URL}/empresa/deleteServico`, {
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Authorization': token,
+                    'Content-Type': 'application/json',
+                },
+                data:{
+                    "idEmpresa": user.empresas[0].id,
+                    "idServico": e.target.classList[1]
+                }
+            }).then(resposta => {
+                setLoading(false);
+                toast.success('Serviço deletado com sucesso!', {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+            }).catch(e=> {
+                setLoading(false);
+                toast.error('Erro inesperado ao deletar serviço!', {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+            })
     }
 
     const handleDeleteFunc = (e) => {
@@ -245,7 +293,6 @@ const Empresa = () => {
         }else{
             setLoading(true);
             let token = 'Bearer ' + user.access_token;
-            console.log("token.: ", token);
             axios.delete(`${BASE_URL}/empresa/deleteFuncionario`, {
                 headers: {
                     'Access-Control-Allow-Origin': '*',
@@ -284,6 +331,52 @@ const Empresa = () => {
                     });
             })
         }
+    }
+
+    const handleAddService = (e) => {
+        e.preventDefault();
+        setLoading(true);
+        let newService = {
+            "nome": serviceName,
+            "descricao": serviceDescription,
+            "empresaId": user.empresas[0].id,
+            "valor": serviceValor
+        };
+        let token = 'Bearer ' + user.access_token;
+        axios.post(`${BASE_URL}/empresa/addServico`, newService, {
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Authorization': token,
+                
+            }
+        })
+        .then(res => {
+            setLoading(false);
+            toast.success('Serviço salvo com sucesso!', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        }).catch(e=> {
+            setServiceName("");
+            setServiceDescription("");
+            setServiceValor("");
+            setLoading(false);
+            toast.error('Erro inesperado ao adicionar serviço!', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                });
+        })
+        
     }
 
     const handleRegisterUser = (e) => {
@@ -359,7 +452,7 @@ const Empresa = () => {
                     "password": userPassword,
                     "roles": [
                         {
-                            "id": 4,
+                            "id": 1,
                             "name": "ROLE_USER"
                         }
                     ]
@@ -373,11 +466,11 @@ const Empresa = () => {
                     "password": userPassword,
                     "roles": [
                         {
-                            "id": 4,
+                            "id": 1,
                             "name": "ROLE_USER"
                         },
                         {
-                            "id": 5,
+                            "id": 2,
                             "name": "ROLE_MANAGER"
                         }
                     ]
@@ -391,15 +484,15 @@ const Empresa = () => {
                     "password": userPassword,
                     "roles": [
                         {
-                            "id": 4,
+                            "id": 1,
                             "name": "ROLE_USER"
                         },
                         {
-                            "id": 5,
+                            "id": 2,
                             "name": "ROLE_MANAGER"
                         },
                         {
-                            "id": 6,
+                            "id": 3,
                             "name": "ROLE_ADMIN"
                         }
                     ]
@@ -413,7 +506,7 @@ const Empresa = () => {
                     "password": userPassword,
                     "roles": [
                         {
-                            "id": 4,
+                            "id": 1,
                             "name": "ROLE_USER"
                         }
                     ]
@@ -440,7 +533,7 @@ const Empresa = () => {
                     }
                 }).then(resposta => {
 
-                    axios.get(`https://barbershop-back-puc.herokuapp.com/api/user/${user.username}`, {
+                    axios.get(`http://localhost:8080/api/user/${user.username}`, {
                         headers: {
                             'Access-Control-Allow-Origin': '*',
                             'Authorization': token
@@ -459,7 +552,7 @@ const Empresa = () => {
                             "refresh_token": user.refresh_token
                         };
                         dispatch({type: "LOGIN", payload: userLogin});
-
+                        dispatchBarberHome({type: "BARBER_HOME_CHANGED", payload: userLogin.empresas[0]});
                         setUserFirstName("");
                         setUserLastName("");
                         setUserCPF("");
@@ -493,7 +586,73 @@ const Empresa = () => {
         }
     }
 
-    console.log("options.: ", options);
+    function tileClassName({ date }) {
+        let newDate = date.toISOString().substring(0, 10);
+        let split = newDate.toString().split("-");
+        let day = split[2];
+        let month = split[1];
+        let year = split[0];
+        let fullDate = year+"-"+month+"-"+day;
+
+        // for(let i = 0; i < busyDaysList.length; i++){
+        //   if(fullDate == busyDaysList[i]){
+        //     return fullDate+" busyDay";
+        //   }
+        // }
+
+        for(let i = 0; i < availableDaysList.length; i++){
+          if(fullDate == availableDaysList[i]){
+            return fullDate+" availableDay";
+          }
+        }
+        
+        return fullDate;
+    }
+
+    const callDay = (clikedDay) => {
+        let dateFormatted = formatDate(clikedDay);
+        console.log("dateFormatted.: ", dateFormatted);
+        setDateClicked(dateFormatted);
+        let token = 'Bearer ' + user.access_token;
+        axios.get(`${BASE_URL}/agenda/agendados?date=${dateFormatted}`, {
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Authorization': token,
+                
+            }
+        }).then(resposta => {
+            console.log("resposta.: ", resposta);
+            console.log("resposta.data .: ", resposta.data);
+            let hlivres = resposta.data;
+            setHorariosLivres(hlivres);
+
+        }).catch(e=> {
+            setLoading(false);
+            toast.error('Erro inesperado!', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                });
+        })
+    };
+
+    function padTo2Digits(num) {
+        return num.toString().padStart(2, '0');
+    }
+      
+    function formatDate(date) {
+        return [
+            padTo2Digits(date.getDate()),
+            padTo2Digits(date.getMonth() + 1),
+            date.getFullYear(),
+        ].join('-');
+    }
+
+    console.log("horariosLivres BEFOREEEE RETURN.: ", horariosLivres);
 
     return (
         <div className="empresa">
@@ -618,6 +777,13 @@ const Empresa = () => {
                         {options.agenda == true && (
                             <div className="screen">
                                 <h1 className="poppins">Agenda</h1>
+                                <Calendar onChange={onChange} value={value} className="agendaCalendar" tileClassName={tileClassName} onClickDay={callDay} />
+                                <span className="poppins">Horários agendados no dia {dateClicked}:</span>
+                                {horariosLivres && horariosLivres.map(h => (
+                                    <div className="horario">
+                                        <span className="poppins">{h.horario}</span>
+                                    </div>
+                                ))}
                             </div>
                         )}
                         {options.relatorios == true && (
@@ -660,16 +826,71 @@ const Empresa = () => {
                         {options.servicos == true && (
                             <div className="screen">
                                 <h1 className="poppins">Servicos</h1>
+                                {user.empresas[0].servicos && user.empresas[0].servicos.map(s => (
+                                    <div className="serviceCard" key={s.id}>
+                                        <div className="serviceCardName">
+                                            <p className='poppins'>{s.nome}</p>
+                                        </div>
+                                        <div className="serviceCardDescription">
+                                            <p className='poppins'>{s.descricao}</p>
+                                        </div>
+                                        <div className="serviceCardValue">
+                                            <p className='poppins'>{s.valor}</p>
+                                        </div>
+                                        {/* <div className="buttonExcluir">
+                                            <button className='btExcluirService' onClick={handleExcluirService}>Excluir serviço</button>
+                                        </div> */}
+                                    </div>
+                                ))}
                             </div>
                         )}
                         {options.novoServico == true && (
                             <div className="screen">
                                 <h1 className="poppins">Novo Serviço</h1>
+                                <form className='empresaFormCadastroRegistro' onSubmit={handleAddService}>
+                                    <div className="username firstName noBackground">
+                                        <label className='poppins'>
+                                            <h6 className="poppins">Nome do serviço:</h6>
+                                            <input type="text" name="serviceName" value={serviceName} placeholder="Digite aqui o nome do serviço" onChange={(e) => setServiceName(e.target.value)} />
+                                        </label>
+                                    </div>
+                                    <div className="username firstName noBackground">
+                                        <label className='poppins'>
+                                            <h6 className="poppins">Descrição do serviço:</h6>
+                                            <input type="text" name="serviceDescription" value={serviceDescription} placeholder="Digite aqui a descrição do serviço" onChange={(e) => setServiceDescription(e.target.value)} />
+                                        </label>
+                                    </div>
+                                    <div className="username firstName noBackground">
+                                        <label className='poppins'>
+                                            <h6 className="poppins">Valor: <small className='smallFontSize'>Ex.: 59.90</small></h6>
+                                            <input type="text" name="serviceValor" value={serviceValor} placeholder="Digite aqui o valor do serviço" onChange={(e) => setServiceValor(e.target.value)} />
+                                        </label>
+                                    </div>
+                                    <div className="btRegistrarUser">
+                                        <input className='btnSubmit' type="submit" value="Salvar" />
+                                    </div>
+                                </form>
                             </div>
                         )}
                         {options.excluirServico == true && (
                             <div className="screen">
                                 <h1 className="poppins">Excluir Serviço</h1>
+                                {user.empresas[0].servicos && user.empresas[0].servicos.map(s => (
+                                    <div className="serviceCard" key={s.id}>
+                                        <div className="serviceCardName">
+                                            <p className='poppins'>{s.nome}</p>
+                                        </div>
+                                        <div className="serviceCardDescription">
+                                            <p className='poppins'>{s.descricao}</p>
+                                        </div>
+                                        <div className="serviceCardValue">
+                                            <p className='poppins'>{s.valor}</p>
+                                        </div>
+                                        <div className="buttonExcluir">
+                                            <button className={`btExcluirService ${s.id}`} onClick={(e) => handleExcluirService(e)}>Excluir serviço</button>
+                                        </div>
+                                    </div>
+                                ))}
                             </div>
                         )}
                         {options.novoFuncionario == true && (

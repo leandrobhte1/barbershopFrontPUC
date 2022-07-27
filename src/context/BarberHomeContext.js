@@ -14,7 +14,7 @@ export const barberHomeReducer = (state, action) => {
 };
 
 export const BarberHomeContextProvider = ({children}) => {
-    const [state, dispatchBarberHome] = useReducer(barberHomeReducer, { barberHome: { id: '', name: '', descricao: '', dono: '', urlImagem:'', bairro:'', cep: '', rua: '', status: false, cidade: '', cnpj: '', email: '', funcionarios: [], numero: '', telefone: ''}})
+    const [state, dispatchBarberHome] = useReducer(barberHomeReducer, { barberHome: { id: '', name: '', descricao: '', dono: '', urlImagem:'', bairro:'', cep: '', rua: '', status: false, cidade: '', cnpj: '', email: '', funcionarios: [], servicos: [], numero: '', telefone: ''}})
 
     return (
         <BarberHomeContext.Provider value={{ ...state, dispatchBarberHome }}>

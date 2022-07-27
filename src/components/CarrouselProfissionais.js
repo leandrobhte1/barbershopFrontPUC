@@ -6,19 +6,20 @@ import Tesoura from '../images/tesoura1.png'
 import HairMachine from '../images/hairMachine.png'
 import TesouraAndBeer from '../images/tesouraAndBeer.png'
 import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate } from "react-router-dom";
+import { useAgendamentoContext } from '../hooks/useAgendamentoContext'
 
 const CarrouselProfissionais = (props) => {
+
+    const { agendamentoDetails, dispatchAgendamento } = useAgendamentoContext();
+
+    const navigate = useNavigate()
     
     const handleAgendar = (e) => {
-        toast.info('Funcionalidade será implementada na etapa 3!', {
-            position: "top-right",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-        });
+        console.log("e.target.classList[2].: ", e.target.classList[2]);
+        let agend = [{ idEmpresa: agendamentoDetails[0].idEmpresa, idCliente:agendamentoDetails[0].idCliente, idFuncionario:e.target.classList[2], idServico:agendamentoDetails[0].idServico, date:"", horario: "", status:"", nota:"",anotacao:""}];
+        dispatchAgendamento({type: "AGENDAMENTO_CHANGED", payload: agend})
+        navigate(`/agendamento`);
     }
 
     return (
@@ -34,7 +35,9 @@ const CarrouselProfissionais = (props) => {
                                 <img className="imageProfissional" src={f.urlImagemPerfil} alt="Corte + Barba" />
                                 <span className="poppins">{f.firstname} {f.lastname}</span>
                                 <div className="btAgendar">
-                                    <button className="btnCinzaPadrao poppins" onClick={handleAgendar}>Agendar</button>
+                                    {props.showAgendar == true &&
+                                        <button className={`btnCinzaPadrao poppins ${f.id}`} onClick={(e) => handleAgendar(e)}>Agendar</button>
+                                    }
                                 </div>
                             </div>
                         </div>

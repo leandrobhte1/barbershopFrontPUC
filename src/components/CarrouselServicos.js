@@ -6,186 +6,65 @@ import Tesoura from '../images/tesoura1.png'
 import HairMachine from '../images/hairMachine.png'
 import TesouraAndBeer from '../images/tesouraAndBeer.png'
 import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate } from "react-router-dom";
+import { useBarberHomeContext } from '../hooks/useBarberHomeContext'
+import { useUserContext } from '../hooks/useUserContext'
+import { useAgendamentoContext } from '../hooks/useAgendamentoContext'
 
-const CarrouselServicos = () => {
+const CarrouselServicos = (props) => {
+
+    const { barberHome, dispatchBarberHome } = useBarberHomeContext();
+    const { agendamentoDetails, dispatchAgendamento } = useAgendamentoContext();
+    const { user, dispatch } = useUserContext();
+
+    const navigate = useNavigate()
 
     const handleAgendar = (e) => {
-        toast.info('Funcionalidade será implementada na etapa 3!', {
-            position: "top-right",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-        });
+        console.log("e.: ", e);
+        console.log("e.target.classList[1].: ", e.target.classList[1]);
+        if(user.username == ""){
+              toast.error('Você precisa estar logado para fazer um agendamento!', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        }else{
+            let agend = [{ idEmpresa: barberHome.id, idCliente:user.id, idFuncionario:"",idServico:e.target.classList[1], date:"", horario: "", status:"", nota:"",anotacao:""}];
+            dispatchAgendamento({type: "AGENDAMENTO_CHANGED", payload: agend})
+            navigate(`/agendamento/profissional`);
+        }
+        
     }
+
+    console.log("props.servicos.:", props.servicos);
 
     return (
         <>
             <Swiper slidesPerView={4} spaceBetween={30} pagination={{clickable: true}} navigation={true} modules={[Pagination, Navigation]} className="ServicosSwiper">
-                <SwiperSlide>
-                    <div className="cardServicos">
-                        <div className="headerCardServicos">
-                            <span className="poppins">Corte + Barba</span>
-                        </div>
-                        <div className="bodyCardServicos">
-                            <img src={Tesoura} alt="Corte + Barba" />
-                            <div className="priceDiv">
-                                <span className="price poppins"> R$ </span>
-                                <span className="price2">29,90</span>
+                {props.servicos && props.servicos.map(s => (
+                    <SwiperSlide key={s.id}>
+                        <div className="cardServicos">
+                            <div className="headerCardServicos">
+                                <span className="poppins">{s.nome}</span>
                             </div>
-                            <span className="descServico">Garanta o seu corte de cabelo e faça a sua barba por um preço promocional</span>
-                            <div className="btAgendar">
-                                <button className="btnCinzaPadrao"  onClick={handleAgendar}>Agendar</button>
-                            </div>
-                        </div>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className="cardServicos">
-                        <div className="headerCardServicos">
-                            <span className="poppins">Corte de cabelo</span>
-                        </div>
-                        <div className="bodyCardServicos">
-                            <img src={HairMachine} alt="Corte de cabelo" />
-                            <div className="priceDiv">
-                                <span className="price poppins"> R$ </span>
-                                <span className="price2">29,90</span>
-                            </div>
-                            <span className="descServico">Garanta por um preço especial cortes exclusivos para ficar estiloso</span>
-                            <div className="btAgendar">
-                                <button className="btnCinzaPadrao"  onClick={handleAgendar}>Agendar</button>
+                            <div className="bodyCardServicos">
+                                <img src={Tesoura} alt="Corte + Barba" />
+                                <div className="priceDiv">
+                                    <span className="price poppins"> R$ </span>
+                                    <span className="price2">{s.valor}</span>
+                                </div>
+                                <span className="descServico">{s.descricao}</span>
+                                <div className="btAgendar">
+                                    <button className={`btnCinzaPadrao ${s.id}`} onClick={(e) => handleAgendar(e)}>Agendar</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className="cardServicos">
-                        <div className="headerCardServicos">
-                            <span className="poppins">Corte + Barba + 1  Long Neck</span>
-                        </div>
-                        <div className="bodyCardServicos">
-                            <img src={TesouraAndBeer} alt="Corte + Barba + 1 Long Neck" />
-                            <div className="priceDiv">
-                                <span className="price poppins"> R$ </span>
-                                <span className="price2">45,90</span>
-                            </div>
-                            <span className="descServico">Tenha seu corte e barba e ainda aproveite uma long neck para relaxar</span>
-                            <div className="btAgendar">
-                                <button className="btnCinzaPadrao"  onClick={handleAgendar}>Agendar</button>
-                            </div>
-                        </div>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className="cardServicos">
-                        <div className="headerCardServicos">
-                            <span className="poppins">Corte + Relaxamento</span>
-                        </div>
-                        <div className="bodyCardServicos">
-                            <img src={TesouraAndBeer} alt="Corte + Relaxamento" />
-                            <div className="priceDiv">
-                                <span className="price poppins"> R$ </span>
-                                <span className="price2">55,90</span>
-                            </div>
-                            <span className="descServico">Tenha seu corte e aproveite uma massagem para relaxar</span>
-                            <div className="btAgendar">
-                                <button className="btnCinzaPadrao"  onClick={handleAgendar}>Agendar</button>
-                            </div>
-                        </div>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className="cardServicos">
-                        <div className="headerCardServicos">
-                            <span className="poppins">Corte + Barba</span>
-                        </div>
-                        <div className="bodyCardServicos">
-                            <img src={Tesoura} alt="Corte + Barba" />
-                            <div className="priceDiv">
-                                <span className="price poppins"> R$ </span>
-                                <span className="price2">29,90</span>
-                            </div>
-                            <span className="descServico">Garanta o seu corte de cabelo e faça a sua barba por um preço promocional</span>
-                            <div className="btAgendar">
-                                <button className="btnCinzaPadrao"  onClick={handleAgendar}>Agendar</button>
-                            </div>
-                        </div>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className="cardServicos">
-                        <div className="headerCardServicos">
-                            <span className="poppins">Corte + Barba</span>
-                        </div>
-                        <div className="bodyCardServicos">
-                            <img src={Tesoura} alt="Corte + Barba" />
-                            <div className="priceDiv">
-                                <span className="price poppins"> R$ </span>
-                                <span className="price2">29,90</span>
-                            </div>
-                            <span className="descServico">Garanta o seu corte de cabelo e faça a sua barba por um preço promocional</span>
-                            <div className="btAgendar">
-                                <button className="btnCinzaPadrao"  onClick={handleAgendar}>Agendar</button>
-                            </div>
-                        </div>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className="cardServicos">
-                        <div className="headerCardServicos">
-                            <span className="poppins">Corte + Barba</span>
-                        </div>
-                        <div className="bodyCardServicos">
-                            <img src={Tesoura} alt="Corte + Barba" />
-                            <div className="priceDiv">
-                                <span className="price poppins"> R$ </span>
-                                <span className="price2">29,90</span>
-                            </div>
-                            <span className="descServico">Garanta o seu corte de cabelo e faça a sua barba por um preço promocional</span>
-                            <div className="btAgendar">
-                                <button className="btnCinzaPadrao"  onClick={handleAgendar}>Agendar</button>
-                            </div>
-                        </div>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className="cardServicos">
-                        <div className="headerCardServicos">
-                            <span className="poppins">Corte + Barba</span>
-                        </div>
-                        <div className="bodyCardServicos">
-                            <img src={Tesoura} alt="Corte + Barba" />
-                            <div className="priceDiv">
-                                <span className="price poppins"> R$ </span>
-                                <span className="price2">29,90</span>
-                            </div>
-                            <span className="descServico">Garanta o seu corte de cabelo e faça a sua barba por um preço promocional</span>
-                            <div className="btAgendar">
-                                <button className="btnCinzaPadrao"  onClick={handleAgendar}>Agendar</button>
-                            </div>
-                        </div>
-                    </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                    <div className="cardServicos">
-                        <div className="headerCardServicos">
-                            <span className="poppins">Corte + Barba</span>
-                        </div>
-                        <div className="bodyCardServicos">
-                            <img src={Tesoura} alt="Corte + Barba" />
-                            <div className="priceDiv">
-                                <span className="price poppins"> R$ </span>
-                                <span className="price2">29,90</span>
-                            </div>
-                            <span className="descServico">Garanta o seu corte de cabelo e faça a sua barba por um preço promocional</span>
-                            <div className="btAgendar">
-                                <button className="btnCinzaPadrao"  onClick={handleAgendar}>Agendar</button>
-                            </div>
-                        </div>
-                    </div>
-                </SwiperSlide>
+                    </SwiperSlide>
+                ))}
             </Swiper>
         </>
     )

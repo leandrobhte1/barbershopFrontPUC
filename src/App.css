@@ -1738,3 +1738,170 @@ span.voltar{
 .d-flex{
     display: flex;
 }
+
+.react-calendar__month-view__days__day--weekend{
+    color: #000000 !important;
+}
+
+.react-calendar__tile.react-calendar__month-view__days__day.busyDay{
+    background-color: red;
+    color: #ffffff;
+}
+
+.react-calendar__tile.react-calendar__month-view__days__day.busyDay:hover{
+    background-color: red;
+    color: #ffffff;
+}
+
+.react-calendar__month-view__days__day--weekend.busyDay{
+    background-color: red;
+    color: #ffffff !important;
+}
+
+.react-calendar__month-view__days__day--weekend.busyDay:hover{
+    background-color: red;
+    color: #ffffff !important;
+}
+
+.agenda{
+    padding: 100px;
+    padding-top: 0px;
+    display: flex;
+    flex-direction: row;
+}
+
+.agenda .leftSide,.agenda .rightSide{
+    padding: 30px;
+}
+
+.agenda .blue, .agenda .red, .agenda .green{
+    display: flex;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.blueColor{
+    width: 30px;
+    height: 30px;
+    background-color: blue;
+    margin-right: 15px;
+}
+
+.greenColor{
+    width: 30px;
+    height: 30px;
+    background-color: lightgreen;
+    margin-right: 15px;
+}
+
+.redColor{
+    width: 30px;
+    height: 30px;
+    background-color: red;
+    margin-right: 15px;
+}
+
+.availableDay{
+    background-color: lightgreen;
+}
+
+.react-calendar__month-view__days__day--neighboringMonth.availableDay{
+    background-color: transparent;
+}
+
+.availableDay.react-calendar__tile--active:enabled:hover, .availableDay.react-calendar__tile--active:enabled:focus{
+    background-color: #1087ff !important;
+}
+
+.react-calendar__tile--now.availableDay{
+    background-color: #1087ff !important;
+}
+
+.react-calendar__tile:enabled:hover, .react-calendar__tile:enabled:focus{
+    background-color: #1087ff !important;
+}
+
+.horarios{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex-basis: 50%;
+}
+
+.horarios .horario{
+    background-color: lightgreen;
+    padding: 10px;
+    margin: 10px;
+    margin-left: 0px;
+    cursor: pointer;
+    width: 70px;
+}
+
+.agendaCalendar .avaliacoes{
+    margin-top: 0px;
+}
+
+.agendaCalendar .header{
+    padding-left: 130px;
+    padding-top: 100px;
+}
+
+.agendaCalendar .header .infoService{
+    display: flex;
+    flex-direction: row;
+}
+
+.agendaCalendar .header .infoService h5:first-of-type{
+    margin-right: 40px;
+}
+
+.agendaCalendar .header .infoService h5:nth-of-type(2){
+    margin-right: 40px;
+}
+
+.smallFontSize{
+    font-size: 12px;
+    margin-left: 10px;
+}
+
+.empresaFormCadastroRegistro .username.noBackground input{
+    background: none;
+    padding-left: 20px;
+}
+
+.btExcluirService{
+    width: 150px;
+    background-color: #1E1E1E;
+    color: #ffffff;
+    height: 40px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+
+.serviceCard{
+    margin-top: 30px;
+    background-color: lightgray;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.availableDay.react-calendar__tile--active{
+    background-color: #1087ff !important;
+}
+
+.empresaRight .horario, .rightSide .horarios .horario{
+    background-color: green;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    width: 90px;
+    color: #ffffff;
+}
+
+.cardServicos{
+    min-width: 250px !important;
+}
+
+.EscolhaProfissional{
+    padding: 100px;
+}

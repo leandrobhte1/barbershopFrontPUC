@@ -6,7 +6,6 @@ export const optionsMenuEmpresaReducer = (state, action) => {
     
     switch(action.type) {
         case "OPTIONS_MENU_EMPRESA_CHANGED":
-            console.log("payload.: ", action.payload)
             return { ...state, options: action.payload};
         default:
             return state;

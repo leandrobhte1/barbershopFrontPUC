@@ -7,9 +7,15 @@ import CarrouselProfissionais from './CarrouselProfissionais';
 import AvaliacoesHome from './AvaliacoesHome';
 import { useEffect } from 'react'
 
+import { useAgendamentoContext } from '../hooks/useAgendamentoContext'
+
 const BarberHome = () => {
 
     const { barberHome, dispatchBarberHome } = useBarberHomeContext();
+    const { agendamentoDetails, dispatchAgendamento } = useAgendamentoContext();
+
+    console.log("barberHome.: ", barberHome);
+    console.log("agendamentoDetails.idEmpresa.: ", agendamentoDetails[0].idEmpresa);
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -43,11 +49,11 @@ const BarberHome = () => {
             </div>
             <div className="servicos">
                 <h2 className="poppins tittleCenter">Confira nossos serviços</h2>
-                <CarrouselServicos></CarrouselServicos>
+                <CarrouselServicos servicos={barberHome.servicos}></CarrouselServicos>
             </div>
             <div className="profissionais">
                 <h2 className="poppins tittleCenter">Confira nossos profissionais</h2>
-                <CarrouselProfissionais funcionarios={barberHome.funcionarios}></CarrouselProfissionais>
+                <CarrouselProfissionais showAgendar={false} funcionarios={barberHome.funcionarios}></CarrouselProfissionais>
             </div>
             <AvaliacoesHome></AvaliacoesHome>
         </div>
