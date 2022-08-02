@@ -4,7 +4,7 @@ import { useState } from "react";
 import ReactLoading from 'react-loading';
 import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios'
-const BASE_URL = 'http://localhost:8080/api'
+const BASE_URL = 'https://barbershop-backend-puc.herokuapp.com/api'
 
 const Account = () => {
 
@@ -29,7 +29,7 @@ const Account = () => {
     const handleAlterarFoto = (e) => {
         let token = 'Bearer ' + user.access_token;
         setLoading(true);
-        axios.get(`http://localhost:8080/api/user/${user.username}`, {
+        axios.get(`https://barbershop-backend-puc.herokuapp.com/api/user/${user.username}`, {
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Authorization': token
@@ -45,7 +45,7 @@ const Account = () => {
                 "password": senhaUser,
                 "roles": resp.data.roles,
             }
-            axios.put(`http://localhost:8080/api/user/${user.username}`, newUser ,{
+            axios.put(`https://barbershop-backend-puc.herokuapp.com/api/user/${user.username}`, newUser ,{
                 headers: {
                     'Access-Control-Allow-Origin': '*',
                     'Authorization': token
@@ -114,19 +114,19 @@ const Account = () => {
                     "cpf": user.cpf,
                     "roles": [
                         {
-                            "id": 4,
+                            "id": 2,
                             "name": "ROLE_USER"
                         },
                         {
-                            "id": 5,
+                            "id": 3,
                             "name": "ROLE_MANAGER"
                         },
                         {
-                            "id": 6,
+                            "id": 4,
                             "name": "ROLE_ADMIN"
                         },
                         {
-                            "id": 7,
+                            "id": 5,
                             "name": "ROLE_SUPER_ADMIN"
                         }
                     ]
@@ -140,15 +140,15 @@ const Account = () => {
                     "cpf": user.cpf,
                     "roles": [
                         {
-                            "id": 4,
+                            "id": 2,
                             "name": "ROLE_USER"
                         },
                         {
-                            "id": 5,
+                            "id": 3,
                             "name": "ROLE_MANAGER"
                         },
                         {
-                            "id": 6,
+                            "id": 4,
                             "name": "ROLE_ADMIN"
                         }
                     ]
@@ -162,11 +162,11 @@ const Account = () => {
                     "cpf": user.cpf,
                     "roles": [
                         {
-                            "id": 4,
+                            "id": 2,
                             "name": "ROLE_USER"
                         },
                         {
-                            "id": 5,
+                            "id": 3,
                             "name": "ROLE_MANAGER"
                         }
                     ]
@@ -180,7 +180,7 @@ const Account = () => {
                     "cpf": user.cpf,
                     "roles": [
                         {
-                            "id": 4,
+                            "id": 2,
                             "name": "ROLE_USER"
                         }
                     ]

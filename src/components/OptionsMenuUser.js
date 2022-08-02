@@ -9,8 +9,8 @@ import { useMenuUserContext } from '../hooks/useMenuUserContext'
 import { Link } from 'react-router-dom'
 
 const OptionsMenuUser = () => {
-    const { user, dispatchUser } = useUserContext();
-    const { menuUserOpen, dispatch } = useMenuUserContext();
+    const { user, dispatch } = useUserContext();
+    const { menuUserOpen, dispatchMenuUser } = useMenuUserContext();
 
     let isAdmin = false;
     let isManager = false;
@@ -24,9 +24,14 @@ const OptionsMenuUser = () => {
         }
     }
 
+    const logoff = () => {
+        let noUser = { id: '', username: '', firstname: '', lastname: '',cpf:'', roles:'', urlImagemPerfil: '', empresas: [], logado: false, access_token: '', refresh_token: ''};
+        dispatch({type: "LOGIN", payload: noUser});
+    }
+
     return (
         <div className="menuUserOpen">
-            <ul className="userLogadoOpen" onClick={ () => dispatch({type: "MENU_USER_CLICKED", payload: !menuUserOpen}) }>
+            <ul className="userLogadoOpen" onClick={ () => dispatchMenuUser({type: "MENU_USER_CLICKED", payload: !menuUserOpen}) }>
                 <li>
                     <Link to="account">
                         <span>Minha conta</span>
@@ -65,6 +70,9 @@ const OptionsMenuUser = () => {
                         </li>
                     </div>
                 }
+                <li className='menuSair' onClick={() => logoff()}>
+                    <span>Sair</span>
+                </li>
             </ul>
         </div>
     )

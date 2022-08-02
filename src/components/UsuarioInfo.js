@@ -6,13 +6,13 @@ import User from '../images/user1.png'
 
 const UsuarioInfo = () => {
 
-    const { user, dispatchUser } = useUserContext();
-    const { menuUserOpen, dispatch } = useMenuUserContext();
+    const { user, dispatch } = useUserContext();
+    const { menuUserOpen, dispatchMenuUser } = useMenuUserContext();
 
     return (
         <div className='usuarioInfo'>
             <If test={user && user.firstname}>
-                <div className="userContent" onClick={ () => dispatch({type: "MENU_USER_CLICKED", payload: !menuUserOpen}) }>
+                <div className="userContent" onClick={ () => dispatchMenuUser({type: "MENU_USER_CLICKED", payload: !menuUserOpen}) }>
                     <div className="text">
                         <span>Olá, <strong>{user.firstname}</strong>!</span>    
                         {user && <span className="role">{user.roles}</span>}

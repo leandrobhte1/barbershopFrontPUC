@@ -8,8 +8,9 @@ import { useState, useEffect } from "react";
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import dayjs from 'dayjs';
+import moment from 'moment';
 import axios from 'axios'
-const BASE_URL = 'http://localhost:8080/api'
+const BASE_URL = 'https://barbershop-backend-puc.herokuapp.com/api'
 
 const Empresa = () => {
 
@@ -28,7 +29,7 @@ const Empresa = () => {
         let todayDate = dd + '-' + mm + '-' + yyyy;
         todayDate = "14-08-2022";
         let token = 'Bearer ' + user.access_token;
-        axios.get(`http://localhost:8080/api/agenda/month?date=${todayDate}`, {
+        axios.get(`https://barbershop-backend-puc.herokuapp.com/api/agenda/month?date=${todayDate}`, {
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Authorization': token
@@ -103,7 +104,7 @@ const Empresa = () => {
         };
         let token = 'Bearer ' + user.access_token;
         setLoading(true);
-        axios.post(`http://localhost:8080/api/empresa/${user.id}/save`, empresaAdd, {
+        axios.post(`https://barbershop-backend-puc.herokuapp.com/api/empresa/${user.id}/save`, empresaAdd, {
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Authorization': token
@@ -111,7 +112,7 @@ const Empresa = () => {
         })
         .then(resp => {
             let token = 'Bearer ' + user.access_token;
-            axios.get(`http://localhost:8080/api/user/${user.username}`, {
+            axios.get(`https://barbershop-backend-puc.herokuapp.com/api/user/${user.username}`, {
                 headers: {
                     'Access-Control-Allow-Origin': '*',
                     'Authorization': token
@@ -452,7 +453,7 @@ const Empresa = () => {
                     "password": userPassword,
                     "roles": [
                         {
-                            "id": 1,
+                            "id": 2,
                             "name": "ROLE_USER"
                         }
                     ]
@@ -466,11 +467,11 @@ const Empresa = () => {
                     "password": userPassword,
                     "roles": [
                         {
-                            "id": 1,
+                            "id": 2,
                             "name": "ROLE_USER"
                         },
                         {
-                            "id": 2,
+                            "id": 3,
                             "name": "ROLE_MANAGER"
                         }
                     ]
@@ -484,15 +485,15 @@ const Empresa = () => {
                     "password": userPassword,
                     "roles": [
                         {
-                            "id": 1,
+                            "id": 2,
                             "name": "ROLE_USER"
                         },
                         {
-                            "id": 2,
+                            "id": 3,
                             "name": "ROLE_MANAGER"
                         },
                         {
-                            "id": 3,
+                            "id": 4,
                             "name": "ROLE_ADMIN"
                         }
                     ]
@@ -506,7 +507,7 @@ const Empresa = () => {
                     "password": userPassword,
                     "roles": [
                         {
-                            "id": 1,
+                            "id": 2,
                             "name": "ROLE_USER"
                         }
                     ]
@@ -533,7 +534,7 @@ const Empresa = () => {
                     }
                 }).then(resposta => {
 
-                    axios.get(`http://localhost:8080/api/user/${user.username}`, {
+                    axios.get(`https://barbershop-backend-puc.herokuapp.com/api/user/${user.username}`, {
                         headers: {
                             'Access-Control-Allow-Origin': '*',
                             'Authorization': token
@@ -614,7 +615,7 @@ const Empresa = () => {
         console.log("dateFormatted.: ", dateFormatted);
         setDateClicked(dateFormatted);
         let token = 'Bearer ' + user.access_token;
-        axios.get(`${BASE_URL}/agenda/agendados?date=${dateFormatted}`, {
+        axios.get(`${BASE_URL}/agenda/admin/agendados?date=${dateFormatted}`, {
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Authorization': token,
@@ -624,6 +625,7 @@ const Empresa = () => {
             console.log("resposta.: ", resposta);
             console.log("resposta.data .: ", resposta.data);
             let hlivres = resposta.data;
+            let newData = resposta.data[0][3];
             setHorariosLivres(hlivres);
 
         }).catch(e=> {
@@ -645,6 +647,14 @@ const Empresa = () => {
     }
       
     function formatDate(date) {
+        return [
+            date.getFullYear(),
+            padTo2Digits(date.getMonth() + 1),
+            padTo2Digits(date.getDate()),
+        ].join('-');
+    }
+
+    function formatDateBr(date) {
         return [
             padTo2Digits(date.getDate()),
             padTo2Digits(date.getMonth() + 1),
@@ -781,7 +791,10 @@ const Empresa = () => {
                                 <span className="poppins">Horários agendados no dia {dateClicked}:</span>
                                 {horariosLivres && horariosLivres.map(h => (
                                     <div className="horario">
-                                        <span className="poppins">{h.horario}</span>
+                                        <p className="poppins">Cliente: {h[1]} {h[2]}</p>
+                                        <p className="poppins">Data: {h[3]}</p>
+                                        <p className="poppins">Horário: {h[4]}</p>
+                                        <p className="poppins">Serviço: {h[5]}</p>
                                     </div>
                                 ))}
                             </div>

@@ -8,7 +8,7 @@ import axios from 'axios'
 import { ToastContainer, toast } from 'react-toastify';
 import ReactLoading from 'react-loading';
 import { useAgendamentoContext } from '../hooks/useAgendamentoContext'
-const BASE_URL = 'http://localhost:8080/api'
+const BASE_URL = 'https://barbershop-backend-puc.herokuapp.com/api'
 
 const Agendamento = () => {
 
@@ -37,7 +37,7 @@ const Agendamento = () => {
       let todayDate = dd + '-' + mm + '-' + yyyy;
       todayDate = "14-08-2022";
       let token = 'Bearer ' + user.access_token;
-      axios.get(`http://localhost:8080/api/agenda/month?date=${todayDate}`, {
+      axios.get(`https://barbershop-backend-puc.herokuapp.com/api/agenda/month?date=${todayDate}`, {
           headers: {
               'Access-Control-Allow-Origin': '*',
               'Authorization': token

@@ -12,10 +12,10 @@ export const menuUserReducer = (state, action) => {
 };
 
 export const MenuUserContextProvider = ({children}) => {
-    const [state, dispatch] = useReducer(menuUserReducer, { menuUserOpen: false})
+    const [state, dispatchMenuUser] = useReducer(menuUserReducer, { menuUserOpen: false})
 
     return (
-        <MenuUserContext.Provider value={{ ...state, dispatch }}>
+        <MenuUserContext.Provider value={{ ...state, dispatchMenuUser }}>
             {children}
         </MenuUserContext.Provider>
     );
