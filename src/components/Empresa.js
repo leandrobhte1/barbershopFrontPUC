@@ -9,8 +9,12 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import dayjs from 'dayjs';
 import moment from 'moment';
+import pdfMake from "pdfmake/build/pdfmake";
+import pdfFonts from "pdfmake/build/vfs_fonts";
 import axios from 'axios'
 const BASE_URL = 'https://barbershop-backend-puc.herokuapp.com/api'
+
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 const Empresa = () => {
 
@@ -184,15 +188,6 @@ const Empresa = () => {
         let newOptions =  { newEmpresa: false, agenda: false, relatorios: true, funcionarios: false, servicos: false, novoServico: false, novoUsuario: false, novoFuncionario: false, excluirFuncionario: false, excluirServico: false};
 
         dispatchOp({type: "OPTIONS_MENU_EMPRESA_CHANGED", payload: newOptions});
-        toast.info('Funcionalidade será implementada na etapa 3!', {
-            position: "top-right",
-            autoClose: 3000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-        });
     }
 
     const handleSearchFunc = (e) => {
@@ -662,8 +657,6 @@ const Empresa = () => {
         ].join('-');
     }
 
-    console.log("horariosLivres BEFOREEEE RETURN.: ", horariosLivres);
-
     return (
         <div className="empresa">
 
@@ -802,6 +795,7 @@ const Empresa = () => {
                         {options.relatorios == true && (
                             <div className="screen">
                                 <h1 className="poppins">Relatorios</h1>
+
                             </div>
                         )}
                         {options.funcionarios == true && (
