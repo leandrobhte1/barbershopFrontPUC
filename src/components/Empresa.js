@@ -9,12 +9,8 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import dayjs from 'dayjs';
 import moment from 'moment';
-import pdfMake from "pdfmake/build/pdfmake";
-import pdfFonts from "pdfmake/build/vfs_fonts";
 import axios from 'axios'
 const BASE_URL = 'https://barbershop-backend-puc.herokuapp.com/api'
-
-pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 const Empresa = () => {
 
