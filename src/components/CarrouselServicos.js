@@ -50,8 +50,6 @@ const CarrouselServicos = (props) => {
       });
 
     const handleAgendar = (e) => {
-        console.log("e.: ", e);
-        console.log("e.target.classList[1].: ", e.target.classList[1]);
         if(user.username == ""){
               toast.error('Você precisa estar logado para fazer um agendamento!', {
                 position: "top-right",

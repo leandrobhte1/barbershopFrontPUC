@@ -603,7 +603,6 @@ const Empresa = () => {
 
     const callDay = (clikedDay) => {
         let dateFormatted = formatDate(clikedDay);
-        console.log("dateFormatted.: ", dateFormatted);
         setDateClicked(dateFormatted);
         let token = 'Bearer ' + user.access_token;
         axios.get(`${BASE_URL}/agenda/admin/agendados?date=${dateFormatted}`, {
@@ -613,8 +612,6 @@ const Empresa = () => {
                 
             }
         }).then(resposta => {
-            console.log("resposta.: ", resposta);
-            console.log("resposta.data .: ", resposta.data);
             let hlivres = resposta.data;
             let newData = resposta.data[0][3];
             setHorariosLivres(hlivres);
@@ -652,8 +649,6 @@ const Empresa = () => {
             date.getFullYear(),
         ].join('-');
     }
-
-    console.log("user.: ", user);
 
     return (
         <div className="empresa">

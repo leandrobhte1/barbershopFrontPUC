@@ -28,56 +28,6 @@ const Agendamento = () => {
 
     const { user, dispatch } = useUserContext();
 
-    // useEffect(() => {
-
-    //   let today = new Date();
-    //   let dd = String(today.getDate()).padStart(2, '0');
-    //   let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-    //   let yyyy = today.getFullYear();
-
-    //   let todayDate = dd + '-' + mm + '-' + yyyy;
-    //   let token = 'Bearer ' + user.access_token;
-    //   todayDate = "01-08-2022";
-    //   axios.get(`http://localhost:8080/api/agenda/month/today?date=${todayDate}`, {
-    //       headers: {
-    //           'Access-Control-Allow-Origin': '*',
-    //           'Authorization': token
-    //       }
-    //   }).then(resposta => {
-    //     console.log("respppppp.: ", resposta);
-    //     for(let i = 0; i < resposta.data.length; i++){
-    //       let arrayy = availableDaysList;
-    //       arrayy.indexOf(resposta.data[i].date) === -1 ? arrayy.push(resposta.data[i].date) : console.log();
-    //       setAvailableDaysList(arrayy);
-    //     }
-    //   })
-
-    // }, [availableDaysList]);
-
-  //   useEffect(() => {
-  //     let today = new Date();
-  //     let dd = String(today.getDate()).padStart(2, '0');
-  //     let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-  //     let yyyy = today.getFullYear();
-
-  //     let todayDate = dd + '-' + mm + '-' + yyyy;
-  //     //todayDate = "14-08-2022";
-  //     let token = 'Bearer ' + user.access_token;
-  //     axios.get(`http://localhost:8080/api/agenda/month?date=${todayDate}`, {
-  //         headers: {
-  //             'Access-Control-Allow-Origin': '*',
-  //             'Authorization': token
-  //         }
-  //     }).then(resposta => {
-  //         for(let i = 0; i < resposta.data.length; i++){
-  //             let arrayy = availableDaysList;
-  //             arrayy.indexOf(resposta.data[i].date) === -1 ? arrayy.push(resposta.data[i].date) : console.log();
-  //             setAvailableDaysList(arrayy);
-  //         }
-  //     })
-
-  // }, [availableDaysList]);
-
     const handleAgendamento = (e) => {
 
       let agend = [{ idEmpresa: agendamentoDetails[0].idEmpresa, idCliente:agendamentoDetails[0].idCliente, idFuncionario:agendamentoDetails[0].idFuncionario, idServico:agendamentoDetails[0].idServico, date:agendamentoDetails[0].date, horario: e.target.textContent, status:"agendado", nota:"0",anotacao:""}];
@@ -94,7 +44,6 @@ const Agendamento = () => {
         "nota": "0",
         "anotacao": ""
       }
-      console.log("dadosAgendamento.: ", dadosAgendamento);
       let token = 'Bearer ' + user.access_token;
       axios.post(`${BASE_URL}/agenda/save`, dadosAgendamento, {
           headers: {
@@ -195,9 +144,6 @@ const Agendamento = () => {
           date.getFullYear(),
       ].join('-');
   }
-
-  console.log("agendamentoDetails.: ", agendamentoDetails);
-  console.log("freeDays.: ",freeDays);
 
     return (
       <div className="agendaCalendar">
