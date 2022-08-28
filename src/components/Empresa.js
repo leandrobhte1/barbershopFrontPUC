@@ -44,9 +44,6 @@ const Empresa = () => {
 
     }, [availableDaysList]);
 
-    // let busyDaysList = ["13-Jul-2022","14-Jul-2022","18-Jul-2022","21-Jul-2022","23-Jul-2022","25-Jul-2022"];
-    // let availableDaysList = ["12-Jul-2022","15-Jul-2022","16-Jul-2022","19-Jul-2022","20-Jul-2022","22-Jul-2022"];
-
     const { user, dispatch } = useUserContext();
     const { options, dispatchOp } = useOptionsMenuEmpresaContext();
     const { barberHome, dispatchBarberHome } = useBarberHomeContext();
