@@ -7,6 +7,7 @@ import EmpresaIcon from '../images/building.png'
 import { useUserContext } from '../hooks/useUserContext'
 import { useMenuUserContext } from '../hooks/useMenuUserContext'
 import { Link } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify';
 
 const OptionsMenuUser = () => {
     const { user, dispatch } = useUserContext();
@@ -25,6 +26,15 @@ const OptionsMenuUser = () => {
     }
 
     const logoff = () => {
+        toast.success('Logoff realizado com sucesso!', {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
         let noUser = { id: '', username: '', firstname: '', lastname: '',cpf:'', roles:'', urlImagemPerfil: '', empresas: [], logado: false, access_token: '', refresh_token: ''};
         dispatch({type: "LOGIN", payload: noUser});
     }

@@ -5,7 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from "react-router-dom";
 
 import axios from 'axios'
-const BASE_URL = 'https://barbershop-backend-puc.herokuapp.com/api'
+const BASE_URL = 'http://localhost:8080/api'
 
 const LoginCadastro = () => {
     const { user, dispatch } = useUserContext();
@@ -67,7 +67,7 @@ const LoginCadastro = () => {
 
             setLoading(true);
 
-            axios.post(`https://barbershop-backend-puc.herokuapp.com/api/login`, formData, {
+            axios.post(`http://localhost:8080/api/login`, formData, {
                 headers: {
                     'Access-Control-Allow-Origin': '*',
                     'Content-Type': 'multipart/form-data',
@@ -93,7 +93,7 @@ const LoginCadastro = () => {
                 let lastNameUserLogado = '';
                 let urlImagemPerfil = '';
                 let token = 'Bearer ' + resp.data.access_token;
-                axios.get(`https://barbershop-backend-puc.herokuapp.com/api/user/${usernameLogin}`, {
+                axios.get(`http://localhost:8080/api/user/${usernameLogin}`, {
                     headers: {
                         'Access-Control-Allow-Origin': '*',
                         'Authorization': token
@@ -208,7 +208,7 @@ const LoginCadastro = () => {
                     "password": password,
                     "roles": [
                         {
-                            "id": 2,
+                            "id": 1,
                             "name": "ROLE_USER"
                         }
                     ]
@@ -221,15 +221,15 @@ const LoginCadastro = () => {
                     "password": password,
                     "roles": [
                         {
-                            "id": 2,
+                            "id": 1,
                             "name": "ROLE_USER"
                         },
                         {
-                            "id": 3,
+                            "id": 2,
                             "name": "ROLE_MANAGER"
                         },
                         {
-                            "id": 4,
+                            "id": 3,
                             "name": "ROLE_ADMIN"
                         }
                     ]
@@ -242,7 +242,7 @@ const LoginCadastro = () => {
                     "password": password,
                     "roles": [
                         {
-                            "id": 2,
+                            "id": 1,
                             "name": "ROLE_USER"
                         }
                     ]
@@ -258,14 +258,14 @@ const LoginCadastro = () => {
                 const formData = new FormData();
                 formData.append('username',username)
                 formData.append('password',password)
-                axios.post(`https://barbershop-backend-puc.herokuapp.com/api/login`, formData, {
+                axios.post(`http://localhost:8080/api/login`, formData, {
                     headers: {
                         'Access-Control-Allow-Origin': '*',
                         'Content-Type': 'multipart/form-data',
                     }
                 }).then(resp => {
                     let token = 'Bearer ' + resp.data.access_token;
-                    axios.get(`https://barbershop-backend-puc.herokuapp.com/api/user/${username}`, {
+                    axios.get(`http://localhost:8080/api/user/${username}`, {
                         headers: {
                             'Access-Control-Allow-Origin': '*',
                             'Authorization': token

@@ -4,7 +4,7 @@ import { useState } from "react";
 import ReactLoading from 'react-loading';
 import { ToastContainer, toast } from 'react-toastify';
 import axios from 'axios'
-const BASE_URL = 'https://barbershop-backend-puc.herokuapp.com/api'
+const BASE_URL = 'http://localhost:8080/api'
 
 const Account = () => {
 
@@ -29,7 +29,7 @@ const Account = () => {
     const handleAlterarFoto = (e) => {
         let token = 'Bearer ' + user.access_token;
         setLoading(true);
-        axios.get(`https://barbershop-backend-puc.herokuapp.com/api/user/${user.username}`, {
+        axios.get(`http://localhost:8080/api/user/${user.username}`, {
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Authorization': token
@@ -45,13 +45,12 @@ const Account = () => {
                 "password": senhaUser,
                 "roles": resp.data.roles,
             }
-            axios.put(`https://barbershop-backend-puc.herokuapp.com/api/user/${user.username}`, newUser ,{
+            axios.put(`http://localhost:8080/api/user/${user.username}`, newUser ,{
                 headers: {
                     'Access-Control-Allow-Origin': '*',
                     'Authorization': token
                     }
             }).then(resposta => {
-                console.log("resposta.: ", resposta);
                 let userAlterado = {
                     "id": resposta.data.id,
                     "username": resposta.data.username,
@@ -65,7 +64,6 @@ const Account = () => {
                     "access_token": user.access_token,
                     "refresh_token": user.refresh_token
                 };
-                console.log("userAlterado.: ", userAlterado);
                 dispatch({type: "LOGIN", payload: userAlterado});
                 dispatchEdit({type: "EDIT_ACCOUNT", payload: { editPassword: false, editFoto: false}});
                 setSenhaUser("");
@@ -98,13 +96,10 @@ const Account = () => {
 
     const handleAlterarSenha = (e) => {
         e.preventDefault();
-        console.log("editAccount.: ", editAccount);
         if(!editAccount.editPassword){
-            console.log("entrou no if");
             dispatchEdit({type: "EDIT_ACCOUNT", payload: { editPassword: !editAccount.editPassword, editFoto: false}});
         }else{
             let newUser = [];
-            console.log("user.: ", user);
             if(user.roles == 'SUPER ADMIN'){
                 newUser = {
                     "firstname": user.firstname,
@@ -114,15 +109,15 @@ const Account = () => {
                     "cpf": user.cpf,
                     "roles": [
                         {
-                            "id": 2,
+                            "id": 1,
                             "name": "ROLE_USER"
                         },
                         {
-                            "id": 3,
+                            "id": 2,
                             "name": "ROLE_MANAGER"
                         },
                         {
-                            "id": 4,
+                            "id": 3,
                             "name": "ROLE_ADMIN"
                         },
                         {
@@ -140,15 +135,15 @@ const Account = () => {
                     "cpf": user.cpf,
                     "roles": [
                         {
-                            "id": 2,
+                            "id": 1,
                             "name": "ROLE_USER"
                         },
                         {
-                            "id": 3,
+                            "id": 2,
                             "name": "ROLE_MANAGER"
                         },
                         {
-                            "id": 4,
+                            "id": 3,
                             "name": "ROLE_ADMIN"
                         }
                     ]
@@ -162,11 +157,11 @@ const Account = () => {
                     "cpf": user.cpf,
                     "roles": [
                         {
-                            "id": 2,
+                            "id": 1,
                             "name": "ROLE_USER"
                         },
                         {
-                            "id": 3,
+                            "id": 2,
                             "name": "ROLE_MANAGER"
                         }
                     ]
@@ -180,14 +175,13 @@ const Account = () => {
                     "cpf": user.cpf,
                     "roles": [
                         {
-                            "id": 2,
+                            "id": 1,
                             "name": "ROLE_USER"
                         }
                     ]
                 };
             }
             let token = 'Bearer ' + user.access_token;
-            console.log("newUser.: ", newUser);
             setLoading(true);
             axios.put(`${BASE_URL}/user/${user.username}`, newUser,{
                 headers: {
@@ -196,7 +190,6 @@ const Account = () => {
                 }
             })
             .then(resp => {
-                console.log("resp.: ", resp);
                 setLoading(false);
                 toast.success('Sua senha foi alterada!', {
                     position: "top-right",
@@ -223,8 +216,6 @@ const Account = () => {
             
         }
     }
-
-    console.log("editAccount.: ", editAccount);
 
     return (
         <div className="account">

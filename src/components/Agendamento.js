@@ -8,13 +8,16 @@ import axios from 'axios'
 import { ToastContainer, toast } from 'react-toastify';
 import ReactLoading from 'react-loading';
 import { useAgendamentoContext } from '../hooks/useAgendamentoContext'
-const BASE_URL = 'https://barbershop-backend-puc.herokuapp.com/api'
+import { useFreeDaysContext } from '../hooks/useFreeDaysContext';
+const BASE_URL = 'http://localhost:8080/api'
 
 const Agendamento = () => {
 
     const [value, onChange] = useState(new Date());
     const [availableDaysList, setAvailableDaysList] = useState([]);
+    const { freeDays, dispatchFreeDays } = useFreeDaysContext([]);
     const [horariosLivres, setHorariosLivres] = useState([]);
+    const [ind, setInd] = useState(0);
 
     const { agendamentoDetails, dispatchAgendamento } = useAgendamentoContext();
 
@@ -25,32 +28,55 @@ const Agendamento = () => {
 
     const { user, dispatch } = useUserContext();
 
-    // let busyDaysList = ["13-Jul-2022","14-Jul-2022","18-Jul-2022","21-Jul-2022","23-Jul-2022","25-Jul-2022"];
-    // let availableDaysList = ["12-Jul-2022","15-Jul-2022","16-Jul-2022","19-Jul-2022","20-Jul-2022","22-Jul-2022"];
+    // useEffect(() => {
 
-    useEffect(() => {
-      let today = new Date();
-      let dd = String(today.getDate()).padStart(2, '0');
-      let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-      let yyyy = today.getFullYear();
+    //   let today = new Date();
+    //   let dd = String(today.getDate()).padStart(2, '0');
+    //   let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    //   let yyyy = today.getFullYear();
 
-      let todayDate = dd + '-' + mm + '-' + yyyy;
-      todayDate = "14-08-2022";
-      let token = 'Bearer ' + user.access_token;
-      axios.get(`https://barbershop-backend-puc.herokuapp.com/api/agenda/month?date=${todayDate}`, {
-          headers: {
-              'Access-Control-Allow-Origin': '*',
-              'Authorization': token
-          }
-      }).then(resposta => {
-          for(let i = 0; i < resposta.data.length; i++){
-              let arrayy = availableDaysList;
-              arrayy.indexOf(resposta.data[i].date) === -1 ? arrayy.push(resposta.data[i].date) : console.log();
-              setAvailableDaysList(arrayy);
-          }
-      })
+    //   let todayDate = dd + '-' + mm + '-' + yyyy;
+    //   let token = 'Bearer ' + user.access_token;
+    //   todayDate = "01-08-2022";
+    //   axios.get(`http://localhost:8080/api/agenda/month/today?date=${todayDate}`, {
+    //       headers: {
+    //           'Access-Control-Allow-Origin': '*',
+    //           'Authorization': token
+    //       }
+    //   }).then(resposta => {
+    //     console.log("respppppp.: ", resposta);
+    //     for(let i = 0; i < resposta.data.length; i++){
+    //       let arrayy = availableDaysList;
+    //       arrayy.indexOf(resposta.data[i].date) === -1 ? arrayy.push(resposta.data[i].date) : console.log();
+    //       setAvailableDaysList(arrayy);
+    //     }
+    //   })
 
-  }, [availableDaysList]);
+    // }, [availableDaysList]);
+
+  //   useEffect(() => {
+  //     let today = new Date();
+  //     let dd = String(today.getDate()).padStart(2, '0');
+  //     let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+  //     let yyyy = today.getFullYear();
+
+  //     let todayDate = dd + '-' + mm + '-' + yyyy;
+  //     //todayDate = "14-08-2022";
+  //     let token = 'Bearer ' + user.access_token;
+  //     axios.get(`http://localhost:8080/api/agenda/month?date=${todayDate}`, {
+  //         headers: {
+  //             'Access-Control-Allow-Origin': '*',
+  //             'Authorization': token
+  //         }
+  //     }).then(resposta => {
+  //         for(let i = 0; i < resposta.data.length; i++){
+  //             let arrayy = availableDaysList;
+  //             arrayy.indexOf(resposta.data[i].date) === -1 ? arrayy.push(resposta.data[i].date) : console.log();
+  //             setAvailableDaysList(arrayy);
+  //         }
+  //     })
+
+  // }, [availableDaysList]);
 
     const handleAgendamento = (e) => {
 
@@ -105,6 +131,7 @@ const Agendamento = () => {
     }
 
     function tileClassName({ date }) {
+      
       let newDate = date.toISOString().substring(0, 10);
       let split = newDate.toString().split("-");
       let day = split[2];
@@ -118,8 +145,8 @@ const Agendamento = () => {
       //   }
       // }
 
-      for(let i = 0; i < availableDaysList.length; i++){
-        if(fullDate == availableDaysList[i]){
+      for(let i = 0; i < freeDays.length; i++){
+        if(fullDate == freeDays[i]){
           return fullDate+" availableDay";
         }
       }
@@ -129,7 +156,6 @@ const Agendamento = () => {
 
     const callDay = (clikedDay) => {
       let dateFormatted = formatDate(clikedDay);
-      console.log("dateFormatted.: ", dateFormatted);
       setDateClicked(dateFormatted);
       let token = 'Bearer ' + user.access_token;
       let agend = [{ idEmpresa: agendamentoDetails[0].idEmpresa, idCliente:agendamentoDetails[0].idCliente, idFuncionario:agendamentoDetails[0].idFuncionario, idServico:agendamentoDetails[0].idServico, date:dateFormatted, horario: "", status:"", nota:"",anotacao:""}];
@@ -141,8 +167,6 @@ const Agendamento = () => {
               
           }
       }).then(resposta => {
-          console.log("resposta.: ", resposta);
-          console.log("resposta.data .: ", resposta.data);
           let hlivres = resposta.data;
           setHorariosLivres(hlivres);
           
@@ -173,16 +197,17 @@ const Agendamento = () => {
   }
 
   console.log("agendamentoDetails.: ", agendamentoDetails);
+  console.log("freeDays.: ",freeDays);
 
     return (
       <div className="agendaCalendar">
         <div className="header">
           <h2 className="poppins">Escolha o horário de atendimento:</h2>
-          <div className="infoService">
+          {/* <div className="infoService">
             <h5 className="poppins">Empresa: Barbearia Silva</h5>
             <h5 className="poppins">Serviço: Corte de cabelo</h5>
             <h5 className="poppins">Profissional: Leandro</h5>
-          </div>
+          </div> */}
         </div>
         <div className="agenda">
           <div className="leftSide">

@@ -6,7 +6,6 @@ export const agendamentoReducer = (state, action) => {
 
     switch(action.type) {
         case "AGENDAMENTO_CHANGED":
-            console.log("payload.: ", action.payload);
             return { ...state, agendamentoDetails: action.payload};
         default:
             return state;

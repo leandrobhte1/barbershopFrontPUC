@@ -14,9 +14,6 @@ const BarberHome = () => {
     const { barberHome, dispatchBarberHome } = useBarberHomeContext();
     const { agendamentoDetails, dispatchAgendamento } = useAgendamentoContext();
 
-    console.log("barberHome.: ", barberHome);
-    console.log("agendamentoDetails.idEmpresa.: ", agendamentoDetails[0].idEmpresa);
-
     useEffect(() => {
         window.scrollTo(0, 0);
       }, []);

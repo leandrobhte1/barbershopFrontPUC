@@ -13,6 +13,7 @@ import { TabHomeSelectedContextProvider } from './context/tabHomeSelectedContext
 import { OptionsMenuEmpresaContextProvider } from './context/OptionsMenuEmpresaContext';
 import { BarberHomeContextProvider } from './context/BarberHomeContext';
 import { AgendamentoContextProvider } from './context/AgendamentoContext';
+import { FreeDaysContextProvider } from './context/FreeDaysContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -26,7 +27,9 @@ root.render(
                 <OptionsMenuEmpresaContextProvider>
                   <BarberHomeContextProvider>
                     <AgendamentoContextProvider>
-                      <App />
+                      <FreeDaysContextProvider>
+                        <App />
+                      </FreeDaysContextProvider>
                     </AgendamentoContextProvider>
                   </BarberHomeContextProvider>
                 </OptionsMenuEmpresaContextProvider>

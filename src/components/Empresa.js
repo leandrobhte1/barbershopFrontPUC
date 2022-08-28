@@ -10,7 +10,7 @@ import 'react-calendar/dist/Calendar.css';
 import dayjs from 'dayjs';
 import moment from 'moment';
 import axios from 'axios'
-const BASE_URL = 'https://barbershop-backend-puc.herokuapp.com/api'
+const BASE_URL = 'http://localhost:8080/api'
 
 const Empresa = () => {
 
@@ -27,9 +27,9 @@ const Empresa = () => {
         let yyyy = today.getFullYear();
 
         let todayDate = dd + '-' + mm + '-' + yyyy;
-        todayDate = "14-08-2022";
+        //todayDate = "14-08-2022";
         let token = 'Bearer ' + user.access_token;
-        axios.get(`https://barbershop-backend-puc.herokuapp.com/api/agenda/month?date=${todayDate}`, {
+        axios.get(`http://localhost:8080/api/agenda/month?date=${todayDate}`, {
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Authorization': token
@@ -104,7 +104,7 @@ const Empresa = () => {
         };
         let token = 'Bearer ' + user.access_token;
         setLoading(true);
-        axios.post(`https://barbershop-backend-puc.herokuapp.com/api/empresa/${user.id}/save`, empresaAdd, {
+        axios.post(`http://localhost:8080/api/empresa/${user.id}/save`, empresaAdd, {
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Authorization': token
@@ -112,7 +112,7 @@ const Empresa = () => {
         })
         .then(resp => {
             let token = 'Bearer ' + user.access_token;
-            axios.get(`https://barbershop-backend-puc.herokuapp.com/api/user/${user.username}`, {
+            axios.get(`http://localhost:8080/api/user/${user.username}`, {
                 headers: {
                     'Access-Control-Allow-Origin': '*',
                     'Authorization': token
@@ -444,7 +444,7 @@ const Empresa = () => {
                     "password": userPassword,
                     "roles": [
                         {
-                            "id": 2,
+                            "id": 1,
                             "name": "ROLE_USER"
                         }
                     ]
@@ -458,11 +458,11 @@ const Empresa = () => {
                     "password": userPassword,
                     "roles": [
                         {
-                            "id": 2,
+                            "id": 1,
                             "name": "ROLE_USER"
                         },
                         {
-                            "id": 3,
+                            "id": 2,
                             "name": "ROLE_MANAGER"
                         }
                     ]
@@ -476,15 +476,15 @@ const Empresa = () => {
                     "password": userPassword,
                     "roles": [
                         {
-                            "id": 2,
+                            "id": 1,
                             "name": "ROLE_USER"
                         },
                         {
-                            "id": 3,
+                            "id": 2,
                             "name": "ROLE_MANAGER"
                         },
                         {
-                            "id": 4,
+                            "id": 3,
                             "name": "ROLE_ADMIN"
                         }
                     ]
@@ -498,7 +498,7 @@ const Empresa = () => {
                     "password": userPassword,
                     "roles": [
                         {
-                            "id": 2,
+                            "id": 1,
                             "name": "ROLE_USER"
                         }
                     ]
@@ -525,7 +525,7 @@ const Empresa = () => {
                     }
                 }).then(resposta => {
 
-                    axios.get(`https://barbershop-backend-puc.herokuapp.com/api/user/${user.username}`, {
+                    axios.get(`http://localhost:8080/api/user/${user.username}`, {
                         headers: {
                             'Access-Control-Allow-Origin': '*',
                             'Authorization': token
@@ -653,6 +653,8 @@ const Empresa = () => {
         ].join('-');
     }
 
+    console.log("user.: ", user);
+
     return (
         <div className="empresa">
 
@@ -742,7 +744,7 @@ const Empresa = () => {
                 <h2 className="poppins">Você ainda não criou a sua empresa! Desejar criar agora?</h2>
                 <input className='btnAgendar' type="button" value="CRIAR EMPRESA" onClick={handleCreateEmpresa} />
             </div>)}
-            {(!loading && user.empresas.length == 1) && (
+            {(!loading && user.empresas.length > 0) && (
                 <div className="telaEmpresa">
                     <div className="empresaSide">
                         <div className="img">
