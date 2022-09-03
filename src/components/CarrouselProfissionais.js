@@ -16,7 +16,6 @@ const CarrouselProfissionais = (props) => {
     const navigate = useNavigate()
     
     const handleAgendar = (e) => {
-        console.log("e.target.classList[2].: ", e.target.classList[2]);
         let agend = [{ idEmpresa: agendamentoDetails[0].idEmpresa, idCliente:agendamentoDetails[0].idCliente, idFuncionario:e.target.classList[2], idServico:agendamentoDetails[0].idServico, date:"", horario: "", status:"", nota:"",anotacao:""}];
         dispatchAgendamento({type: "AGENDAMENTO_CHANGED", payload: agend})
         navigate(`/agendamento`);

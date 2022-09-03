@@ -60,7 +60,7 @@ const OptionsMenuUser = () => {
                         <img className="iconMenuUserOpen historicoIcon" src={HistoricoIcon} alt="Histórico" />
                     </Link>
                 </li>
-                {isAdmin == true &&
+                {/* {isAdmin == true &&
                     <div className="menusAdmin">
                         <li>
                             <Link to="reports">
@@ -69,7 +69,7 @@ const OptionsMenuUser = () => {
                             </Link>
                         </li>
                     </div>
-                }
+                } */}
                 {isManager == true &&
                     <div className="menusAdmin">
                         <li>

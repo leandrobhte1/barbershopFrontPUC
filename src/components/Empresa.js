@@ -8,13 +8,16 @@ import { useState, useEffect } from "react";
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import dayjs from 'dayjs';
-import moment from 'moment';
+import moment from 'moment'
 import axios from 'axios'
+import HistoricoRelatorio from './HistoricoRelatorio';
 const BASE_URL = 'http://localhost:8080/api'
 
 const Empresa = () => {
 
     const [value, onChange] = useState(new Date());
+    const [abrirAgendaDate, onChangeDateAbrirAgenda] = useState(new Date());
+    const [dateHistorico, setDateHistorico] = useState("");
     const [availableDaysList, setAvailableDaysList] = useState([]);
     const [horariosLivres, setHorariosLivres] = useState([]);
 
@@ -25,14 +28,99 @@ const Empresa = () => {
     const [download, setDownload] = useState("");
     const [tempo, setTempo] = useState("");
 
+    const [abrirAgenda, setAbrirAgenda] = useState(false);
+    
+    const [relatorioHistorico, setRelatorioHistorico] = useState([]);
+    const [relatorioFuturo, setRelatorioFuturo] = useState([]);
+    const [visaoRelatorio, setVisaoRelatorio] = useState("padrao");
+
+    const handleAbrirAgenda = (e) => {
+        setAbrirAgenda(!abrirAgenda);
+    }
+
+    const handleVoltarRelatoriosHome = (e) => {
+        e.preventDefault();
+        setVisaoRelatorio("padrao");
+    }
+
     const handleRelatorioView = (e) => {
         e.preventDefault();
         console.log("tipoRelatorio.: ", tipoRelatorio);
         console.log("tempo.: ", tempo);
 
         if(tipoRelatorio == 'historicoAgendamentos'){
+
+            let date = new Date();
+
+            if(tempo == '7dias'){
+                date.setDate(date.getDate() - 7);
+                console.log("date.: ", date);
+            }else if(tempo == '30dias'){
+                date.setDate(date.getDate() - 30);
+                console.log("date.: ", date);
+            }else if(tempo == '90dias'){
+                date.setDate(date.getDate() - 90);
+                console.log("date.: ", date);
+            }else{
+
+            }
+
+            let dd = String(date.getDate()).padStart(2, '0');
+            let mm = String(date.getMonth() + 1).padStart(2, '0'); //January is 0!
+            let yyyy = date.getFullYear();
+
+            date = yyyy + '-' + mm + '-' + dd;
+            console.log("date formatted.: ", date);
             
+
+            let token = 'Bearer ' + user.access_token;
+            axios.get(`http://localhost:8080/api/agenda/consultaHistorico?date=${date}`, {
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Authorization': token
+                    }
+            }).then(resposta => {
+                console.log("relll.: ", resposta);
+                setRelatorioHistorico(resposta.data);
+                setVisaoRelatorio("historico");
+            });
+
         }else if(tipoRelatorio == 'agendamentosFuturos'){
+
+            let date = new Date();
+
+            if(tempo == '7dias'){
+                date.setDate(date.getDate() + 7);
+                console.log("date.: ", date);
+            }else if(tempo == '30dias'){
+                date.setDate(date.getDate() + 30);
+                console.log("date.: ", date);
+            }else if(tempo == '90dias'){
+                date.setDate(date.getDate() + 90);
+                console.log("date.: ", date);
+            }else{
+
+            }
+
+            let dd = String(date.getDate()).padStart(2, '0');
+            let mm = String(date.getMonth() + 1).padStart(2, '0'); //January is 0!
+            let yyyy = date.getFullYear();
+
+            date = yyyy + '-' + mm + '-' + dd;
+            console.log("date formatted.: ", date);
+            
+
+            let token = 'Bearer ' + user.access_token;
+            axios.get(`http://localhost:8080/api/agenda/consultaAgendamentosFuturos?date=${date}`, {
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Authorization': token
+                    }
+            }).then(resposta => {
+                console.log("relll.: ", resposta);
+                setRelatorioFuturo(resposta.data);
+                setVisaoRelatorio("agendamentosFuturos");
+            });
 
         }else{
 
@@ -656,6 +744,88 @@ const Empresa = () => {
         })
     };
 
+    const handleAbrirAgendaBackend = (e) => {
+        e.preventDefault();
+        console.log("user.: ", user);
+
+        let dd = String(abrirAgendaDate.getDate()).padStart(2, '0');
+        let mm = String(abrirAgendaDate.getMonth() + 1).padStart(2, '0'); //January is 0!
+        let yyyy = abrirAgendaDate.getFullYear();
+
+        let date = dd + '-' + mm + '-' + yyyy;
+
+        console.log("date.: ", date);
+
+        let abrirHorarios = {
+            "idEmpresa": user.empresas[0].id,
+            "dateInicio": date,
+            "dateFim": date,
+            "horarioInicio": "08:00:00",
+            "horarioFim": "17:00:00"
+        };
+        let token = 'Bearer ' + user.access_token;
+        axios.post(`${BASE_URL}/agenda/criarHorarios`, abrirHorarios, {
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Authorization': token,
+                
+            }
+        }).then(resposta => {
+            console.log("resposta.: ", resposta);
+            toast.success('Agenda do dia aberta!', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                });
+
+        }).catch(e=> {
+            setLoading(false);
+            toast.error('Erro inesperado!', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                });
+        })
+    }
+
+    const callDayAbrirAgenda = (clikedDay) => {
+        let dateFormatted = formatDate(clikedDay);
+        console.log("ABRIR AGENDA NO DIA .: ", dateFormatted);
+        // setDateClicked(dateFormatted);
+        // let token = 'Bearer ' + user.access_token;
+        // axios.get(`${BASE_URL}/agenda/admin/agendados?date=${dateFormatted}`, {
+        //     headers: {
+        //         'Access-Control-Allow-Origin': '*',
+        //         'Authorization': token,
+                
+        //     }
+        // }).then(resposta => {
+        //     let hlivres = resposta.data;
+        //     let newData = resposta.data[0][3];
+        //     setHorariosLivres(hlivres);
+
+        // }).catch(e=> {
+        //     setLoading(false);
+        //     toast.error('Erro inesperado!', {
+        //         position: "top-right",
+        //         autoClose: 3000,
+        //         hideProgressBar: false,
+        //         closeOnClick: true,
+        //         pauseOnHover: true,
+        //         draggable: true,
+        //         progress: undefined,
+        //         });
+        // })
+    };
+
     function padTo2Digits(num) {
         return num.toString().padStart(2, '0');
     }
@@ -675,6 +845,8 @@ const Empresa = () => {
             date.getFullYear(),
         ].join('-');
     }
+
+    console.log("availableDaysList.: ", availableDaysList);
 
     return (
         <div className="empresa">
@@ -799,76 +971,115 @@ const Empresa = () => {
                         {options.agenda == true && (
                             <div className="screen">
                                 <h1 className="poppins">Agenda</h1>
-                                <Calendar onChange={onChange} value={value} className="agendaCalendar" tileClassName={tileClassName} onClickDay={callDay} />
-                                <span className="poppins">Horários agendados no dia {dateClicked}:</span>
-                                {horariosLivres && horariosLivres.map(h => (
-                                    <div className="horario">
-                                        <p className="poppins">Cliente: {h[1]} {h[2]}</p>
-                                        <p className="poppins">Data: {h[3]}</p>
-                                        <p className="poppins">Horário: {h[4]}</p>
-                                        <p className="poppins">Serviço: {h[5]}</p>
+                                {!abrirAgenda && (
+                                    <button className='btnAction btnAbrirAgenda' onClick={handleAbrirAgenda }>ABRIR AGENDA</button>
+                                )}
+
+                                {abrirAgenda && (
+                                    <button className='btnAction btnAbrirAgenda' onClick={handleAbrirAgenda }>VOLTAR</button>
+                                )}
+
+                                {abrirAgenda && (
+                                    <form className='formAbrirAgenda' onSubmit={handleAbrirAgendaBackend}>
+                                        <Calendar onChange={onChangeDateAbrirAgenda} value={abrirAgendaDate} className="agendaCalendarAbrirAgenda" onClickDay={callDayAbrirAgenda} />
+                                        <div className="baixarRelatorioBT">
+                                            <button type='submit' className='poppins'>ABRIR AGENDA DO DIA</button>
+                                        </div>
+                                    </form>
+                                )}
+
+                                {!abrirAgenda && (
+                                    <div>
+                                        <Calendar onChange={onChange} value={value} className="agendaCalendar" tileClassName={tileClassName} onClickDay={callDay} />
+                                        <span className="poppins">Horários agendados no dia {dateClicked}:</span>
+                                        {horariosLivres && horariosLivres.map(h => (
+                                            <div className="horario">
+                                                <p className="poppins">Cliente: {h[1]} {h[2]}</p>
+                                                <p className="poppins">Data: {h[3]}</p>
+                                                <p className="poppins">Horário: {h[4]}</p>
+                                                <p className="poppins">Serviço: {h[5]}</p>
+                                            </div>
+                                        ))}
                                     </div>
-                                ))}
+                                )}
+
+                                
                             </div>
                         )}
                         {options.relatorios == true && (
                             <div className="screen">
                                 <h1 className="poppins">Relatorios</h1>
 
-                                <form className='formRelatorios' onSubmit={handleRelatorioView}>
+                                {(visaoRelatorio != "padrao") && (
+                                    <div className="baixarRelatorioBT" onClick={handleVoltarRelatoriosHome}>
+                                            <button type='submit' className='poppins'>VOLTAR</button>
+                                        </div>
+                                )}
 
-                                    <div className="tipoRelatorioSection">
-                                        <h3 className="itemTittle poppins">Tipo de relatório</h3>
-                                        <select className='selectTipoRelatorio poppins' name="tipoRelatorio" value={tipoRelatorio} onChange={ (e) => setTipoRelatorio(e.target.value)}>
-                                            <option className='poppins' value="valor0" defaultValue>Escolha um tipo de relatório</option>
-                                            <option className='poppins' value="historicoAgendamentos">Histórico de agendamentos</option>
-                                            <option className='poppins' value="agendamentosFuturos">Agendamentos futuros</option>
-                                            {/* <option className='poppins' value="valor3">Serviços mais lucrativos</option> */}
-                                        </select>
-                                    </div>
-                                    {/* <div className="formatoDownloadSection">
-                                        <h3 className="itemTittle poppins">Extensão do arquivo:</h3>
-                                        <div className="optionsFormatoDowload">
-                                            <div className="option option1">
-                                                <input type="radio" id="pdf" value="PDF" name="download" onChange={(e) => setDownload(e.target.value)}></input>
-                                                <label htmlFor="pdf">PDF</label>
+                                {(visaoRelatorio == "padrao") && (
+                                    
+                                    <form className='formRelatorios' onSubmit={handleRelatorioView}>
+
+                                        <div className="tipoRelatorioSection">
+                                            <h3 className="itemTittle poppins">Tipo de relatório</h3>
+                                            <select className='selectTipoRelatorio poppins' name="tipoRelatorio" value={tipoRelatorio} onChange={ (e) => setTipoRelatorio(e.target.value)}>
+                                                <option className='poppins' value="valor0" defaultValue>Escolha um tipo de relatório</option>
+                                                <option className='poppins' value="historicoAgendamentos">Histórico de agendamentos</option>
+                                                <option className='poppins' value="agendamentosFuturos">Agendamentos futuros</option>
+                                                {/* <option className='poppins' value="valor3">Serviços mais lucrativos</option> */}
+                                            </select>
+                                        </div>
+                                        {/* <div className="formatoDownloadSection">
+                                            <h3 className="itemTittle poppins">Extensão do arquivo:</h3>
+                                            <div className="optionsFormatoDowload">
+                                                <div className="option option1">
+                                                    <input type="radio" id="pdf" value="PDF" name="download" onChange={(e) => setDownload(e.target.value)}></input>
+                                                    <label htmlFor="pdf">PDF</label>
+                                                </div>
+                                                <div className="option option2">
+                                                    <input type="radio" id="excel" name="download" value="Excel" onChange={(e) => setDownload(e.target.value)}></input>
+                                                    <label htmlFor="excel">Excel</label>
+                                                </div>
+                                                <div className="option option3">
+                                                    <input type="radio" id="word" name="download" value="Word" onChange={(e) => setDownload(e.target.value)}></input>
+                                                    <label htmlFor="word">Word</label>
+                                                </div>
                                             </div>
-                                            <div className="option option2">
-                                                <input type="radio" id="excel" name="download" value="Excel" onChange={(e) => setDownload(e.target.value)}></input>
-                                                <label htmlFor="excel">Excel</label>
-                                            </div>
-                                            <div className="option option3">
-                                                <input type="radio" id="word" name="download" value="Word" onChange={(e) => setDownload(e.target.value)}></input>
-                                                <label htmlFor="word">Word</label>
+                                        </div> */}
+                                        <div className="filtroTempoSection">
+                                            <h3 className="itemTittle poppins">Filtro de tempo</h3>
+                                            <div className="optionsFiltroTempo">
+                                                <div className="option option1">
+                                                    <input type="radio" id="seteDias" name="tempo" value="7dias" onChange={(e) => setTempo(e.target.value)}></input>
+                                                    <label htmlFor="seteDias">7 Dias</label>
+                                                </div>
+                                                <div className="option option2">
+                                                    <input type="radio" id="lastMonth" name="tempo" value="30dias" onChange={(e) => setTempo(e.target.value)}></input>
+                                                    <label htmlFor="lastMonth">30 dias</label>
+                                                </div>
+                                                <div className="option option3">
+                                                    <input type="radio" id="last3Months" name="tempo" value="90dias" onChange={(e) => setTempo(e.target.value)}></input>
+                                                    <label htmlFor="last3Months">90 dias</label>
+                                                </div>
+                                                {/* <div className="option option3">
+                                                    <input type="radio" id="anual" name="tempo" value="anual" onChange={(e) => setDownload(e.target.value)}></input>
+                                                    <label htmlFor="anual">Ano</label>
+                                                </div> */}
                                             </div>
                                         </div>
-                                    </div> */}
-                                    <div className="filtroTempoSection">
-                                        <h3 className="itemTittle poppins">Filtro de tempo</h3>
-                                        <div className="optionsFiltroTempo">
-                                            <div className="option option1">
-                                                <input type="radio" id="seteDias" name="tempo" value="7dias" onChange={(e) => setTempo(e.target.value)}></input>
-                                                <label htmlFor="seteDias">7 Dias</label>
-                                            </div>
-                                            <div className="option option2">
-                                                <input type="radio" id="lastMonth" name="tempo" value="30dias" onChange={(e) => setDownload(e.target.value)}></input>
-                                                <label htmlFor="lastMonth">30 dias</label>
-                                            </div>
-                                            <div className="option option3">
-                                                <input type="radio" id="last3Months" name="tempo" value="90dias" onChange={(e) => setDownload(e.target.value)}></input>
-                                                <label htmlFor="last3Months">90 dias</label>
-                                            </div>
-                                            {/* <div className="option option3">
-                                                <input type="radio" id="anual" name="tempo" value="anual" onChange={(e) => setDownload(e.target.value)}></input>
-                                                <label htmlFor="anual">Ano</label>
-                                            </div> */}
+                                        <div className="baixarRelatorioBT">
+                                            <button type='submit' className='poppins'>VISUALIZAR RELATÓRIO</button>
                                         </div>
-                                    </div>
-                                    <div className="baixarRelatorioBT">
-                                        <button type='submit' className='poppins'>VISUALIZAR RELATÓRIO</button>
-                                    </div>
 
-                                </form>
+                                    </form>
+                                )}
+                                {(visaoRelatorio == "historico") && (
+                                    <HistoricoRelatorio props={relatorioHistorico} ></HistoricoRelatorio>
+                                )}
+
+                                {(visaoRelatorio == "agendamentosFuturos") && (
+                                    <HistoricoRelatorio props={relatorioFuturo} ></HistoricoRelatorio>
+                                )}
 
                             </div>
                         )}

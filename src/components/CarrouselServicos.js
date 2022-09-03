@@ -32,6 +32,7 @@ const CarrouselServicos = (props) => {
         let yyyy = today.getFullYear();
   
         let todayDate = dd + '-' + mm + '-' + yyyy;
+        // todayDate = "01-09-2022";
         let token = 'Bearer ' + user.access_token;
         axios.get(`http://localhost:8080/api/agenda/month/today?date=${todayDate}`, {
             headers: {
