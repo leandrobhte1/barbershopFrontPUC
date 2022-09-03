@@ -8,7 +8,7 @@ const LineHistorico = (props) => {
                 <span className="date">{props.date}</span>
             </div>
             <div className="right">
-                <CardHistorico service={props.service} avaliado={props.avaliado} nota={props.nota} barberShop={props.barberShop}  professional={props.professional} status={props.status} reason={props.reason} ></CardHistorico>
+                <CardHistorico service={props.service} nota={props.nota} barberShop={props.barberShop}  professional={props.professional} status={props.status} ></CardHistorico>
             </div>
         </div>
     )

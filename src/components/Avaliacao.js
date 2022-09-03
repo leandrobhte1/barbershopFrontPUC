@@ -10,7 +10,7 @@ const Avaliacao = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        toast.info('Funcionalidade ainda não implementada! Será entregue na etapa 3!', {
+        toast.info('Funcionalidade ainda não implementada!', {
             position: "top-right",
             autoClose: 3000,
             hideProgressBar: false,

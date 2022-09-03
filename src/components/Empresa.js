@@ -20,6 +20,35 @@ const Empresa = () => {
 
     const [dateClicked, setDateClicked] = useState("");
 
+    const [unidade, setUnidade] = useState("");
+    const [tipoRelatorio, setTipoRelatorio] = useState("");
+    const [download, setDownload] = useState("");
+    const [tempo, setTempo] = useState("");
+
+    const handleRelatorioView = (e) => {
+        e.preventDefault();
+        console.log("tipoRelatorio.: ", tipoRelatorio);
+        console.log("tempo.: ", tempo);
+
+        if(tipoRelatorio == 'historicoAgendamentos'){
+            
+        }else if(tipoRelatorio == 'agendamentosFuturos'){
+
+        }else{
+
+        }
+
+        toast.info('Funcionalidade ainda não implementada! Será entregue na etapa 3!', {
+            position: "top-right",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            });
+    }
+
     useEffect(() => {
         let today = new Date();
         let dd = String(today.getDate()).padStart(2, '0');
@@ -785,6 +814,61 @@ const Empresa = () => {
                         {options.relatorios == true && (
                             <div className="screen">
                                 <h1 className="poppins">Relatorios</h1>
+
+                                <form className='formRelatorios' onSubmit={handleRelatorioView}>
+
+                                    <div className="tipoRelatorioSection">
+                                        <h3 className="itemTittle poppins">Tipo de relatório</h3>
+                                        <select className='selectTipoRelatorio poppins' name="tipoRelatorio" value={tipoRelatorio} onChange={ (e) => setTipoRelatorio(e.target.value)}>
+                                            <option className='poppins' value="valor0" defaultValue>Escolha um tipo de relatório</option>
+                                            <option className='poppins' value="historicoAgendamentos">Histórico de agendamentos</option>
+                                            <option className='poppins' value="agendamentosFuturos">Agendamentos futuros</option>
+                                            {/* <option className='poppins' value="valor3">Serviços mais lucrativos</option> */}
+                                        </select>
+                                    </div>
+                                    {/* <div className="formatoDownloadSection">
+                                        <h3 className="itemTittle poppins">Extensão do arquivo:</h3>
+                                        <div className="optionsFormatoDowload">
+                                            <div className="option option1">
+                                                <input type="radio" id="pdf" value="PDF" name="download" onChange={(e) => setDownload(e.target.value)}></input>
+                                                <label htmlFor="pdf">PDF</label>
+                                            </div>
+                                            <div className="option option2">
+                                                <input type="radio" id="excel" name="download" value="Excel" onChange={(e) => setDownload(e.target.value)}></input>
+                                                <label htmlFor="excel">Excel</label>
+                                            </div>
+                                            <div className="option option3">
+                                                <input type="radio" id="word" name="download" value="Word" onChange={(e) => setDownload(e.target.value)}></input>
+                                                <label htmlFor="word">Word</label>
+                                            </div>
+                                        </div>
+                                    </div> */}
+                                    <div className="filtroTempoSection">
+                                        <h3 className="itemTittle poppins">Filtro de tempo</h3>
+                                        <div className="optionsFiltroTempo">
+                                            <div className="option option1">
+                                                <input type="radio" id="seteDias" name="tempo" value="7dias" onChange={(e) => setTempo(e.target.value)}></input>
+                                                <label htmlFor="seteDias">7 Dias</label>
+                                            </div>
+                                            <div className="option option2">
+                                                <input type="radio" id="lastMonth" name="tempo" value="30dias" onChange={(e) => setDownload(e.target.value)}></input>
+                                                <label htmlFor="lastMonth">30 dias</label>
+                                            </div>
+                                            <div className="option option3">
+                                                <input type="radio" id="last3Months" name="tempo" value="90dias" onChange={(e) => setDownload(e.target.value)}></input>
+                                                <label htmlFor="last3Months">90 dias</label>
+                                            </div>
+                                            {/* <div className="option option3">
+                                                <input type="radio" id="anual" name="tempo" value="anual" onChange={(e) => setDownload(e.target.value)}></input>
+                                                <label htmlFor="anual">Ano</label>
+                                            </div> */}
+                                        </div>
+                                    </div>
+                                    <div className="baixarRelatorioBT">
+                                        <button type='submit' className='poppins'>VISUALIZAR RELATÓRIO</button>
+                                    </div>
+
+                                </form>
 
                             </div>
                         )}

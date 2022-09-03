@@ -1909,3 +1909,11 @@ span.voltar{
 .EscolhaProfissional{
     padding: 100px;
 }
+
+.formRelatorios{
+    padding-top: 50px;
+}
+
+.formRelatorios .filtroTempoSection{
+    padding-top: 30px;
+}
