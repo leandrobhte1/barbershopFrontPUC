@@ -54,12 +54,14 @@ const OptionsMenuUser = () => {
                         <img className="iconMenuUserOpen agendaIcon" src={AgendaIcon} alt="Agenda" />
                     </Link>
                 </li>
+                {isManager == false &&
                 <li>
                     <Link to="historico">
                         <span>Histórico</span>
                         <img className="iconMenuUserOpen historicoIcon" src={HistoricoIcon} alt="Histórico" />
                     </Link>
                 </li>
+                }
                 {/* {isAdmin == true &&
                     <div className="menusAdmin">
                         <li>
