@@ -34,7 +34,7 @@ const CarrouselServicos = (props) => {
         let todayDate = dd + '-' + mm + '-' + yyyy;
         // todayDate = "01-09-2022";
         let token = 'Bearer ' + user.access_token;
-        axios.get(`http://localhost:8080/api/agenda/month/today?date=${todayDate}`, {
+        axios.get(`https://barbershoppuc-backend.herokuapp.com/api/agenda/month/today?date=${todayDate}`, {
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Authorization': token

@@ -2,7 +2,7 @@ import LineHistorico from "./LineHistorico";
 import { useState, useEffect } from "react";
 import { useUserContext } from '../hooks/useUserContext';
 import axios from 'axios'
-const BASE_URL = 'http://localhost:8080/api'
+const BASE_URL = 'https://barbershoppuc-backend.herokuapp.com/api'
 
 const HistoricoRelatorio = (props) => {
 

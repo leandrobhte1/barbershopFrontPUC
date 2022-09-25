@@ -22,7 +22,7 @@ const MenuItem = (props) => {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    axios.get(`http://localhost:8080/api/empresas/search?searchTerm=`, {
+    axios.get(`https://barbershoppuc-backend.herokuapp.com/api/empresas/search?searchTerm=`, {
         headers: {
             'Access-Control-Allow-Origin': '*',
         }

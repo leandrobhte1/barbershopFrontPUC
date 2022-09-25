@@ -21,7 +21,7 @@ const CarrouselBestBarberShops = () => {
       };
 
       useEffect(() => {
-        axios.get(`http://localhost:8080/api/empresas/search?searchTerm=`, {
+        axios.get(`https://barbershoppuc-backend.herokuapp.com/api/empresas/search?searchTerm=`, {
                 headers: {
                     'Access-Control-Allow-Origin': '*',
                 }

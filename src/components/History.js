@@ -2,7 +2,7 @@ import LineHistorico from "./LineHistorico";
 import { useState, useEffect } from "react";
 import { useUserContext } from '../hooks/useUserContext';
 import axios from 'axios'
-const BASE_URL = 'http://localhost:8080/api'
+const BASE_URL = 'https://barbershoppuc-backend.herokuapp.com/api'
 
 const History = () => {
     const { user, dispatch } = useUserContext();
@@ -11,7 +11,7 @@ const History = () => {
 
     useEffect(() => {
         let token = 'Bearer ' + user.access_token;
-        axios.get(`http://localhost:8080/api/agenda/history?idCliente=${user.id}`, {
+        axios.get(`https://barbershoppuc-backend.herokuapp.com/api/agenda/history?idCliente=${user.id}`, {
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Authorization': token

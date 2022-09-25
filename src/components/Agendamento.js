@@ -9,7 +9,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import ReactLoading from 'react-loading';
 import { useAgendamentoContext } from '../hooks/useAgendamentoContext'
 import { useFreeDaysContext } from '../hooks/useFreeDaysContext';
-const BASE_URL = 'http://localhost:8080/api'
+const BASE_URL = 'https://barbershoppuc-backend.herokuapp.com/api'
 
 const Agendamento = () => {
 

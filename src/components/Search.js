@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 import Lupa from '../images/lupa.png';
 import { useState } from "react";
 import ReactLoading from 'react-loading';
-const BASE_URL = 'http://localhost:8080/api'
+const BASE_URL = 'https://barbershoppuc-backend.herokuapp.com/api'
 
 const Search = () => {
 
@@ -44,7 +44,7 @@ const Search = () => {
     }
 
     const searchPage = (i) => {
-        axios.get(`http://localhost:8080/api/empresas/search?searchTerm=${search}&page=${i}`, {
+        axios.get(`https://barbershoppuc-backend.herokuapp.com/api/empresas/search?searchTerm=${search}&page=${i}`, {
             headers: {
                 'Access-Control-Allow-Origin': '*',
             }
@@ -58,7 +58,7 @@ const Search = () => {
     const keyHandler = (e) => {
         if(e.key === 'Enter') {
             setLoading(true);
-            axios.get(`http://localhost:8080/api/empresas/search?searchTerm=${search}`, {
+            axios.get(`https://barbershoppuc-backend.herokuapp.com/api/empresas/search?searchTerm=${search}`, {
                 headers: {
                     'Access-Control-Allow-Origin': '*',
                 }
@@ -75,7 +75,7 @@ const Search = () => {
 
     const handleSearch = (e) => {
         setLoading(true);
-        axios.get(`http://localhost:8080/api/empresas/search?searchTerm=${search}`, {
+        axios.get(`https://barbershoppuc-backend.herokuapp.com/api/empresas/search?searchTerm=${search}`, {
             headers: {
                 'Access-Control-Allow-Origin': '*',
             }
